@@ -1,0 +1,79 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{pdfpages}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{color}
+\usepackage{lmodern}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\pagestyle{headings}
+\setlength{\oddsidemargin}{0in}
+\setlength{\evensidemargin}{0in}
+\setlength{\textheight}{9in}
+\setlength{\textwidth}{6.5in}
+\setlength{\topmargin}{-0.5in}
+\setlength{\headheight}{14pt}
+\renewcommand*\rmdefault{lmss}
+\renewcommand*\contentsname{Table of Contents}
+\lstset{language=R,
+	aboveskip=3mm,
+	belowskip=3mm,
+	showstringspaces=false,
+	%basicstyle={\small\ttfamily},
+	basicstyle={\normalfont\ttfamily},
+	numbers=left,
+	numberstyle=\tiny\color{gray},
+	keywordstyle=\color{blue},
+	commentstyle=\color{dkgreen},
+	stringstyle=\color{mauve},
+	breaklines=true,
+	breakatwhitespace=true,
+	tabsize=4
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{\vspace{-3ex}\bf Final Project\\[2ex] 
+       \normalsize ECS 132 --- Winter 2015}
+\date{\today}
+\author{\bf William Otwell (997371020)\\ \bf Rupali Saiya (997286348)\\ \bf Nicholas Layton(996933702)\\ \bf Syeda Inamdar(997323599)\\}
+
+\begin{document}
+\maketitle
+\pagebreak
+\tableofcontents
+\pagebreak
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Problem 1}
+\label{sec:problem1}
+\subsection{Part A: Comparison of Two Means}
+\label{subsec:1a}
+The bike sharing dataset provided by the UC Irvine (UCI) Machine Learning Repository allows us to analyze bike rental statistics during the years 2011 and 2012. We decided to analyze and compare the quantity of bike rentals on days during the months of March 2011 and March 2012 to gain insight as to how much the bike rental rates changed from one year to the next. In more formal terms, we estimated the difference between the average number of bikes rented in March 2011 and the average number of bikes rented in March 2012. To do so, we constructed a confidence intervals from the sample provided by UCI to estimate the difference between the population means of the averages from each month. We first had to define our random variables before constructing our confidence interval. Below is a list of the random variables that we used:
+\begin{itemize}
+	\item $X$: the number of bikes rented on any given day in March 2011
+	\item $Y$: the number of bikes rented on any given day in March 2012
+	\item $\bar{X}$: the sample mean of the number of bikes rented per day in March 2011
+	\item $\bar{Y}$: the sample mean of the number of bikes rented per day in March 2012
+	\item $s_1$: the standard deviation of the number of bikes rented per day in March 2011
+	\item $s_2$: the standard deviation of the number of bikes rented per day in March 2012
+\end{itemize}
+Note that the random variables $X$ and $Y$ are independent of one another. After defining our random variables, we had to construct our model for constructing the confidence interval. Our model turned out to be the following:
+\begin{equation}
+\bar{X} - \bar{Y} \pm (1.96) \sqrt{\frac{s_{1}^{2}}{n_1} + \frac{s_{2}^{2}}{n_2}}
+\end{equation}
+\dots 
+
+\pagebreak
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\appendix
+\section{Problem 1 Code}
+\label{sec:problem1code}
+
+\end{document}
+
