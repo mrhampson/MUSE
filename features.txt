@@ -1,0 +1,35 @@
+Going to use:
+artist familiarity	float	algorithmic estimation	url
+artist hotttnesss	float	algorithmic estimation	url
+beats start	array float	result of beat tracking	url
+danceability	float	algorithmic estimation	
+duration	float	in seconds	
+end of fade in	float	seconds at the beginning of the song	url
+energy	float	energy from listener point of view	
+key	int	key the song is in	url
+loudness	float	overall loudness in dB	url
+sections start	array float	largest grouping in a song, e.g. verse	url
+segments loudness max	array float	max dB value	url
+segments loudness max time	array float	time of max dB value, i.e. end of attack	url
+segments loudness max start	array float	dB value at onset	url
+segments pitches	2D array float	chroma feature, one value per note	url
+segments start	array float	musical events, ~ note onsets	url
+segments timbre	2D array float	texture features (MFCC+PCA-like)	url
+start of fade out	float	time in sec	url
+tatums start	array float	smallest rythmic element	url
+tempo	float	estimated tempo in BPM	url
+time signature	int	estimate of number of beats per bar, e.g. 4	url
+
+
+Might use:
+year	int	song release year from MusicBrainz or 0	url
+mode	int	major or minor	url
+
+audio md5	string	audio hash code	
+bars start	array float	beginning of bars, usually on a beat	url
+artist latitude	float	latitude	
+artist longitude	float	longitude
+
+
+Predicting:
+song hotttnesss	float	algorithmic estimation	
