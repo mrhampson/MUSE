@@ -1,12 +1,16 @@
 function [nn, L] = constructAndTrainNetwork(architecture, learningRate, xtrain, ytrain, xval, yval)
-%constructAndTrain3LayerNetwork(): constructs a 3-layer ANN
+% constructAndTrain3LayerNetwork(): 
+%	Constructs an Artificial Neural Network with the 
+%	given architecture, and trains the network with the 
+%	given training data (xtrain, ytrain). The training function also 
+%	can use the validation data (xval, yval) while training
 
+	% Normalize the data for training
 	try
-		% normalize the data
 		[xtrain, mu, sigma] = zscore(xtrain);
 		xval = normalize(xval, mu, sigma);
 
-		% make the training and testing vectors full
+		% Make the training and testing vectors full if they are sparse
 		vec = ind2vec(ytrain');
 		full_vec = full(vec);
 		ytrain = full_vec';
@@ -21,26 +25,39 @@ function [nn, L] = constructAndTrainNetwork(architecture, learningRate, xtrain, 
 		% error(['<<>> ERROR WHILE NORMALIZING DATA: ' E.message])
 	end
 
-	% initialize/setup neural network with above architecture
+
+	% Initialize/Setup a new Artificial Neural Network with the
+	% given architecture and learning rate. Also, initialize the activation
+	% function and output of the ANN nodes
 	disp(['Creating ' num2str(length(architecture)) '-layer Neural Network...']);
 	nn = nnsetup(architecture);
 	nn.learningRate = learningRate;
 	nn.activation_function = 'sigm';
 	nn.output = 'softmax';
 
-	% display results of NN setup
-	disp('Created Neural Network!')
-	% disp(nn);
 
-	% declare options for training the network
-	% NOTE: perform as many epochs as there are training samples with batch size
-	%		of 1 to perform Logistic Gradient Descent 
+
+	% Display results of initialization/setup
+	disp('Created Neural Network!')
+	% disp(nn); % this is optional (mostly used for testing)
+
+
+	% Initialize the options for training the network
+	% NOTE: The training algorithm should perform 
+	%		as many epochs as there are training samples
+	%		and should have a batch size of 1 in order to
+	% 		perform Stochastic Gradient Descent
 	opts.output = 'softmax';
 	[opts.numepochs, ~] = size(xtrain);
 	opts.batchsize = 1;
-	opts.plot = 0; % TODO: SET TO 1 BEFORE SUBMITTING
+	opts.plot = 0; % Set this to 1 for plotting 
 
-	% train neural network with options and training set 
+
+	% Train the new Neural Network with the above configurations/options
+	% and with the training data provided. If the validation data is provided
+	% (xval, yval), then it is passed to the training function
+	% Note: Error handling is performed to ensure that any problems during the 
+	%		training process are caught.
 	disp('Training Neural Network...')
     L = [];
 	try 
