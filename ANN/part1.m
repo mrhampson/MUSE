@@ -4,6 +4,7 @@ function [ networks ] = part1(x, y)
 %		   learning rates. Training and testing data are 
 %		   extracted from the dataset that is provided: (x, y)
 
+	disp(sprintf('\n'));
 	disp('****************************************')
 	disp('*** PART 1 *****************************')
 
@@ -39,12 +40,15 @@ function [ networks ] = part1(x, y)
 
 	% Loop through the various learningrates 
 	for rate = learningRates
-		disp('****************************************')
+		disp('*  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *');
 		disp(['Creating and Training with Learning Rate = ' num2str(rate) ' ...']);
 
 		% Construct and Train a network with a particular learning rate
 	    [network, ~] = constructAndTrainNetwork(architecture, rate, xtrain, ytrain, xval, yval);
 	    networks = [networks network];
 	end
+
+	disp('****************************************');
+	disp('****************************************');
 end
 

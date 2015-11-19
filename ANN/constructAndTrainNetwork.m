@@ -21,7 +21,7 @@ function [nn, L] = constructAndTrainNetwork(architecture, learningRate, xtrain, 
 			yval = full_vec2';
 		end
 	catch E
-	    disp(['<<>> ERROR WHILE NORMALIZING DATA: ' E.message]);
+	    disp(['<<>> ERROR: ' E.message]);
 		% error(['<<>> ERROR WHILE NORMALIZING DATA: ' E.message])
 	end
 
@@ -68,7 +68,7 @@ function [nn, L] = constructAndTrainNetwork(architecture, learningRate, xtrain, 
 		end
 		disp('Trained Neural Network!')
 	catch E
-		disp(['<<>> ERROR WHILE TRAINING: ' E.message]);
+		disp(['<<>> ERROR: ' E.message]);
 		% error(['<<>> ERROR WHILE TRAINING: ' E.message])
 	end
 end
