@@ -1,16 +1,18 @@
 function [nn, L] = part2( x, y )
 % part2(): performs calculations for part2 by
 % 		   constructing and training a single ANN
-% 		   with the entire dataset
+% 		   with the entire dataset to observe the 
+%		   training error 
 	disp('****************************************')
 	disp('*** PART 2 *****************************')
 
-	% construct and train the network with entire dataset
+
 	% IDEA: could we try to determine the optimal learning rate
 	%		from part1 and pass it to this function???
 
-
-	% initialize parameters for constructing network
+	% Initialize parameters for constructing a 3-layer Neural Network with
+	% as many inputs as there are features in the dataset and a single output
+	% NOTE/FIXME: should the output layer contain more than 1 node?
 	learningRate = 0.75;
 	[~, inputs] = size(x);
 	numHiddenLayers = 1;
@@ -19,13 +21,16 @@ function [nn, L] = part2( x, y )
 	architecture = [inputs repmat(numHiddenNodesPerLayer, 1, numHiddenLayers) outputs];
 
 
-	% train the network
+	% Train the network with the entire dataset
 	disp('****************************************')
 	disp(['Training with Learning Rate = ' num2str(learningRate) ' ...']);
 	[nn, L] = constructAndTrainNetwork(architecture, learningRate, x, y);
 
 
-	% display training error
+	% Display training error
+	% Note: error handling is performed in case
+	%		there was a problem with initializing
+	%		the L vector
 	try 
 		err = L(end,:);
 	catch E
