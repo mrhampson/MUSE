@@ -1,4 +1,4 @@
-function nn = constructAndTrain3LayerNetwork(learningRate, xtrain, ytrain, xval, yval)
+function [nn, L] = constructAndTrainNetwork(architecture, learningRate, xtrain, ytrain, xval, yval)
 %constructAndTrain3LayerNetwork(): constructs a 3-layer ANN
 
 	try
@@ -17,16 +17,9 @@ function nn = constructAndTrain3LayerNetwork(learningRate, xtrain, ytrain, xval,
 			yval = full_vec2';
 		end
 	catch E
-	    disp(['<> ERROR WHILE NORMALIZING DATA: ' E.message]);
-		% error(['<> ERROR WHILE NORMALIZING DATA: ' E.message])
+	    disp(['<<>> ERROR WHILE NORMALIZING DATA: ' E.message]);
+		% error(['<<>> ERROR WHILE NORMALIZING DATA: ' E.message])
 	end
-
-	% initialize parameters for constructing network
-	[~, inputs] = size(xtrain);
-	numHiddenLayers = 1;
-	numHiddenNodesPerLayer = 3;
-	outputs = 1;
-	architecture = [inputs repmat(numHiddenNodesPerLayer, numHiddenLayers, 1) outputs];
 
 	% initialize/setup neural network with above architecture
 	disp(['Creating ' num2str(length(architecture)) '-layer Neural Network...']);
@@ -49,15 +42,17 @@ function nn = constructAndTrain3LayerNetwork(learningRate, xtrain, ytrain, xval,
 
 	% train neural network with options and training set 
 	disp('Training Neural Network...')
+    L = [];
 	try 
-		if size(xval) > [0 0]
-			[trainedNN, L] = nntrain(nn, xtrain, ytrain, opts, xval, yval);
+		if size(xval) > zeros(1,2)
+			[nn, L] = nntrain(nn, xtrain, ytrain, opts, xval, yval);
 		else
-			[trainedNN, L] = nntrain(nn, xtrain, ytrain, opts);
+			[nn, L] = nntrain(nn, xtrain, ytrain, opts);
 		end
+		disp('Trained Neural Network!')
 	catch E
-		disp(['<> ERROR WHILE TRAINING: ' E.message]);
-		% error(['<> ERROR WHILE TRAINING: ' E.message])
+		disp(['<<>> ERROR WHILE TRAINING: ' E.message]);
+		% error(['<<>> ERROR WHILE TRAINING: ' E.message])
 	end
 end
 
