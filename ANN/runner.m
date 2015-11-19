@@ -1,9 +1,5 @@
-% runner: performs all calculations for analysis with Artificial Neural
-% Networks
+% runner: executes the functions for each part
 
-% TODO: parse dataset
-x = zeros(100);
-y = zeros(100, 1);
 
 % determine which problem the user wants to execute (simplifies testing)
 response = 'hi';
@@ -22,6 +18,12 @@ while ~isnumeric(response)
 end
 
 
+% import the dataset
+% TODO: parse dataset
+x = zeros(100);
+y = zeros(100, 1);
+
+
 % perform first problem
 if (response == 1)
     part1(x, y);
@@ -29,27 +31,25 @@ end
 
  
 % perform second problem
-% if (response == 2)
+if (response == 2)
+	part2(x, y);
+end
 
-% end
-% part2(x, y);
  
 % perform third problem
 % if (response == 3)
-
+% 	part3(x, y);
 % end
-% part3(x, y);
+
  
 % perform fourth problem
 % if (response == 4)
-
+% 	part4(x, y);
 % end
-% part4(x, y);
  
 % perform fifth problem
 % if (response == 5)
-
+% 	part5(x, y);
 % end
-% part5(x, y);
  
 % perform sixth problem (should we be doing this?)
