@@ -3,6 +3,8 @@ function [nn, L] = part2( x, y )
 % 		   constructing and training a single ANN
 % 		   with the entire dataset to observe the 
 %		   training error 
+
+	disp(sprintf('\n'));
 	disp('****************************************')
 	disp('*** PART 2 *****************************')
 
@@ -39,5 +41,8 @@ function [nn, L] = part2( x, y )
 	end
 	disp('Training Error:');
 	disp(err);
+
+	disp('****************************************');
+	disp('****************************************');
 end
 

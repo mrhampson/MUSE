@@ -1,6 +1,11 @@
 % runner: executes the functions for each part. The parts mirror the 
 %		  HW2 assignment problems
 
+disp(sprintf('\n'));
+disp('*************************************************');
+disp('*** Artificial Neural Networks ******************');
+disp('*************************************************');
+
 
 % Allow the user to decide which part they want to execute by reading 
 % input from the console. This will make testing/debugging easier than
@@ -62,3 +67,5 @@ if (response == 5 || response == 0)
 end
  
 % Perform part 6 if user selected it as an option (should we be doing this?)
+
+disp(sprintf('\n'));

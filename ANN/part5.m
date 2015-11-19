@@ -1,6 +1,8 @@
 function prediction = part5( x, y )
 % part5(): performs calculations for part5 by using
 %          a Neural Network to predict the output
+
+	disp(sprintf('\n'));
 	disp('****************************************')
 	disp('*** PART 5 *****************************')
 
@@ -12,6 +14,9 @@ function prediction = part5( x, y )
     
     % make several predictions and verify their classification accuracy...
 
-    % display results (classification rate, error, etc...)
+    % display results (classification rate, error, etc...
+
+	disp('****************************************');
+	disp('****************************************');
 end
 

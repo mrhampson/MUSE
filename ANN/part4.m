@@ -3,6 +3,8 @@ function networks = part4( x, y )
 %          different Neural Networks with various numbers of 
 %          hidden layers and various numbers of hidden nodes
 %          per hidden layer
+
+	disp(sprintf('\n'));
 	disp('****************************************')
 	disp('*** PART 4 *****************************')
 
@@ -35,7 +37,7 @@ function networks = part4( x, y )
 	% Iterate throughout the various hidden layer values and hidden node values
 	for layerValue = hiddenLayerValues
 		for nodeValue = hiddenNodeValues
-            disp('****************************************')
+            disp('*  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *');
             disp(['Creating and Training with ' num2str(layerValue) ' layers and ' num2str(nodeValue) ' nodes...']);
 
 			% Initialize the architecture of the network
@@ -46,5 +48,8 @@ function networks = part4( x, y )
 			[network, L] = constructAndTrainNetwork(architecture, rate, xtrain, ytrain, xval, yval);
 		end
 	end
+
+	disp('****************************************');
+	disp('****************************************');
 end
 
