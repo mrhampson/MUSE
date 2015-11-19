@@ -7,6 +7,7 @@ function [ networks ] = part1(x, y)
 	disp('****************************************')
 	disp('*** PART 1 *****************************')
 
+
 	% Extract the training data from the entire dataset (x, y) by selecting
 	% the genre of the song as the response variable and the other features 
 	% as the input features
@@ -20,21 +21,28 @@ function [ networks ] = part1(x, y)
 	xval = double(zeros(2));
 	yval = double(zeros(2));
 
-	% Initialize parameters for constructing network
+
+	% Initialize parameters for constructing a Neural Network with: 
+	% an input layer with as many inputs as there are features in the
+	% dataset, a hidden layer with 3 hidden nodes, and an output layer
+	% with a single output node to perform classification
+	
+	% NOTE/FIXME: Should the output layer contain more than 1 node?
+	learningRates = [0.2 0.7 1 1.2 1.5];
 	numHiddenNodesPerLayer = 3;
 	[~, inputs] = size(xtrain);
 	numHiddenLayers = 1;
 	outputs = 1;
-
-	% Construct the architecture of the network
+	networks = [];
 	architecture = [inputs repmat(numHiddenNodesPerLayer, 1, numHiddenLayers) outputs];
 
-	% observe effects of different learning rates
-	learningRates = [0.2 0.7 1 1.2 1.5];
-	networks = [];
+
+	% Loop through the various learningrates 
 	for rate = learningRates
 		disp('****************************************')
 		disp(['Creating and Training with Learning Rate = ' num2str(rate) ' ...']);
+
+		% Construct and Train a network with a particular learning rate
 	    [network, ~] = constructAndTrainNetwork(architecture, rate, xtrain, ytrain, xval, yval);
 	    networks = [networks network];
 	end
