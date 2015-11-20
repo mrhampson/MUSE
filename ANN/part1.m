@@ -27,15 +27,16 @@ function [ networks ] = part1(x, y)
 	% an input layer with as many inputs as there are features in the
 	% dataset, a hidden layer with 3 hidden nodes, and an output layer
 	% with a single output node to perform classification
-	
-	% NOTE/FIXME: Should the output layer contain more than 1 node?
-	learningRates = [0.2 0.7 1 1.2 1.5];
+	numHiddenLayers = 1;
 	numHiddenNodesPerLayer = 3;
 	[~, inputs] = size(xtrain);
-	numHiddenLayers = 1;
-	outputs = 1;
-	networks = [];
+	[~, outputs] = size(ytrain);
 	architecture = [inputs repmat(numHiddenNodesPerLayer, 1, numHiddenLayers) outputs];
+	learningRates = [0.2 0.7 1 1.2 1.5];
+	networks = [];
+
+	disp('The architecture of this Neural Network is:');
+	disp(architecture);
 
 
 	% Loop through the various learningrates 

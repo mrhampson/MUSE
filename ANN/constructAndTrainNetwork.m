@@ -67,6 +67,7 @@ function [nn, L] = constructAndTrainNetwork(architecture, learningRate, xtrain, 
 			[nn, L] = nntrain(nn, xtrain, ytrain, opts);
 		end
 		disp('Trained Neural Network!')
+		disp(['Training Error: ' num2str(nn.L(end))])
 	catch E
 		disp(['<<>> ERROR: ' E.message]);
 		% error(['<<>> ERROR WHILE TRAINING: ' E.message])

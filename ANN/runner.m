@@ -15,7 +15,7 @@ disp('*************************************************');
 response = 'hi';
 while ~isnumeric(response)
 	disp('Which part would you like to run? Part 1, 2, 3, 4, 5, or 6');
-    response = input('Enter 0 to run all the parts -> ', 's');
+    response = input('Enter 0 to run all the parts, or enter -1 to just import the data -> ', 's');
 	try
 		response = str2double(response);
 		if (isnan(response) || (~isnumeric(response)))
@@ -31,41 +31,42 @@ end
 % Import the dataset to be used within each part. 
 % The individual parts will determine if they want to divide
 % the dataset into smaller training and testing sets
-
-% TODO: need to implement a function to import the entire dataset.
-% for now, we will just set the dataset to all zeros
+path = [pwd '/../Data/song_data.csv'];
+d = importDataset(path);
 x = zeros(100);
 y = zeros(100, 1);
 
 
-% Perform part 1 if user selected it as an option
-if (response == 1 || response == 0)
-    part1(x, y);
-end
+if ~(response < 0) 
+	% Perform part 1 if user selected it as an option
+	if (response == 1 || response == 0)
+	    part1(x, y);
+	end
 
- 
-% Perform part 2 if user selected it as an option
-if (response == 2 || response == 0)
-	part2(x, y);
-end
+	 
+	% Perform part 2 if user selected it as an option
+	if (response == 2 || response == 0)
+		part2(x, y);
+	end
 
- 
-% Perform part 3 if user selected it as an option
-if (response == 3 || response == 0)
-	disp('Part 3 actually has no implementation');
-end
+	 
+	% Perform part 3 if user selected it as an option
+	if (response == 3 || response == 0)
+		disp('Part 3 actually has no implementation');
+	end
 
- 
-% Perform part 4 if user selected it as an option
-if (response == 4 || response == 0)
-	part4(x, y);
+	 
+	% Perform part 4 if user selected it as an option
+	if (response == 4 || response == 0)
+		part4(x, y);
+	end
+	 
+	% Perform part 5 if user selected it as an option
+	if (response == 5 || response == 0)
+		part5(x, y);
+	end
+	 
+	% Perform part 6 if user selected it as an option (should we be doing this?)
 end
- 
-% Perform part 5 if user selected it as an option
-if (response == 5 || response == 0)
-	part5(x, y);
-end
- 
-% Perform part 6 if user selected it as an option (should we be doing this?)
 
 disp(sprintf('\n'));

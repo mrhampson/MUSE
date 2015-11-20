@@ -14,12 +14,11 @@ function [nn, L] = part2( x, y )
 
 	% Initialize parameters for constructing a 3-layer Neural Network with
 	% as many inputs as there are features in the dataset and a single output
-	% NOTE/FIXME: should the output layer contain more than 1 node?
 	learningRate = 0.75;
-	[~, inputs] = size(x);
 	numHiddenLayers = 1;
 	numHiddenNodesPerLayer = 3;
-	outputs = 1;
+	[~, inputs] = size(xtrain);
+	[~, outputs] = size(ytrain);
 	architecture = [inputs repmat(numHiddenNodesPerLayer, 1, numHiddenLayers) outputs];
 
 
