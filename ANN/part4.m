@@ -27,11 +27,12 @@ function networks = part4( x, y )
     
 	% Initialize parameters for Neural Networks with various architectures 
 	% (i.e. various hidden layers and hidden nodes)
+	hiddenLayerValues = [1 2 3];
     hiddenNodeValues = [3 6 9 12];
-	hiddenLayerValues = 1:3;
-    rate = 0.75;
-	outputs = 1;
+    [~, inputs] = size(x);
+	[~, outputs] = size(y);
 	networks = [];
+	rate = 0.75;
 
 
 	% Iterate throughout the various hidden layer values and hidden node values
@@ -41,7 +42,6 @@ function networks = part4( x, y )
             disp(['Creating and Training with ' num2str(layerValue) ' layers and ' num2str(nodeValue) ' nodes...']);
 
 			% Initialize the architecture of the network
-			[~, inputs] = size(x);
 			architecture = [inputs repmat(nodeValue, 1, layerValue) outputs];
 
 			% Construct and train the network with the above architecture

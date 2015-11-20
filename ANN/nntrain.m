@@ -83,7 +83,9 @@ for i = 1 : numepochs
         nnupdatefigures(nn, fhandle, loss, opts, i, hiddenWeights, outputWeights, hiddenActivations, outputActivations);
     end
         
-    % disp(['epoch ' num2str(i) '/' num2str(opts.numepochs) '. Took ' num2str(t) ' seconds' '. Mini-batch mean squared error on training set is ' num2str(mean(L((n-numbatches):(n-1)))) str_perf]);
+    if i == numepochs
+        disp(['epoch ' num2str(i) '/' num2str(opts.numepochs) '. Took ' num2str(t) ' seconds' '. Mini-batch mean squared error on training set is ' num2str(mean(L((n-numbatches):(n-1)))) str_perf]);
+    end
     nn.learningRate = nn.learningRate * nn.scaling_learningRate;
 end
 end
