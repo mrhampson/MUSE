@@ -17,10 +17,12 @@ function [ networks ] = part1(x, y)
 	%		For now, we will just set the training and validation datasets to zeros
 	disp('****************************************')
 	disp('Getting training data...')
-	xtrain = double(zeros(2));
-	ytrain = double(zeros(2));
-	xval = double(zeros(2));
-	yval = double(zeros(2));
+	[rows, cols] = size(x);
+	trainingSize = round(0.65 * rows);
+	xtrain = x(1:trainingSize, :);
+	ytrain = y(1:trainingSize, :);
+	xval = x((trainingSize + 1):end, :);
+	yval = y(trainingSize + 1):end, :);
 
 
 	% Initialize parameters for constructing a Neural Network with: 

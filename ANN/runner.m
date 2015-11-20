@@ -31,10 +31,8 @@ end
 % Import the dataset to be used within each part. 
 % The individual parts will determine if they want to divide
 % the dataset into smaller training and testing sets
-path = [pwd '/../Data/song_data.csv'];
-d = importDataset(path);
-x = zeros(100);
-y = zeros(100, 1);
+path = [pwd '/../Data/'];
+[x, y] = importDataset(path);
 
 
 if ~(response < 0) 
