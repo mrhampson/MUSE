@@ -1,4 +1,4 @@
-function [ networks ] = part1(x, y)
+function [ networks ] = part1(xtrain, ytrain)
 % part1(): Performs calculations for part 1 by constructing 
 %		   and training various Neural Networks with various
 %		   learning rates. Training and testing data are 
@@ -7,22 +7,12 @@ function [ networks ] = part1(x, y)
 	disp(sprintf('\n'));
 	disp('****************************************')
 	disp('*** PART 1 *****************************')
-
-
-	% Extract the training data from the entire dataset (x, y) by selecting
-	% the genre of the song as the response variable and the other features 
-	% as the input features
-
-	% TODO: Need to write function/code to extract training data from dataset
-	%		For now, we will just set the training and validation datasets to zeros
-	disp('****************************************')
-	disp('Getting training data...')
-	[rows, cols] = size(x);
-	trainingSize = round(0.65 * rows);
-	xtrain = x(1:trainingSize, :);
-	ytrain = y(1:trainingSize, :);
-	xval = x((trainingSize + 1):end, :);
-	yval = y(trainingSize + 1):end, :);
+    
+    percentageOfSize = 0.2;
+    [rows, ~] = size(xtrain);
+    trainSize = round(percentageOfSize * rows);
+    xtrain = xtrain(1:trainSize, :);
+    ytrain = ytrain(1:trainSize, :);
 
 
 	% Initialize parameters for constructing a Neural Network with: 
@@ -47,7 +37,7 @@ function [ networks ] = part1(x, y)
 		disp(['Creating and Training with Learning Rate = ' num2str(rate) ' ...']);
 
 		% Construct and Train a network with a particular learning rate
-	    [network, ~] = constructAndTrainNetwork(architecture, rate, xtrain, ytrain, xval, yval);
+	    [network, ~] = constructAndTrainNetwork(architecture, rate, xtrain, ytrain);
 	    networks = [networks network];
 	end
 
