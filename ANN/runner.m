@@ -1,6 +1,11 @@
 % runner: executes the functions for each part. The parts mirror the 
 %		  HW2 assignment problems
 
+% Set the seed of random number generator for reproducibility 
+s = rng(1, 'v5normal');
+rng(s);
+rand('seed',0);
+
 disp(sprintf('\n'));
 disp('*************************************************');
 disp('*** Artificial Neural Networks ******************');
