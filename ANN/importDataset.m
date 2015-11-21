@@ -19,6 +19,8 @@ function [ x, y ] = importDataset( path )
     % Construct matrix for tag columns (i.e. each tag will have its own column
 	% to contain a 0 or 1 to indicate the presence of that tag)
     [numSamples, ~] = size(data);
+    indicesOfInputFeatures = [8 9 10 11];
+    x = cell(numSamples, length(indicesOfInputFeatures));
     y = cell(numSamples, numUniqueTags);
 
     % iterate over each sample
@@ -26,14 +28,24 @@ function [ x, y ] = importDataset( path )
         genresForSampleAsCell = strsplit(genreColumn{sample,:}, ';');
     	for tagIndex = 1:numUniqueTags
             for indexInSample = 1:length(genresForSampleAsCell)
-               if strcmp(genresForSampleAsCell{indexInSample},rankedGenres{tagIndex})
-                  y{sample, tagIndex} = 1; 
-               end
+            	if strcmp(genresForSampleAsCell{indexInSample},rankedGenres{tagIndex})
+					y{sample, tagIndex} = 1; 
+                else
+                    y{sample, tagIndex} = 0;
+                end
             end
-    	end
+        end
+        
+        index = 1;
+        for featureIndex = indicesOfInputFeatures
+           x{sample, index} = data{sample, featureIndex}; 
+           index = index + 1;
+        end
     end
+
+%     disp(['size(x) = ' num2str(size(x))])
+%     disp(['size(y) = ' num2str(size(y))])
     
-    x = data(:, 1:(end - 1));
 	disp('dataset imported!')
 end
 
