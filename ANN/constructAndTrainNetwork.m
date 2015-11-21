@@ -5,28 +5,12 @@ function [nn, L] = constructAndTrainNetwork(architecture, learningRate, xtrain, 
 %	given training data (xtrain, ytrain). The training function also 
 %	can use the validation data (xval, yval) while training
 
-	% Normalize the data for training
-% 	try
-		disp('normalizing data...')
- 		xtrain = double(cell2mat(xtrain));
- 		ytrain = double(cell2mat(ytrain));
-		[xtrain, mu, sigma] = zscore(xtrain);
-		% xval = normalize(xval, mu, sigma);
 
-		% Make the training and testing vectors full if they are sparse
-%         vec = ind2vec(ytrain');
-%         full_vec = full(vec);
-%         ytrain = full_vec';
-        
-		% if size(xval) > [0 0],
-		% 	vec2 = ind2vec(yval');
-		% 	full_vec2 = full(vec2);
-		% 	yval = full_vec2';
-		% end
-% 	catch E
-% 	    disp(['<<>> ERROR: ' E.message]);
-		% error(['<<>> ERROR WHILE NORMALIZING DATA: ' E.message])
-% 	end
+	% Normalize the data for training
+	disp('normalizing data...')
+	xtrain = double(cell2mat(xtrain));
+	ytrain = double(cell2mat(ytrain));
+	[xtrain, mu, sigma] = zscore(xtrain);
 
 
 	% Initialize/Setup a new Artificial Neural Network with the
@@ -37,7 +21,6 @@ function [nn, L] = constructAndTrainNetwork(architecture, learningRate, xtrain, 
 	nn.learningRate = learningRate;
 	nn.activation_function = 'sigm';
 	nn.output = 'softmax';
-
 
 
 	% Display results of initialization/setup
@@ -51,7 +34,8 @@ function [nn, L] = constructAndTrainNetwork(architecture, learningRate, xtrain, 
 	%		and should have a batch size of 1 in order to
 	% 		perform Stochastic Gradient Descent
 	opts.output = 'softmax';
-% 	[opts.numepochs, ~] = size(xtrain);
+% 	[opts.numepochs, ~] = size(xtrain); % this value originally resulted
+%	in an extremely long training time
     opts.numepochs = 100;
 	opts.batchsize = 1;
 	opts.plot = 1; % Set this to 1 for plotting 
@@ -63,18 +47,8 @@ function [nn, L] = constructAndTrainNetwork(architecture, learningRate, xtrain, 
 	% Note: Error handling is performed to ensure that any problems during the 
 	%		training process are caught.
 	disp('Training Neural Network...')
-    L = [];
-% 	try 
-% 		if size(xval) > zeros(1,2)
-% 			[nn, L] = nntrain(nn, xtrain, ytrain, opts, xval, yval);
-% 		else
-			[nn, L] = nntrain(nn, xtrain, ytrain, opts);
-% 		end
-		disp('Trained Neural Network!')
-		disp(['Training Error: ' num2str(nn.L(end))])
-% 	catch E
-% 		disp(['<<>> ERROR: ' E.message]);
-% 		% error(['<<>> ERROR WHILE TRAINING: ' E.message])
-% 	end
+	[nn, L] = nntrain(nn, xtrain, ytrain, opts);
+	disp('Neural Network has been trained!')
+	disp(['Training Error: ' num2str(nn.L(end))])
 end
 
