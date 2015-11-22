@@ -1,7 +1,7 @@
 %Import the data
 addpath('../Data');
 disp(sprintf('\nimporting dataset...'));
-data = dataset('File', 'data.csv', 'Delimiter', ',', 'HeaderLines', 0, 'ReadVarNames', false);
+data = dlmread('data-numeric-only.csv', ',', 10);
 
 %Take only the data we want and format as a matrix
 D = double(data(2:end,[2:12 14]));
