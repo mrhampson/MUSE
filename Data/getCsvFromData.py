@@ -27,7 +27,7 @@ def main():
     hdf5_files = get_all_files(sys.argv[1])
     
     # Define properties to get
-    properties = ['danceability', 'duration', 'end_of_fade_in', 'energy', 'key', 'loudness', 'mode', 'song_hotttnesss', 'start_of_fade_out', 'tempo', 'time_signature', 'year']
+    properties = ['danceability', 'duration', 'end_of_fade_in', 'energy', 'key', 'loudness', 'mode', 'song_hotttnesss', 'start_of_fade_out', 'tempo', 'time_signature', 'year', 'artist_terms']
     
     count_datapoints = 0
     with open('data.csv', 'w') as csvfile:
