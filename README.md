@@ -1,6 +1,11 @@
 # MUSE
 
 ##Data
+###Python
+To build the csv file first download the MillionSongSubset files. Then ```cd``` into the directory with ```getCsvFromData.py```
+and run the command ```python getCsvFromData.py <path to MillionSongSubset/data/>```
+
+###SQL
 This folder contains a file ```merged_song_database.db``` which is a combination of ```subset_artist_similarity.db```,
 ```subset_artist_term.db```, and ```subset_track_metadata.db``` from the original subset data.
 To get the ```song_data.csv``` I ran this query against the database
