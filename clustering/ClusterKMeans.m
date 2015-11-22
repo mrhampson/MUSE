@@ -2,9 +2,16 @@
 addpath('../Data');
 disp(sprintf('\nimporting dataset...'));
 data = dlmread('data-numeric-only.csv', ',', 2, 0);
+labels = {'duration', 'end of fade in', 'key', 'loudness', 'mode', 'song hotness', 'start of fade out', 'tempo', 'time signature', 'year'};
 
 %Take only the data we want and format as a matrix
-D = data
+D = data(:, [2:3, 5:12]);
+D2 = D;
+
+%normalize Data
+for j = 1:size(D,2)
+    D(:,j) = ( (D(:,j)-min(D(:,j)) )./(max(D(:,j))-min(D(:,j))));
+end
 
 %run k means
 disp(sprintf('Running 4 Cluster K-Means...'));
@@ -13,42 +20,19 @@ disp(sprintf('Running 4 Cluster K-Means...'));
 disp(sprintf('Plotting Data...'));
 
 %Plot The Clusters
-figure;
-plot(D(idx==1,1),D(idx==1,2),'r.','MarkerSize',12)
-hold on
-plot(D(idx==2,1),D(idx==2,2),'b.','MarkerSize',12)
-plot(D(idx==3,1),D(idx==3,2),'g.','MarkerSize',12)
-plot(D(idx==4,1),D(idx==4,2),'y.','MarkerSize',12)
-plot(C(:,1),C(:,2),'kx',...
-     'MarkerSize',15,'LineWidth',3)
-legend('Cluster 1','Cluster 2','cluster 3','cluster 4','Centroids',...
-       'Location','NW')
-title 'Cluster Assignments and Centroids'
-hold off
-
-figure;
-plot(D(idx==1,1),D(idx==1,3),'r.','MarkerSize',12)
-hold on
-plot(D(idx==2,1),D(idx==2,3),'b.','MarkerSize',12)
-plot(D(idx==3,1),D(idx==3,3),'g.','MarkerSize',12)
-plot(D(idx==4,1),D(idx==4,3),'y.','MarkerSize',12)
-plot(C(:,1),C(:,3),'kx',...
-     'MarkerSize',15,'LineWidth',3)
-legend('Cluster 1','Cluster 2','cluster 3','cluster 4','Centroids',...
-       'Location','NW')
-title 'Cluster Assignments and Centroids'
-hold off
-
-figure;
-plot(D(idx==1,2),D(idx==1,3),'r.','MarkerSize',12)
-hold on
-plot(D(idx==2,2),D(idx==2,3),'b.','MarkerSize',12)
-plot(D(idx==3,2),D(idx==3,3),'g.','MarkerSize',12)
-plot(D(idx==4,2),D(idx==4,3),'y.','MarkerSize',12)
-plot(C(:,2),C(:,3),'kx',...
-     'MarkerSize',15,'LineWidth',3)
-legend('Cluster 1','Cluster 2','cluster 3','cluster 4','Centroids',...
-       'Location','NW')
-title 'Cluster Assignments and Centroids'
-hold off
-
+for i = 1:(size(D,2)-1)
+    figure;
+    plot(D2(idx==1,i),D2(idx==1,6),'r.','MarkerSize',12)
+    hold on
+    plot(D2(idx==2,i),D2(idx==2,6),'b.','MarkerSize',12)
+    plot(D2(idx==3,i),D2(idx==3,6),'g.','MarkerSize',12)
+    plot(D2(idx==4,i),D2(idx==4,6),'y.','MarkerSize',12)
+    plot(C(:,i),C(:,6),'kx',...
+         'MarkerSize',15,'LineWidth',3)
+    legend('Cluster 1','Cluster 2','cluster 3','cluster 4','Centroids',...
+           'Location','NW')
+    xlabel(labels(i));
+    ylabel(labels(6));
+    title 'Cluster Assignments and Centroids'
+    hold off
+end
