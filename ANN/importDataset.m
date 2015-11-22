@@ -5,7 +5,7 @@ function [ x, y ] = importDataset( path )
 
     % Import the dataset as a text file with a comma as the separating delimiter.
 	disp(sprintf('\nimporting dataset...'));
-	data = dataset('File', [path 'song_data.csv'], 'Delimiter', ',', 'HeaderLines', 0, 'ReadVarNames', false);
+	data = dataset('File', [path 'data.csv'], 'Delimiter', ',', 'HeaderLines', 1, 'ReadVarNames', true);
 
 
     % Filter the dataset by the final column, which is the column that o
@@ -15,15 +15,15 @@ function [ x, y ] = importDataset( path )
     
     % Get number of unique tags from text file, which contains the rankings
     % of the top 301 most popular tags
-    % NOTE: tag is analogous to tag
-    rankedtags = importdata([path 'popular_tag_rankings.txt']);
+    % NOTE: tag is analogous to genre
+    rankedtags = importdata('MostPopular.txt');
     [numUniqueTags, ~] = size(rankedtags);
     
 
     % Construct matrix for tag columns (i.e. each tag will have its own column
 	% to contain either 0 or 1 to indicate the presence of that tag)
-    [numSamples, ~] = size(data);
-    indicesOfRelevantFeatures = [8 9 10 11];
+    [numSamples, features] = size(data);
+    indicesOfRelevantFeatures = 1:(features - 1);
     x = cell(numSamples, length(indicesOfRelevantFeatures));
     y = cell(numSamples, numUniqueTags);
 
@@ -66,6 +66,9 @@ function [ x, y ] = importDataset( path )
            index = index + 1;
         end
     end
+    
+    x = x(1:(end - 1), :);
+    y = y(1:(end - 1), :);
     
 	disp('dataset imported!')
 end

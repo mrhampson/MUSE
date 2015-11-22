@@ -37,7 +37,7 @@ function [nn, L] = constructAndTrainNetwork(architecture, learningRate, xtrain, 
 % 	[opts.numepochs, ~] = size(xtrain); % this value originally resulted
 %	in an extremely long training time
     opts.numepochs = 100;
-	opts.batchsize = 1;
+	opts.batchsize = size(xtrain, 1); % this is me experimenting with the batch size
 	opts.plot = 1; % Set this to 1 for plotting 
 
 

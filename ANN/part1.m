@@ -11,11 +11,13 @@ function [ networks ] = part1(x, y)
     % Extract training data from the dataset by declaring a 
     % percetnage of the dataset to be chosen from. Luckily, the dataset
     % that we use is already randomized
-    percentageOfSize = 0.2;
-    [rows, ~] = size(x);
-    trainSize = round(percentageOfSize * rows);
-    xtrain = x(1:trainSize, :);
-    ytrain = y(1:trainSize, :);
+    % percentageOfSize = 0.2;
+    % [rows, ~] = size(x);
+    % trainSize = round(percentageOfSize * rows);
+    % xtrain = x(1:trainSize, :);
+    % ytrain = y(1:trainSize, :);
+    xtrain = x;
+    ytrain = y;
 
 
 	% Initialize parameters for constructing a Neural Network with: 
@@ -27,7 +29,8 @@ function [ networks ] = part1(x, y)
 	[~, inputs] = size(xtrain);
 	[~, outputs] = size(ytrain);
 	architecture = [inputs repmat(numHiddenNodesPerLayer, 1, numHiddenLayers) outputs];
-	learningRates = [0.2 0.7 1 1.2 1.5];
+	% learningRates = [0.2 0.7 1 1.2 1.5];
+	learningRates = [0.87];
 	networks = [];
 
 	disp('The architecture of this Neural Network is:');
