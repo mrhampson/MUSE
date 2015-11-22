@@ -4,6 +4,7 @@ import hdf5_getters
 import numpy as np
 import glob
 import csv
+import math
 
 def get_all_files(basedir,ext='.h5') :
     """
@@ -26,25 +27,32 @@ def main():
     hdf5_files = get_all_files(sys.argv[1])
     
     # Define properties to get
-    properties = ['artist_terms', 'danceability', 'duration', 'end_of_fade_in', 'energy', 'key', 'loudness', 'mode', 'song_hotttnesss', 'start_of_fade_out', 'tempo', 'time_signature', 'track_id', 'year']
+    properties = ['danceability', 'duration', 'end_of_fade_in', 'energy', 'key', 'loudness', 'mode', 'song_hotttnesss', 'start_of_fade_out', 'tempo', 'time_signature', 'year']
     
+    count_datapoints = 0
     with open('data.csv', 'w') as csvfile:
         csvwriter = csv.writer(csvfile)
         csvwriter.writerow(properties)
         
         for abspath in hdf5_files:
             prop_values = []
-            h5 = hdf5_getters.open_h5_file_read(abspath);
+            h5 = hdf5_getters.open_h5_file_read(abspath)
+            hotness_check = hdf5_getters.get_song_hotttnesss(h5)
+            if math.isnan(hotness_check):
+                h5.close()
+                continue
             for prop in properties:        
-                prop_value = hdf5_getters.__getattribute__('get_' + prop)(h5)
+                prop_value = hdf5_getters.__getattribute__('get_' + prop)(h5)              
                 #print (prop_value)
                 # special case artist terms to format it 
                 if prop == 'artist_terms':
                     prop_values.append(';'.join(str(x) for x in prop_value))
                 else:
                     prop_values.append(str(prop_value))          
-            csvwriter.writerow(prop_values)
+            csvwriter.writerow(prop_values)         
+            count_datapoints += 1
             h5.close();
+    print('Wrote % datapoints (lines)'.format(count_datapoints))
     sys.exit(0)
     
 if __name__ == '__main__':
