@@ -4,13 +4,13 @@ These will be the features we use:
 
 +	artist_term
 	+	Echo Nest tags
-+	danceability	(removed, datasheets come back as all 0s)
++	danceability	(REMOVED, datasheets come back as all 0s)
 	+	between 0 and 1
 +	duration
 	+	in seconds
 +	end_of_fade_in
 	+	end time in seconds
-+	energy	(removed, datasheets come back as all 0s)
++	energy	(REMOVED, datasheets come back as all 0s)
 	+	between 0 and 1
 +	key (estimation)
 	+	key signiatures start at 0 (C) and ascend the chomatic scale 1 (D-flat)
