@@ -1,10 +1,10 @@
 %Import the data
 addpath('../Data');
 disp(sprintf('\nimporting dataset...'));
-data = dataset('File', 'song_data.csv', 'Delimiter', ',', 'HeaderLines', 0, 'ReadVarNames', false);
+data = dlmread('data-numeric-only.csv', ',', 2, 0);
 
 %Take only the data we want and format as a matrix
-D = double(data(:,8:10));
+D = data
 
 %run k means
 disp(sprintf('Running 4 Cluster K-Means...'));
