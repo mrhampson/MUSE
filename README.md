@@ -9,7 +9,7 @@ These will be the features we use:
 +	duration
 	+	in seconds
 +	end_of_fade_in
-+	+	end time in seconds
+	+	end time in seconds
 +	energy
 	+	between 0 and 1
 +	key (guess/approximate)
