@@ -36,9 +36,11 @@ end
 % Import the dataset to be used within each part. 
 % The individual parts will determine if they want to divide
 % the dataset into smaller training and testing sets
-path = [pwd '/../Data/'];
-[x, y] = importDataset(path);
-
+if (exist('x') ~= 1 || exist('y') ~= 1)
+    path = [pwd '/../Data/'];
+    [x, y] = importDataset(path);
+end
+    
 % Extract a training set of data from the original dataset.
 percentageOfSize = 0.65;
 [rows, ~] = size(x);
