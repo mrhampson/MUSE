@@ -1,4 +1,4 @@
-function [ networks ] = part1(x, y)
+function [ networks ] = part1(xtrain, ytrain)
 % part1(): Performs calculations for part 1 by constructing 
 %		   and training various Neural Networks with various
 %		   learning rates. Training and testing data are 
@@ -7,17 +7,6 @@ function [ networks ] = part1(x, y)
 	disp(sprintf('\n'));
 	disp('****************************************')
 	disp('*** PART 1 *****************************')
-    
-    % Extract training data from the dataset by declaring a 
-    % percetnage of the dataset to be chosen from. Luckily, the dataset
-    % that we use is already randomized
-    % percentageOfSize = 0.2;
-    % [rows, ~] = size(x);
-    % trainSize = round(percentageOfSize * rows);
-    % xtrain = x(1:trainSize, :);
-    % ytrain = y(1:trainSize, :);
-    xtrain = x;
-    ytrain = y;
 
 
 	% Initialize parameters for constructing a Neural Network with: 
@@ -30,7 +19,7 @@ function [ networks ] = part1(x, y)
 	[~, outputs] = size(ytrain);
 	architecture = [inputs repmat(numHiddenNodesPerLayer, 1, numHiddenLayers) outputs];
 	% learningRates = [0.2 0.7 1 1.2 1.5];
-	learningRates = [0.87];
+	learningRates = [1.5];
 	networks = [];
 
 	disp('The architecture of this Neural Network is:');

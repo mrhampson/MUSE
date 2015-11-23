@@ -39,11 +39,18 @@ end
 path = [pwd '/../Data/'];
 [x, y] = importDataset(path);
 
+% Extract a training set of data from the original dataset.
+percentageOfSize = 0.65;
+[rows, ~] = size(x);
+trainSize = round(percentageOfSize * rows);
+xtrain = x(1:trainSize, :);
+ytrain = y(1:trainSize, :);
+
 
 if ~(response < 0) 
 	% Perform part 1 if user selected it as an option
 	if (response == 1 || response == 0)
-	    part1(x, y);
+	    part1(xtrain, ytrain);
 	end
 
 	 
@@ -61,7 +68,7 @@ if ~(response < 0)
 	 
 	% Perform part 4 if user selected it as an option
 	if (response == 4 || response == 0)
-		part4(x, y);
+		part4(xtrain, ytrain);
 	end
 	 
 	% Perform part 5 if user selected it as an option

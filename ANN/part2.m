@@ -17,8 +17,8 @@ function [nn, L] = part2( x, y )
 	learningRate = 0.75;
 	numHiddenLayers = 1;
 	numHiddenNodesPerLayer = 3;
-	[~, inputs] = size(xtrain);
-	[~, outputs] = size(ytrain);
+	[~, inputs] = size(x);
+	[~, outputs] = size(y);
 	architecture = [inputs repmat(numHiddenNodesPerLayer, 1, numHiddenLayers) outputs];
 
 

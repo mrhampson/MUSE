@@ -8,14 +8,13 @@ function [ x, y ] = importDataset( path )
 	data = dataset('File', [path 'data.csv'], 'Delimiter', ',', 'HeaderLines', 1, 'ReadVarNames', true);
 
 
-    % Filter the dataset by the final column, which is the column that o
+    % Filter the dataset by the final column, which is the column that 
     % contains the tags for each song
     tagColumn = data(:,end);
 
     
     % Get number of unique tags from text file, which contains the rankings
     % of the top 301 most popular tags
-    % NOTE: tag is analogous to genre
     rankedtags = importdata('MostPopular.txt');
     [numUniqueTags, ~] = size(rankedtags);
     
@@ -28,14 +27,15 @@ function [ x, y ] = importDataset( path )
     y = cell(numSamples, numUniqueTags);
 
 
-    % Iterate over each sample. At each sample, we check whether its list of tags
-    % contains tags that are included in list of ranked most popular tags.
-    % If the sample contains any of the most popular tags, we set its index 
-    % in the y matrix for that tag to 1 to indicate its presence
+    % Iterate over each sample. 
+    % At each sample, we check whether its list of tags contains those that 
+    % are included in the list of ranked most popular tags. If the sample 
+    % contains any of the most popular tags, we set its index in the 
+    % y matrix for that tag to 1 to indicate its presence
     for sample = 1:numSamples
 
         % Since the tags were originally formatted as a semi-colon-separated
-        % list of tags, this step requires that the string be split by the 
+        % list of tags, this step requires that the string be split with the 
         % semi-colon delimiter and store each tag (as a string) in an array
         tagsForSampleAsCell = strsplit(tagColumn{sample,:}, ';');
 
@@ -46,9 +46,9 @@ function [ x, y ] = importDataset( path )
             % from splitting the string of tags in the earlier step
             for indexInSample = 1:length(tagsForSampleAsCell)
 
-                % If the tag in the current sample equates to the tag in the list
-                % of ranked most popular tags, then set the presence of the tag,
-                % otherwise, set it as being absent
+                % Check if the tag in the current sample equates to the tag in the list
+                % of ranked most popular tags. If it does, then set the presence of the
+                % tag (one). Otherwise, set it to as being absent (zero).
             	if strcmp(tagsForSampleAsCell{indexInSample},rankedtags{tagIndex})
 					y{sample, tagIndex} = 1; 
                 else
@@ -65,10 +65,11 @@ function [ x, y ] = importDataset( path )
            x{sample, index} = data{sample, featureIndex}; 
            index = index + 1;
         end
+
+        if mod(sample, 500) == 0
+            disp([num2str(sample) '/' num2str(numSamples) ' samples processed']);
+        end
     end
-    
-    x = x(1:(end - 1), :);
-    y = y(1:(end - 1), :);
     
 	disp('dataset imported!')
 end

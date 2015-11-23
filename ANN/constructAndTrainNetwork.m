@@ -29,23 +29,16 @@ function [nn, L] = constructAndTrainNetwork(architecture, learningRate, xtrain, 
 
 
 	% Initialize the options for training the network
-	% NOTE: The training algorithm should perform 
-	%		as many epochs as there are training samples
-	%		and should have a batch size of 1 in order to
-	% 		perform Stochastic Gradient Descent
 	opts.output = 'softmax';
-% 	[opts.numepochs, ~] = size(xtrain); % this value originally resulted
-%	in an extremely long training time
+% 	[opts.numepochs, ~] = size(xtrain); % <<< stille trying to determine necessary epoch number
     opts.numepochs = 100;
-	opts.batchsize = size(xtrain, 1); % this is me experimenting with the batch size
+	opts.batchsize = size(xtrain, 1); % <<< still trying to determine optimal batch size
 	opts.plot = 1; % Set this to 1 for plotting 
 
 
 	% Train the new Neural Network with the above configurations/options
 	% and with the training data provided. If the validation data is provided
 	% (xval, yval), then it is passed to the training function
-	% Note: Error handling is performed to ensure that any problems during the 
-	%		training process are caught.
 	disp('Training Neural Network...')
 	[nn, L] = nntrain(nn, xtrain, ytrain, opts);
 	disp('Neural Network has been trained!')
