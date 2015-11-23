@@ -119,9 +119,42 @@ blah blah blah
 blah blah blah
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{K-Means Clustering: ...Clustering what?...}
+\subsection{Clustering}
 \label{subsec:kMeans}
-blah blah blah
+We took two different approaches to clustering our data: k-means and hierarchical. We looked at k-means to try and see if there had any obvious patterns and then see if those patterns held any significance for genre or song hotness. Hierarchical gave us insight to the distribution of our data and helped us select the appropriate number of clusters for k-means. For both approaches we chose to use MATLAB and take advantage of the built-in clustering methods.
+\\ \\
+Initially we chose to look at the following features:
+\begin{itemize}
+\item danceability
+\vspace{-3.5mm}
+\item duration
+\vspace{-3.5mm}
+\item end of fade in
+\vspace{-3.5mm}
+\item energy
+\vspace{-3.5mm}
+\item key
+\vspace{-3.5mm}
+\item loudness
+\vspace{-3.5mm}
+\item mode
+\vspace{-3.5mm}
+\item song hotness
+\vspace{-3.5mm}
+\item start of fade out
+\vspace{-3.5mm} 
+\item tempo
+\vspace{-3.5mm}
+\item time signature
+\vspace{-3.5mm}
+\item year
+\end{itemize}
+
+We ran these through the MATLAB k-means function and viewed the clusters of all these features plotted against song hotness. We heard that the general rule of thumb was to run k-means on the sqrt(n/2) clusters. However we found that this did not produce distinct clusters and was very muddy. We found four clusters were the most distinct visually, but we did not check if it maximized the variance.
+
+We found that the clusters seemed to be skewed by issues with our data set. We noticed that danceability and energy where all 0 in the provided dataset (the value was supposed to range between 0 and 1). Therefore we decided to throw out those two columns. We also threw out year and mode because the ended up being nearly categorical in that their normalized values were almost 0 or almost 1. Another issue we noticed is that some of the song hotness values where either 0 or NaN so we removed datapoints where this was the case. After removing these features and datapoints from the dataset we found we got better clusters.
+
+To get the hierarchical clusters and plot the dendrogram we used the MATLAB functions dendrogram and linkage. The linkage function returns a tree of when to clusters are linked together. We decided to view the dendrogram with at most 50 distinct clusters. We found that there were really 4 distinct leaves. After the 4 initial splits the splits didn't look any more significant than when we plotted a dendrogram for random data. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
