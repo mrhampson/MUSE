@@ -33,9 +33,9 @@ while ~isnumeric(response)
 end
 
 
-% Import the dataset to be used within each part. 
-% The individual parts will determine if they want to divide
-% the dataset into smaller training and testing sets
+% Import the dataset to be used within each part if it doesn't
+% already exists. Training data will be extracted to be passed into
+% the functions that need it.
 if (exist('x') ~= 1 || exist('y') ~= 1)
     path = [pwd '/../Data/'];
     [x, y] = importDataset(path);
