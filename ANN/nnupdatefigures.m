@@ -35,9 +35,21 @@ if i > 1 %dont plot first point, its only a point
 %    plotting
     figure(fhandle);   
     if strcmp(nn.output,'softmax')  %also plot classification error
-        plotRows = 3;
+
+        plotRows = 1;
         plotCols = 2;         
-        annotation('textbox', [0.5, 1, 0, 0], 'string', 'TEXT HERE')
+
+        inputNodes = num2str(nn.size(1));
+        outputNodes = num2str(nn.size(end));
+        hiddenLayers = num2str(size(nn.size,2) - 2);
+        hiddenNodes = num2str(nn.size(2));
+        titleStart = [inputNodes ' input nodes,'];
+        titleMid = [hiddenLayers ' hidden layer(s) (with ' hiddenNodes ' nodes),'];
+        titleEnd = [' and ' outputNodes ' output nodes'];
+        theTitle = [titleStart titleMid titleEnd];
+
+        annotation('textbox', [0.2, 1, 0.7, 0], 'string', theTitle);
+        
         p1 = subplot(plotRows,plotCols,1);
         plot(plot_x,plot_ye);
         xlabel('Number of epochs'); ylabel('Error');title('Error');
@@ -53,36 +65,36 @@ if i > 1 %dont plot first point, its only a point
         set(p2, 'Xlim',[0,opts.numepochs + 1])
         
         % hidden layer weight updates at node 1
-        p3 = subplot(plotRows,plotCols,3);
-        [rows, columns] = size(hiddenWeights);
-        xPlotHidden = ones(rows, columns);
-        if rows > 1,
-            for index = 2:rows,
-                xPlotHidden(index,:) = xPlotHidden(index,:) * index;
-            end
-        end
-        plot(xPlotHidden,hiddenWeights)
-        xlabel('Number of epochs'); ylabel('Weights');
-        title('Hidden Layer Weight Updates (Node 1)')
-        M2 = {'w0', 'w1', 'w2', 'w3', 'w4', 'w5', 'w6', 'w7', 'w8'};
-        legend(p3, M2,'Location','eastoutside');
-        set(p3, 'Xlim',[0,opts.numepochs + 1])
+        % p3 = subplot(plotRows,plotCols,3);
+        % [rows, columns] = size(hiddenWeights);
+        % xPlotHidden = ones(rows, columns);
+        % if rows > 1,
+        %     for index = 2:rows,
+        %         xPlotHidden(index,:) = xPlotHidden(index,:) * index;
+        %     end
+        % end
+        % plot(xPlotHidden,hiddenWeights)
+        % xlabel('Number of epochs'); ylabel('Weights');
+        % title('Hidden Layer Weight Updates (Node 1)')
+        % M2 = {'w0', 'w1', 'w2', 'w3', 'w4', 'w5', 'w6', 'w7', 'w8'};
+        % legend(p3, M2,'Location','eastoutside');
+        % set(p3, 'Xlim',[0,opts.numepochs + 1])
         
         % output layer weight updates at node 1
-        p4 = subplot(plotRows,plotCols,4);
-        [rows2, columns2] = size(outputWeights);
-        xPlotOutput = ones(rows2, columns2);
-        if rows2 > 1,
-            for index2 = 2:rows2,
-                xPlotOutput(index2,:) = xPlotOutput(index2,:) * index2;
-            end
-        end
-        plot(xPlotOutput,outputWeights)
-        xlabel('Number of epochs'); ylabel('Weights');
-        title('Output Layer Weight Updates (Node 1)')
-        M3 = {'w0', 'w1', 'w2', 'w3'};
-        legend(p4, M3,'Location','eastoutside');
-        set(p4, 'Xlim',[0,opts.numepochs + 1])
+        % p4 = subplot(plotRows,plotCols,4);
+        % [rows2, columns2] = size(outputWeights);
+        % xPlotOutput = ones(rows2, columns2);
+        % if rows2 > 1,
+        %     for index2 = 2:rows2,
+        %         xPlotOutput(index2,:) = xPlotOutput(index2,:) * index2;
+        %     end
+        % end
+        % plot(xPlotOutput,outputWeights)
+        % xlabel('Number of epochs'); ylabel('Weights');
+        % title('Output Layer Weight Updates (Node 1)')
+        % M3 = {'w0', 'w1', 'w2', 'w3'};
+        % legend(p4, M3,'Location','eastoutside');
+        % set(p4, 'Xlim',[0,opts.numepochs + 1])
 
         
         % acivation outputs at hidden layer
