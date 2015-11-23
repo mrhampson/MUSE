@@ -43,12 +43,13 @@ if i > 1 %dont plot first point, its only a point
         outputNodes = num2str(nn.size(end));
         hiddenLayers = num2str(size(nn.size,2) - 2);
         hiddenNodes = num2str(nn.size(2));
-        titleStart = [inputNodes ' input nodes,'];
-        titleMid = [hiddenLayers ' hidden layer(s) (with ' hiddenNodes ' nodes),'];
-        titleEnd = [' and ' outputNodes ' output nodes'];
+        learningRate = num2str(nn.learningRate);
+        titleStart = ['Learning rate: ' learningRate ', ' inputNodes ' inputs,'];
+        titleMid = [hiddenLayers ' hidden layers with ' hiddenNodes ' hidden nodes,'];
+        titleEnd = [outputNodes ' outputs'];
         theTitle = [titleStart titleMid titleEnd];
 
-        annotation('textbox', [0.2, 1, 0.7, 0], 'string', theTitle);
+        annotation('textbox', [0.2, 1, 0.9, 0], 'string', theTitle);
         
         p1 = subplot(plotRows,plotCols,1);
         plot(plot_x,plot_ye);

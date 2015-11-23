@@ -19,7 +19,7 @@ function [ networks ] = part1(xtrain, ytrain)
 	[~, outputs] = size(ytrain);
 	architecture = [inputs repmat(numHiddenNodesPerLayer, 1, numHiddenLayers) outputs];
 	% learningRates = [0.2 0.7 1 1.2 1.5];
-	learningRates = [1.5];
+	learningRates = [0.01 0.03 0.06 0.1 0.5 1.0 1.5];
 	networks = [];
 
 	disp('The architecture of this Neural Network is:');
