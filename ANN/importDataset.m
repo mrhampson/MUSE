@@ -25,7 +25,8 @@ function [ x, y ] = importDataset( path )
     indicesOfRelevantFeatures = 1:(features - 1);
     x = cell(numSamples, length(indicesOfRelevantFeatures));
     y = cell(numSamples, numUniqueTags);
-
+    x(:) = {0};
+    y(:) = {0};
 
     % Iterate over each sample. 
     % At each sample, we check whether its list of tags contains those that 
@@ -38,7 +39,7 @@ function [ x, y ] = importDataset( path )
         % list of tags, this step requires that the string be split with the 
         % semi-colon delimiter and store each tag (as a string) in an array
         tagsForSampleAsCell = strsplit(tagColumn{sample,:}, ';');
-
+        c = 0;
         % Iterate over each unique tag from the list of ranked/unique tags
     	for tagIndex = 1:numUniqueTags
 
@@ -50,13 +51,17 @@ function [ x, y ] = importDataset( path )
                 % of ranked most popular tags. If it does, then set the presence of the
                 % tag (one). Otherwise, set it to as being absent (zero).
             	if strcmp(tagsForSampleAsCell{indexInSample},rankedtags{tagIndex})
-					y{sample, tagIndex} = 1; 
+					y{sample, tagIndex} = 1;
+                    c = 1;
+                    break
                 else
                     y{sample, tagIndex} = 0;
                 end
             end
+%             if(c == 1) If you want to test 1st most popular category seen
+%                 break
+%             end
         end
-        
         % Long story short, I had to figure out a way to copy the relevant features
         % from the dataset to the x matrix. This loop is performing that step since I
         % couldn't figure out a way to do it as a vector operation
