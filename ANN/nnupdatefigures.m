@@ -35,10 +35,9 @@ if i > 1 %dont plot first point, its only a point
 %    plotting
     figure(fhandle);   
     if strcmp(nn.output,'softmax')  %also plot classification error
-                
         plotRows = 3;
-        plotCols = 2;
-        
+        plotCols = 2;         
+        annotation('textbox', [0.5, 1, 0, 0], 'string', 'TEXT HERE')
         p1 = subplot(plotRows,plotCols,1);
         plot(plot_x,plot_ye);
         xlabel('Number of epochs'); ylabel('Error');title('Error');
@@ -84,6 +83,7 @@ if i > 1 %dont plot first point, its only a point
         M3 = {'w0', 'w1', 'w2', 'w3'};
         legend(p4, M3,'Location','eastoutside');
         set(p4, 'Xlim',[0,opts.numepochs + 1])
+
         
         % acivation outputs at hidden layer
 %         p5 = subplot(plotRows,plotCols,5);
