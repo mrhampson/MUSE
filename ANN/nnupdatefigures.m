@@ -86,34 +86,34 @@ if i > 1 %dont plot first point, its only a point
         set(p4, 'Xlim',[0,opts.numepochs + 1])
         
         % acivation outputs at hidden layer
-        p5 = subplot(plotRows,plotCols,5);
-        [rows3, columns3] = size(hiddenActivations);
-        hiddenActivationX = ones(rows3, columns3);
-        if rows3 > 1,
-            for index3 = 2:rows3,
-                hiddenActivationX(index3,:) = hiddenActivationX(index3,:) * index3;
-            end
-        end
-        plot(hiddenActivationX,hiddenActivations)
-        xlabel('Number of epochs'); ylabel('Activations');
-        title('Hidden Layer Activations (Node 1)')
-        legend(p5, M(1),'Location','NorthEast');
-        set(p5, 'Xlim',[0,opts.numepochs + 1])
+%         p5 = subplot(plotRows,plotCols,5);
+%         [rows3, columns3] = size(hiddenActivations);
+%         hiddenActivationX = ones(rows3, columns3);
+%         if rows3 > 1,
+%             for index3 = 2:rows3,
+%                 hiddenActivationX(index3,:) = hiddenActivationX(index3,:) * index3;
+%             end
+%         end
+%         plot(hiddenActivationX,hiddenActivations)
+%         xlabel('Number of epochs'); ylabel('Activations');
+%         title('Hidden Layer Activations (Node 1)')
+%         legend(p5, M(1),'Location','NorthEast');
+%         set(p5, 'Xlim',[0,opts.numepochs + 1])
         
         % activation outputs at output layer
-        p6 = subplot(plotRows,plotCols,6);
-        [rows4, columns4] = size(outputActivations);
-        outputActivationX = ones(rows4, columns4);
-        if rows4 > 1,
-            for index4 = 2:rows4,
-                outputActivationX(index4,:) = outputActivationX(index4,:) * index4;
-            end
-        end
-        plot(outputActivationX,outputActivations)
-        xlabel('Number of epochs'); ylabel('Activations');
-        title('Output Layer Activations (Node 1)')
-        legend(p6, M(1),'Location','NorthEast');
-        set(p6, 'Xlim',[0,opts.numepochs + 1])
+%         p6 = subplot(plotRows,plotCols,6);
+%         [rows4, columns4] = size(outputActivations);
+%         outputActivationX = ones(rows4, columns4);
+%         if rows4 > 1,
+%             for index4 = 2:rows4,
+%                 outputActivationX(index4,:) = outputActivationX(index4,:) * index4;
+%             end
+%         end
+%         plot(outputActivationX,outputActivations)
+%         xlabel('Number of epochs'); ylabel('Activations');
+%         title('Output Layer Activations (Node 1)')
+%         legend(p6, M(1),'Location','NorthEast');
+%         set(p6, 'Xlim',[0,opts.numepochs + 1])
     else
         
         p = plot(plot_x,plot_ye);

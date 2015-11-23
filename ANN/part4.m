@@ -7,20 +7,6 @@ function networks = part4( x, y )
 	disp(sprintf('\n'));
 	disp('****************************************')
 	disp('*** PART 4 *****************************')
-
-    
-    % Extract the training data from the entire dataset (x, y) by selecting
-	% the genre of the song as the response variable and the other features 
-	% as the input features
-
-	% TODO: Need to write function/code to extract training data from dataset
-	%		For now, we will just set the training and validation datasets to zeros
-	disp('****************************************')
-	disp('Getting training data...')
-	xtrain = double(zeros(2));
-	ytrain = double(zeros(2));
-	xval = double(zeros(2));
-	yval = double(zeros(2));
     
     
     % IDEA: Same as before, can we determine optimal learning rate and use it here???
@@ -45,7 +31,7 @@ function networks = part4( x, y )
 			architecture = [inputs repmat(nodeValue, 1, layerValue) outputs];
 
 			% Construct and train the network with the above architecture
-			[network, L] = constructAndTrainNetwork(architecture, rate, xtrain, ytrain, xval, yval);
+			[network, L] = constructAndTrainNetwork(architecture, rate, x, y);
 		end
 	end
 
