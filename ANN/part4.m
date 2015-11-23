@@ -14,7 +14,7 @@ function networks = part4( x, y )
 	% Initialize parameters for Neural Networks with various architectures 
 	% (i.e. various hidden layers and hidden nodes)
 	hiddenLayerValues = [1 2 3];
-    hiddenNodeValues = [3 6 9 12];
+    hiddenNodeValues = [30 60 90 120];
     [~, inputs] = size(x);
 	[~, outputs] = size(y);
 	networks = [];
