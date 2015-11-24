@@ -186,7 +186,7 @@ We quickly found that if we included all of the possible tags from our dataset t
 
 By having 12 song features and 20 possible genres, we knew we would need to construct a neural network with 12 input nodes and 20 output nodes. The more complicated issue arose when we tried determining the adequate number of hidden nodes.
 
-We were mostly interested in observing the effect of 3 different parameters on the neural network: learning rate, number of hidden layers, and number of hidden nodes per hidden layer. We planned on running our dataset through various neural networks, each with a different configuration of the above parameters. We hoped to find an optimal configuration for these parameters while also discovering any correlation between the above song features and the song tags. A particular configuration of these parameters that yielded both minimal training error and misclassification rate would implicitly verify a correlation between song features and song tags.
+We were mostly interested in observing the effect of 3 different parameters on the neural network: learning rate, number of hidden layers, and number of hidden nodes per hidden layer. We planned on running our dataset through various neural networks, each with a different configuration of the above parameters (refer to Appendix~\ref{subsec:annLoop} for code snippet). We hoped to find an optimal configuration for these parameters while also discovering any correlation between the above song features and the song tags. A particular configuration of these parameters that yielded both minimal training error and misclassification rate would implicitly verify a correlation between song features and song tags.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Clustering: Hotness}
@@ -263,22 +263,11 @@ blah blah blah
 \horizontalLine
 \section{References}
 \label{sec:references}
- \textbf{Please include all relevant references for the paper, to provide a succinct and accurate
- summary of past work and challenges in the field. Research has found that the more
- 2
- articles you cite, the more you will be cited too. For this report you are expected to have 10-20
- references.}
-\smallHorizontalLine
-\href{http://labrosa.ee.columbia.edu/millionsong/}{\textbf{Million Song Dataset}}
 
-Thierry Bertin-Mahieux, Daniel P.W. Ellis, Brian Whitman, and Paul Lamere. 
-The Million Song Dataset. In Proceedings of the 12th International Society
-for Music Information Retrieval Conference (ISMIR 2011), 2011.
-\\
-\\
+\subsection{Readings}
 \href{http://notes.variogr.am/post/37675885491/how-music-recommendation-works-and-doesnt-work}{\textbf{How music recommendation works - and doesn't work}} - Brian Whitman
 
-Brian Whitman's article describes the flaws with many popular music analytic programs and provides solutions for providing smart suggestions for music enthusiasts. 
+Brian Whitman's article describes the flaws with many popular music analytic programs and provides solutions to the problem of providing smart suggestions to music enthusiasts. It also includes the differences in various datasets used by today's popular music applications; for example, some datasets depend on a user's buying history, while others depend song acoustics.
 \\
 \\
 \href{http://courses.cs.washington.edu/courses/csep521/07wi/prj/michael.pdf}{\textbf{Pandora's Music Recommende}r} - Michael Howe 
@@ -295,6 +284,17 @@ The patent describes  ``A method of determining at least one match item correspo
 
 The paper illustrates why normalizing data and using that in conjunction with K-means is essentially good method of aiding clustering. After several ``Comprehensive experiments on six benchmark numerical datasets'' the authors also concluded that selecting a specific method of normalization that fits the dataset is essential for this approach to work.
 
+\subsection{Datasets and Code}
+\href{http://labrosa.ee.columbia.edu/millionsong/}{\textbf{Million Song Dataset}}
+
+Thierry Bertin-Mahieux, Daniel P.W. Ellis, Brian Whitman, and Paul Lamere. 
+The Million Song Dataset. In Proceedings of the 12th International Society
+for Music Information Retrieval Conference (ISMIR 2011), 2011.
+\\
+\\
+\href{https://github.com/rasmusbergpalm/DeepLearnToolbox}{DeepLearningToolbox} - Rasmus Berg Palm
+
+Used for the construction, configuration, training, and testing of our Artificial Neural Networks. The training algorithm uses a form of Batch Gradient Descent by constructing "mini-batches" at each iteration of training.
 
 \appendix
 
@@ -311,6 +311,7 @@ The paper illustrates why normalizing data and using that in conjunction with K-
 \label{sec:code}
 
 \subsection{Main Loop for Testing Different Neural Network Architectures}
+\label{subsec:annLoop}
 \begin{lstlisting}
 % Declare different values for hidden layers/nodes
 % and learning rates
