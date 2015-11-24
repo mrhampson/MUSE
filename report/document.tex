@@ -87,6 +87,9 @@ First, we hoped to utilize linear regression techniques to quantify and predict 
 \horizontalLine
 \section{Introduction}
 \label{sec:introduction}
+
+\subsection{Background}
+\label{subsec:background}
 \textbf{1-2 sentences of the general area, 1-2 sentences on the specific sub-area. A paragraph
 on the specific problem and how it has been addressed so far. 1-2 sentences to a paragraph
 on what is missing on current approaches and why this is important.
@@ -106,34 +109,9 @@ The motivation to develop "smarter" software for music analytics originates larg
 
 Our approach to music analytics is similar to that of Brian Whitman's company, minus the lyrical analysis. We seek to utilize data that represents the actual sound of the music, an approach the Brian calls "acoustic analysis." Some of the features that we include in our analysis, for example, include time signature, loudness, and key. While most music-analysis applications are geared towards popularity and sales, we hope to focus our analysis on the sounds of the music and how the features of a song itself can provide predictive information.
 
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\horizontalLine
-\section{Methods}
-\label{sec:methods}
-
-
- Divide it into sections that are well-defined on the distinct components/algorithms/subproblems.
- Put references whenever you use/step on previously published work. Use sub-section
- indexing (3.1, 3.2, etc.). Describe fully your algorithms and methods, so that if anyone wants to
- reproduce your results can do so (sometimes this is difficult if there are many parameters, in
- which case a parameter file should be included as suppl. mat.).
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Linear Regression: Predicting Song Popularity}
-\label{subsec:linearRegression}
-blah blah blah
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Artificial Neural Networks}
-\label{subsec:ann}
-We utilized Neural Networks to predict song genres based on features of a song. Many songs, however, belonged to several genres. To represent the various genres, also known as tags, for a particular song, we formed a feature column for each possible tag in our dataset. Then, we scanned through each song to determine its set of tags and set the index of each tag to a 1 in the appropriate column if the tag was present for the particular song. 
-
-We quickly found that if we included all of the possible tags that the number of tags would reach an unmanageable amount. It became too complex and computationally intensive to continue with such a large number of tags. Instead, we decided to limit the number of tags to a small subset of the most popular tags. Luckily, our dataset came with a list of the 300 most popular genres in the dataset. We were able to import this list and use it as the limiting set of possible tags for our dataset. Ultimately, we resorted to limiting the possible number of tags to only the top 20 genres.
-
-The features that we decided to use for predicting the song tags were: 
+\subsection{Million Song Dataset Subset}
+\label{subsec:datasetIntro}
+The dataset that we chose to use is known as the Million Song Dataset. Rather than actually using a million songs, we used a small, manageable subset of the Million Song Dataset. For both the Neural Networks approach (Section~\ref{subsec:ann}) and the Clustering approach (Section~\ref{subsec:clustering}), we used the following features:
 \begin{enumerate}
     \item danceability
     \vspace{-3.5mm}
@@ -160,13 +138,44 @@ The features that we decided to use for predicting the song tags were:
     \item year
 \end{enumerate}
 
+In addition to the list above, the Neural Networks approach also utilized a feature called "artist terms," which is simply a list of tags (genres) for each song.
+\\
+\\
+NOTE: LINEAR REGRESSION SHOULD INCLUDE ANY CHANGES THEY HAVE TO THIS LIST OF FEATURES. AS FAR AS I KNOW, THEY ARE USING THE SAME FEATURES
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\horizontalLine
+\section{Methods}
+\label{sec:methods}
+\textbf{Divide it into sections that are well-defined on the distinct components/algorithms/subproblems.
+Put references whenever you use/step on previously published work. Use sub-section
+indexing (3.1, 3.2, etc.). Describe fully your algorithms and methods, so that if anyone wants to
+reproduce your results can do so (sometimes this is difficult if there are many parameters, in
+which case a parameter file should be included as suppl. mat.).}
+\smallHorizontalLine
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Linear Regression: Predicting Song Popularity}
+\label{subsec:linearRegression}
+blah blah blah
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Artificial Neural Networks}
+\label{subsec:ann}
+We utilized Neural Networks to predict song genres based on features of a song. Many songs, however, belonged to several genres. To represent the various genres, also known as tags, for a particular song, we formed a feature column for each possible tag in our dataset. Then, we scanned through each song to determine its set of tags and set the index of each tag to a 1 in the appropriate column if the tag was present for the particular song. 
+
+We quickly found that if we included all of the possible tags that the number of tags would reach an unmanageable amount. It became too complex and computationally intensive to continue with such a large number of tags. Instead, we decided to limit the number of tags to a small subset of the most popular tags. Luckily, our dataset came with a list of the 300 most popular genres in the dataset. We were able to import this list and use it as the limiting set of possible tags for our dataset. Ultimately, we resorted to limiting the possible number of tags to only the top 20 genres.
+
+
+
 By having 12 song features and 20 possible genres, we knew we would need to construct a neural network with 12 input nodes and 20 output nodes, each indicating the presence of a particular genre for each song. 
 
 We were mostly interested in observing the effect of 3 different parameters on the neural network: learning rate, number of hidden layers, and number of hidden nodes per hidden layer. We planned on running our dataset through various neural networks, each with a different configuration of the above parameters. We hoped to find an optimal configuration for these parameters while also discovering any correlation between the above song features and the song tags. A particular configuration of these parameters that yielded both minimal training error and misclassification rate would implicitly verify a correlation between song features and song tags.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Clustering}
-\label{subsec:kMeans}
+\label{subsec:clustering}
 We took two different approaches to clustering our data: k-means and hierarchical. We looked at k-means to try and see if there had any obvious patterns and then see if those patterns held any significance for genre or song hotness. Hierarchical gave us insight to the distribution of our data and helped us select the appropriate number of clusters for k-means. For both approaches we chose to use MATLAB and take advantage of the built-in clustering methods.
 \\ \\
 Initially we chose to look at the following features:
@@ -208,16 +217,16 @@ To get the hierarchical clusters and plot the dendrogram we used the MATLAB func
 \section{Results}
 \label{sec:results}
 
-This should only describe the results that you have obtained. Sometimes it make sense
+\textbf{This should only describe the results that you have obtained. Sometimes it make sense
 to discuss your guess/opinion why this is happening, but this should be rare. This section is to
-only present the facts about the method performance, robustness, complexity, etc.
+only present the facts about the method performance, robustness, complexity, etc.}
 
-This is where you discuss everything that was presented in the Results section.
+\textbf{This is where you discuss everything that was presented in the Results section.
 Why did the algorithm perform better in X and not in Y. It is ok to succinctly re-state strong
 result claims (that were included in the previous section), as long as you continue to explain,
-even speculate why this may be the case. For example: "Our algorithm was faster in X\% of the
-scenarios than what is currently available. The main drive behind this performance boost is the
-Y module, which takes advantage of the Z characteristic of the problem. Indeed, ...."
+even speculate why this may be the case. For example: \textquotedblleft Our algorithm was faster in X\% of the
+scenarios than what is currently available. The main drive behind this performance boost is the Y module, which takes advantage of the Z characteristic of the problem. Indeed, ....\textquotedblright}
+\smallHorizontalLine
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Linear Regression: Predicting Song Popularity}
@@ -243,7 +252,7 @@ blah blah blah
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Clustering}
-\label{subsec:kMeansResults}
+\label{subsec:clusteringResults}
 blah blah blah
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -251,32 +260,40 @@ blah blah blah
 \horizontalLine
 \section{Conclusion}
 \label{sec:conclusion}
-Finally, in what some papers refer to as "Conclusion", you provide 1-2 sentences of the purpose
+\textbf{Finally, in what some papers refer to as "Conclusion", you provide 1-2 sentences of the purpose
 of this report and 1-2 sentences of what was achieved (these 2-4 sentences are usually similar
 or re-stating what was said in the abstract). Then you go on to discuss about what remains to
 be done (the road ahead), why (the impact to the field) and how you think it can be achieved
 (future work). You end the report with 1-2 sentences on how the work presented advances the
-field in the grant scheme of things.
+field in the grant scheme of things.}
+\smallHorizontalLine
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \horizontalLine
 \section{References}
 \label{sec:references}
- Please include all relevant references for the paper, to provide a succinct and accurate
+ \textbf{Please include all relevant references for the paper, to provide a succinct and accurate
  summary of past work and challenges in the field. Research has found that the more
  2
  articles you cite, the more you will be cited too. For this report you are expected to have 10-20
- references.
-\\ \\
+ references.}
+\smallHorizontalLine
+\href{http://notes.variogr.am/post/37675885491/how-music-recommendation-works-and-doesnt-work}{How music recommendation works - and doesn't work} - Brian Whitman
+
+Brian Whitman's article describes the flaws with many popular music analytic programs and provides solutions for providing smart suggestions for music enthusiasts. 
+\\
+\\
 \href{http://courses.cs.washington.edu/courses/csep521/07wi/prj/michael.pdf}{Pandora's Music Recommender} - Michael Howe 
 
 Michael Howe's paper describes likely methods and means involved with Pandora's classification and recommendation system. It covers elements of the Music Genome Project and the ways Pandora applies machine learning to both suggesting new music to users and building music taxonomy. By using over 400 features that break down music into its basic elements, Pandora is able to create useful taxonomy that is applied when suggesting music to users. During the act of recommending music, Howe suggests that it is likely that Pandora clusters users and uses that as a factor in determining songs to offer the user. By building neighborhoods of users through clustering, Pandora is successfully attracting loyal users.
-\\ \\
+\\
+\\
 \href{http://www.google.com/patents/US7003515?dq=7,003,515}{Music Genome Project Patent} - William T. Glaser 
 
 The patent describes  ``A method of determining at least one match item corresponding to a source item'' and a database that is created to facilitate such functionality. It involves calculating two distances between a source song vector and  first and second database song vectors. The result is then used to select a song match that is based on the magnitudes of these distances.
-\\ \\
+\\
+\\
 \href{http://www.medwelljournals.com/fulltext/?doi=ijscomp.2009.168.172}{Impact of Normalization in Distributed K-Means Clustering} - N. Karthikeyani Visalakshi 
 
 The paper illustrates why normalizing data and using that in conjunction with K-means is essentially good method of aiding clustering. After several ``Comprehensive experiments on six benchmark numerical datasets'' the authors also concluded that selecting a specific method of normalization that fits the dataset is essential for this approach to work.
@@ -318,7 +335,7 @@ The paper illustrates why normalizing data and using that in conjunction with K-
             \item Steven Mackey:
             \item James Dryden:
         \end{itemize}
-        \item Artificial Neural Network
+        \item Artificial Neural Networks
         \begin{itemize}
             \item Nicholas Layton:
             \item Michael Fiueroa:
