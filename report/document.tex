@@ -66,8 +66,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Abstract}
 \label{sec:abstract}
-\textbf{One-two sentences on what is the problem that you addressing. Two-three sentences that contain a high-level description on how you address the problem (your method). 2-3 sen- tences on the results. 1 sentence on what the advance that has been achieved with this work can influence the field (what it will enable, for the specific field and whole area in general)}
-\smallHorizontalLine
 Music lovers worldwide are in constant search of new sounds to enrich their music library. Many analytic applications have risen to popularity as a result of listeners' need for music discovery. Most of these applications utilize machine learning techniques to make recommendations and predictions for their users. One of the more common problems in music analytics is the process of recommending an enjoyable song or artist to a user based on their previous music choices. Another popular problem is the generation of a personalized playlist for a user, again based on their listening choices. 
 
 We sought to perform predictive analytics on songs based on their acoustic qualities. We hoped to discover any relationship between a song's acoustic qualities and its inaudible qualities, such as genre or popularity. Ultimately, we constructed models to perform different types of analysis, depending on the complexity and structure of the problems. 
@@ -80,21 +78,6 @@ We sought to perform predictive analytics on songs based on their acoustic quali
 
 \subsection{Background}
 \label{subsec:background}
-\textbf{1-2 sentences of the general area, 1-2 sentences on the specific sub-area. A paragraph
-on the specific problem and how it has been addressed so far. 1-2 sentences to a paragraph
-on what is missing on current approaches and why this is important.
-Then a paragraph on what this paper contributes - how you approach this problem and the
-results of the approach - This paragraph should have \textbf{\textit{clear}}, \textbf{\textit{definite}} \textbf{\textit{claims}} on what you have
-achieved in relation to what you claimed that is missing in the field (from the previous paragraph).
-You should not add items that do not relate to the previous "missing/desired" advances
-that you introduced before. If this happens, then either you have not introduced the challenges/missing/desired
-in the previous paragraph adequately, or your claim is irrelevant to this
-paper and has to be removed.
-Some people include a last paragraph with the structure of the paper as the closing introduction
-paragraph. This is up to you.}
-
-\smallHorizontalLine
-
 The motivation to develop "smarter" software for music analytics originates largely from a desire to sell more products to customers. Some of the biggest players in the industry, Amazon and Apple, are notoriously known for their "genius" recommendations on what customers ought to buy next. Brian Whitman, co-founder and CTO of the Echo Nest, said in his article titled \textit{How music recommendation works - and doesn't work} that, "Amazon is not optimizing for the noble work of raising independent artists' profiles to the public, and they're definitely not optimizing for a good musical experience. They're statistically optimizing to make more money, to sell you more things." Brian also discusses how many radio companies, like Pandora, utilize popularity to provide an enjoyable radio-listening experience. Brian goes on to elaborate on the importance of not only focusing on the money-making techniques, but satisfying the need of listeners by focusing on the actual music, its sound waves and lyrical significance. 
 
 Our approach to music analytics was similar to that of Brian Whitman's company, minus the lyrical analysis. We utilized data that represented the actual sound of the music, an approach that Brian calls "acoustic analysis." Some of the features that we included in our analysis, for example, were time signature, loudness, and key, to name a few. While most music analysis applications are geared towards popularity and sales, we hoped to focus our analysis on the sounds of the music and how the features of a song itself could provide predictive information.
@@ -162,14 +145,7 @@ NOTE: LINEAR REGRESSION SHOULD INCLUDE ANY CHANGES THEY HAVE TO THIS LIST OF FEA
 \horizontalLine
 \section{Methods}
 \label{sec:methods}
-\textbf{Divide it into sections that are well-defined on the distinct components/algorithms/subproblems.
-Put references whenever you use/step on previously published work. Use sub-section
-indexing (3.1, 3.2, etc.). Describe fully your algorithms and methods, so that if anyone wants to
-reproduce your results can do so (sometimes this is difficult if there are many parameters, in
-which case a parameter file should be included as suppl. mat.).}
-\smallHorizontalLine
-
-As mentioned before, the methods we chose to implement our analytics were linear regression, artificial neural networks, and clustering. The features that were utilized for each approach are listed in Section~\ref{subsec:datasetIntro}. We began by targeting a feature that we were interested in analyzing. Then, we created a model for each approach to perform the analysis. Finally, we ran our data through our models to observe the effectiveness of our models. 
+As mentioned before, the methods we chose for performing our analytics were linear regression, artificial neural networks, and clustering. The features that were utilized for each approach are listed in Section~\ref{subsec:datasetIntro}. For each method, we began by targeting a feature that we were interested in analyzing. Then, we created a model for each approach to perform the analysis. Finally, we ran our data through our models to observe the effectiveness of our models. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Linear Regression: Song Popularity}
@@ -179,11 +155,36 @@ blah blah blah
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Artificial Neural Networks: Song Genres}
 \label{subsec:ann}
-We utilized Neural Networks to predict song genres based on features of a song. Many songs, however, belonged to several genres. To represent the various genres, also known as tags, for a particular song, we formed a feature column for each possible tag in our dataset. Then, we scanned through each song to determine its set of tags and set the index of each tag to a 1 in the appropriate column if the tag was present for the particular song. 
+We utilized Neural Networks to predict song genres based on features of a song. Many songs, however, belonged to several genres. To represent the various genres, also known as tags, for a particular song, we formed a feature column for each possible tag in our dataset. Then, we scanned through each song to determine its set of tags and set the index of each tag to a 1 in the appropriate column if the tag was present for the particular song. If there were $n$ possible tags in the entire dataset, and $m$ samples, then the matrix needed to represent all tags for all samples would be an $m \times n$ matrix. Ultimately, our data matrix looked something like this:
+\begin{equation}
+    X = \begin{Bmatrix}
+    	x^{(1)}_1 & x^{(1)}_2 & ... & x^{(1)}_{n_1} \\
+    	x^{(2)}_1 & x^{(2)}_2 & ... & x^{(2)}_{n_1} \\
+    	...       & ...       & ... & ... \\
+        x^{(m)}_1 & x^{(m)}_2 & ... & x^{(m)}_{n_1} \\
+    \end{Bmatrix},
+    \\
+    Y = \begin{Bmatrix}
+    y^{(1)}_1 & y^{(1)}_2 & ... & y^{(1)}_{n_2} \\
+    y^{(2)}_1 & y^{(2)}_2 & ... & y^{(2)}_{n_2} \\
+    ...       & ...       & ... & ... \\
+    y^{(m)}_1 & y^{(m)}_2 & ... & y^{(m)}_{n_2} \\
+    \end{Bmatrix},
+    \\
+    D = \{X,Y\}
+\end{equation} 
+\begin{equation}
+    x^{(i)}_j \in \Re
+\end{equation}
+\begin{equation}
+    y^{(i)}_j \in \{0, 1\}
+\end{equation}
 
-We quickly found that if we included all of the possible tags that the number of tags would reach an unmanageable amount. It became too complex and computationally intensive to continue with such a large number of tags. Instead, we decided to limit the number of tags to a small subset of the most popular tags. Luckily, our dataset came with a list of the 300 most popular genres in the dataset. We were able to import this list and use it as the limiting set of possible tags for our dataset. Ultimately, we resorted to limiting the possible number of tags to only the top 20 genres.
+where $n_1$ is the number of features, $n_2$ is the number possible tags, and $m$ is the number of samples.
 
-By having 12 song features and 20 possible genres, we knew we would need to construct a neural network with 12 input nodes and 20 output nodes, each indicating the presence of a particular genre for each song. 
+We quickly found that if we included all of the possible tags from our dataset that the number of tags would reach an unmanageable amount. Training our network with such a large number of tags was computationally intensive and resulted in too complex of a distribution to learn. Instead, we decided to limit the number of tags to a small subset of the most popular tags. We were able to import a list of the 300 most popular genres in the dataset and use it as the limiting set of possible tags for our dataset. We found that even 300 tags was too many. Ultimately, we resorted to limiting the possible number of tags to only the top 20 genres.
+
+By having 12 song features and 20 possible genres, we knew we would need to construct a neural network with 12 input nodes and 20 output nodes. The more complicated issue arose when we tried determining the adequate number of hidden nodes.
 
 We were mostly interested in observing the effect of 3 different parameters on the neural network: learning rate, number of hidden layers, and number of hidden nodes per hidden layer. We planned on running our dataset through various neural networks, each with a different configuration of the above parameters. We hoped to find an optimal configuration for these parameters while also discovering any correlation between the above song features and the song tags. A particular configuration of these parameters that yielded both minimal training error and misclassification rate would implicitly verify a correlation between song features and song tags.
 
