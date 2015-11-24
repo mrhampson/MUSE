@@ -105,12 +105,12 @@ blah blah blah
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Artificial Neural Networks}
 \label{subsec:ann}
-We utilized Neural Networks to predict song genres based on features of a song. Being that a song could be considered a part of multiple genres, each song contained a list of genres to which it belonged. To represent the genres, also known as tags, for a particular song, we formed a feature column for each possible tag in our dataset. Then, we scanned through each song to determine its set of tags and set the index of each tag to a 1 in the appropriate column if the tag was present for the particular song. 
+We utilized Neural Networks to predict song genres based on features of a song. Many songs, however, belonged to several genres. To represent the various genres, also known as tags, for a particular song, we formed a feature column for each possible tag in our dataset. Then, we scanned through each song to determine its set of tags and set the index of each tag to a 1 in the appropriate column if the tag was present for the particular song. 
 
-We quickly found that if we included all of the possible tags that the number of tags would reach an unmanageable amount. It became too complex and computationally intensive to continue with such a large number of tags. Instead, we decided to limit the number of tags to a small subset of the most popular tags. Luckily, our dataset came with a list of the 300 most popular genres in the dataset. We were able to import this list and use it as the limiting set of possible tags for our dataset. Ultimately, we resorted to limiting the possible number of tags to only the top 20 genres, which resulted in an output layer of 20 nodes.
+We quickly found that if we included all of the possible tags that the number of tags would reach an unmanageable amount. It became too complex and computationally intensive to continue with such a large number of tags. Instead, we decided to limit the number of tags to a small subset of the most popular tags. Luckily, our dataset came with a list of the 300 most popular genres in the dataset. We were able to import this list and use it as the limiting set of possible tags for our dataset. Ultimately, we resorted to limiting the possible number of tags to only the top 20 genres.
 
 The features that we decided to use for predicting the song tags were: 
-\begin{itemize}
+\begin{enumerate}
     \item danceability
     \vspace{-3.5mm}
     \item duration
@@ -134,9 +134,11 @@ The features that we decided to use for predicting the song tags were:
     \item time signature
     \vspace{-3.5mm}
     \item year
-\end{itemize}
+\end{enumerate}
 
-We were interested in observing the effect of 3 different parameters on the neural network: learning rate, number of hidden layers, and number of hidden nodes per hidden layer. We planned on running our dataset through various neural networks, each with a different configuration of the above parameters. We hoped to find an optimal configuration for these parameters while also discovering any correlation between the above song features and the song tags. A particular configuration of these parameters that yielded both minimal training error and misclassification rate would implicitly verify a correlation between song features and song tags.
+By having 12 song features and 20 possible genres, we knew we would need to construct a neural network with 12 input nodes and 20 output nodes, each indicating the presence of a particular genre for each song. 
+
+We were mostly interested in observing the effect of 3 different parameters on the neural network: learning rate, number of hidden layers, and number of hidden nodes per hidden layer. We planned on running our dataset through various neural networks, each with a different configuration of the above parameters. We hoped to find an optimal configuration for these parameters while also discovering any correlation between the above song features and the song tags. A particular configuration of these parameters that yielded both minimal training error and misclassification rate would implicitly verify a correlation between song features and song tags.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Clustering}
