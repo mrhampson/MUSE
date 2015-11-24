@@ -109,7 +109,7 @@ The motivation to develop "smarter" software for music analytics originates larg
 
 Our approach to music analytics is similar to that of Brian Whitman's company, minus the lyrical analysis. We seek to utilize data that represents the actual sound of the music, an approach the Brian calls "acoustic analysis." Some of the features that we include in our analysis, for example, include time signature, loudness, and key. While most music-analysis applications are geared towards popularity and sales, we hope to focus our analysis on the sounds of the music and how the features of a song itself can provide predictive information.
 
-\subsection{Million Song Dataset Subset}
+\subsection{Million Song Dataset}
 \label{subsec:datasetIntro}
 The dataset that we chose to use is known as the Million Song Dataset. Rather than actually using a million songs, we used a small, manageable subset of the Million Song Dataset. For both the Neural Networks approach (Section~\ref{subsec:ann}) and the Clustering approach (Section~\ref{subsec:clustering}), we used the following features:
 \begin{enumerate}
@@ -138,7 +138,7 @@ The dataset that we chose to use is known as the Million Song Dataset. Rather th
     \item year
 \end{enumerate}
 
-In addition to the list above, the Neural Networks approach also utilized a feature called "artist terms," which is simply a list of tags (genres) for each song.
+In addition to the list above, the Neural Networks approach also utilized a feature called "artist terms," which is simply a list of tags, which in our case are analogous to genres, for each song. 
 \\
 \\
 NOTE: LINEAR REGRESSION SHOULD INCLUDE ANY CHANGES THEY HAVE TO THIS LIST OF FEATURES. AS FAR AS I KNOW, THEY ARE USING THE SAME FEATURES
@@ -167,8 +167,6 @@ We utilized Neural Networks to predict song genres based on features of a song. 
 
 We quickly found that if we included all of the possible tags that the number of tags would reach an unmanageable amount. It became too complex and computationally intensive to continue with such a large number of tags. Instead, we decided to limit the number of tags to a small subset of the most popular tags. Luckily, our dataset came with a list of the 300 most popular genres in the dataset. We were able to import this list and use it as the limiting set of possible tags for our dataset. Ultimately, we resorted to limiting the possible number of tags to only the top 20 genres.
 
-
-
 By having 12 song features and 20 possible genres, we knew we would need to construct a neural network with 12 input nodes and 20 output nodes, each indicating the presence of a particular genre for each song. 
 
 We were mostly interested in observing the effect of 3 different parameters on the neural network: learning rate, number of hidden layers, and number of hidden nodes per hidden layer. We planned on running our dataset through various neural networks, each with a different configuration of the above parameters. We hoped to find an optimal configuration for these parameters while also discovering any correlation between the above song features and the song tags. A particular configuration of these parameters that yielded both minimal training error and misclassification rate would implicitly verify a correlation between song features and song tags.
@@ -177,33 +175,6 @@ We were mostly interested in observing the effect of 3 different parameters on t
 \subsection{Clustering}
 \label{subsec:clustering}
 We took two different approaches to clustering our data: k-means and hierarchical. We looked at k-means to try and see if there had any obvious patterns and then see if those patterns held any significance for genre or song hotness. Hierarchical gave us insight to the distribution of our data and helped us select the appropriate number of clusters for k-means. For both approaches we chose to use MATLAB and take advantage of the built-in clustering methods.
-\\ \\
-Initially we chose to look at the following features:
-\begin{itemize}
-\item danceability
-\vspace{-3.5mm}
-\item duration
-\vspace{-3.5mm}
-\item end of fade in
-\vspace{-3.5mm}
-\item energy
-\vspace{-3.5mm}
-\item key
-\vspace{-3.5mm}
-\item loudness
-\vspace{-3.5mm}
-\item mode
-\vspace{-3.5mm}
-\item song hotness
-\vspace{-3.5mm}
-\item start of fade out
-\vspace{-3.5mm} 
-\item tempo
-\vspace{-3.5mm}
-\item time signature
-\vspace{-3.5mm}
-\item year
-\end{itemize}
 
 We ran these through the MATLAB k-means function and viewed the clusters of all these features plotted against song hotness. We heard that the general rule of thumb was to run k-means on the sqrt(n/2) clusters. However we found that this did not produce distinct clusters and was very muddy. We found four clusters were the most distinct visually, but we did not check if it maximized the variance.
 
@@ -268,6 +239,8 @@ be done (the road ahead), why (the impact to the field) and how you think it can
 field in the grant scheme of things.}
 \smallHorizontalLine
 
+blah blah blah
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \horizontalLine
@@ -279,34 +252,34 @@ field in the grant scheme of things.}
  articles you cite, the more you will be cited too. For this report you are expected to have 10-20
  references.}
 \smallHorizontalLine
-\href{http://notes.variogr.am/post/37675885491/how-music-recommendation-works-and-doesnt-work}{How music recommendation works - and doesn't work} - Brian Whitman
+\href{http://labrosa.ee.columbia.edu/millionsong/}{\textbf{Million Song Dataset}}
+
+Thierry Bertin-Mahieux, Daniel P.W. Ellis, Brian Whitman, and Paul Lamere. 
+The Million Song Dataset. In Proceedings of the 12th International Society
+for Music Information Retrieval Conference (ISMIR 2011), 2011.
+\\
+\\
+\href{http://notes.variogr.am/post/37675885491/how-music-recommendation-works-and-doesnt-work}{\textbf{How music recommendation works - and doesn't work}} - Brian Whitman
 
 Brian Whitman's article describes the flaws with many popular music analytic programs and provides solutions for providing smart suggestions for music enthusiasts. 
 \\
 \\
-\href{http://courses.cs.washington.edu/courses/csep521/07wi/prj/michael.pdf}{Pandora's Music Recommender} - Michael Howe 
+\href{http://courses.cs.washington.edu/courses/csep521/07wi/prj/michael.pdf}{\textbf{Pandora's Music Recommende}r} - Michael Howe 
 
 Michael Howe's paper describes likely methods and means involved with Pandora's classification and recommendation system. It covers elements of the Music Genome Project and the ways Pandora applies machine learning to both suggesting new music to users and building music taxonomy. By using over 400 features that break down music into its basic elements, Pandora is able to create useful taxonomy that is applied when suggesting music to users. During the act of recommending music, Howe suggests that it is likely that Pandora clusters users and uses that as a factor in determining songs to offer the user. By building neighborhoods of users through clustering, Pandora is successfully attracting loyal users.
 \\
 \\
-\href{http://www.google.com/patents/US7003515?dq=7,003,515}{Music Genome Project Patent} - William T. Glaser 
+\href{http://www.google.com/patents/US7003515?dq=7,003,515}{\textbf{Music Genome Project Patent}} - William T. Glaser 
 
 The patent describes  ``A method of determining at least one match item corresponding to a source item'' and a database that is created to facilitate such functionality. It involves calculating two distances between a source song vector and  first and second database song vectors. The result is then used to select a song match that is based on the magnitudes of these distances.
 \\
 \\
-\href{http://www.medwelljournals.com/fulltext/?doi=ijscomp.2009.168.172}{Impact of Normalization in Distributed K-Means Clustering} - N. Karthikeyani Visalakshi 
+\href{http://www.medwelljournals.com/fulltext/?doi=ijscomp.2009.168.172}{\textbf{Impact of Normalization in Distributed K-Means Clustering}} - N. Karthikeyani Visalakshi 
 
 The paper illustrates why normalizing data and using that in conjunction with K-means is essentially good method of aiding clustering. After several ``Comprehensive experiments on six benchmark numerical datasets'' the authors also concluded that selecting a specific method of normalization that fits the dataset is essential for this approach to work.
 
 
 \appendix
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\horizontalLine
-\section{Dataset Information}
-\label{sec:dataset}
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
