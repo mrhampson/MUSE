@@ -1,20 +1,25 @@
-function prediction = part5( x, y )
+function [err, bad] = part5( x, y, network )
 % part5(): performs calculations for part5 by using
 %          a Neural Network to predict the output
 
 	disp(sprintf('\n'));
 	disp('****************************************')
 	disp('*** PART 5 *****************************')
-
-    % IDEA: should we try to use the most optimal learning rate and 
-    %       network configuration from earlier parts to make best
-    %       prediction?
-
-    % get trained network ...
     
-    % make several predictions and verify their classification accuracy...
+    x = cell2mat(x);
+    y = cell2mat(y);
+    
+%     err = []
+%     bad = [];
+%     for i = 1:size(x,1)
+%         [error, badd] = nntest(network, x(i,:), y(i,:));
+%         err = [err error];
+%         bad = [bad badd];
+%     end
+    [err, bad] = nntest(network, x, y);
 
-    % display results (classification rate, error, etc...
+    disp(['Testing error: ' num2str(err)]);
+%     disp(bad)
 
 	disp('****************************************');
 	disp('****************************************');

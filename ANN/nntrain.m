@@ -1,4 +1,4 @@
-function [nn, L]  = nntrain(nn, train_x, train_y, opts, val_x, val_y)
+function [nn, L, loss]  = nntrain(nn, train_x, train_y, opts, val_x, val_y)
 %NNTRAIN trains a neural net
 % [nn, L] = nnff(nn, x, y, opts) trains the neural network nn with input x and
 % output y for opts.numepochs epochs, with minibatches of size
@@ -83,9 +83,10 @@ for i = 1 : numepochs
         nnupdatefigures(nn, fhandle, loss, opts, i, hiddenWeights, outputWeights, hiddenActivations, outputActivations);
     end
         
-    if i == numepochs
+     if i == numepochs
         disp(['epoch ' num2str(i) '/' num2str(opts.numepochs) '. Took ' num2str(t) ' seconds' '. Mini-batch mean squared error on training set is ' num2str(mean(L((n-numbatches):(n-1)))) str_perf]);
-    end
+%         disp(loss.train.e_frac(end));
+     end
     nn.learningRate = nn.learningRate * nn.scaling_learningRate;
 end
 end

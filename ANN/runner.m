@@ -1,6 +1,9 @@
 % runner: executes the functions for each part. The parts mirror the 
 %		  HW2 assignment problems
 
+% close previous figures
+close all;
+
 % Set the seed of random number generator for reproducibility 
 s = rng(1, 'v5normal');
 rng(s);
@@ -47,6 +50,8 @@ percentageOfSize = 0.65;
 trainSize = round(percentageOfSize * rows);
 xtrain = x(1:trainSize, :);
 ytrain = y(1:trainSize, :);
+xtest = x((trainSize + 1):end, :);
+ytest = y((trainSize + 1):end, :);
 
 
 if ~(response < 0) 
@@ -69,13 +74,13 @@ if ~(response < 0)
 
 	 
 	% Perform part 4 if user selected it as an option
-	if (response == 4 || response == 0)
-		part4(xtrain, ytrain);
+	if (response == 4 || response == 0 || (response == 5 && (exist('net', 'var') ~= 1)))
+		net = part4(xtrain, ytrain);
 	end
 	 
 	% Perform part 5 if user selected it as an option
 	if (response == 5 || response == 0)
-		part5(x, y);
+		[err, bad] = part5(xtest, ytest, net);
 	end
 	 
 	% Perform part 6 if user selected it as an option (should we be doing this?)

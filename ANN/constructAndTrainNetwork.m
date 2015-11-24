@@ -1,4 +1,4 @@
-function [nn, L] = constructAndTrainNetwork(architecture, learningRate, xtrain, ytrain, xval, yval)
+function [nn, L, loss] = constructAndTrainNetwork(architecture, learningRate, xtrain, ytrain, xval, yval)
 % constructAndTrain3LayerNetwork(): 
 %	Constructs an Artificial Neural Network with the 
 %	given architecture, and trains the network with the 
@@ -31,16 +31,16 @@ function [nn, L] = constructAndTrainNetwork(architecture, learningRate, xtrain, 
 	% Initialize the options for training the network
 	opts.output = 'softmax';
 % 	[opts.numepochs, ~] = size(xtrain); % <<< stille trying to determine necessary epoch number
-    opts.numepochs = 30;
+    opts.numepochs = 120;
 	opts.batchsize = size(xtrain, 1); % <<< still trying to determine optimal batch size
-	opts.plot = 1; % Set this to 1 for plotting 
+	opts.plot = 0; % Set this to 1 for plotting 
 
 
 	% Train the new Neural Network with the above configurations/options
 	% and with the training data provided. If the validation data is provided
 	% (xval, yval), then it is passed to the training function
 	disp('Training Neural Network...')
-	[nn, L] = nntrain(nn, xtrain, ytrain, opts);
+	[nn, L, loss] = nntrain(nn, xtrain, ytrain, opts);
 	disp('Neural Network has been trained!')
 	disp(['Training Error: ' num2str(nn.L(end))])
 end

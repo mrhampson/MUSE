@@ -52,15 +52,13 @@ function [ x, y ] = importDataset( path )
                 % tag (one). Otherwise, set it to as being absent (zero).
             	if strcmp(tagsForSampleAsCell{indexInSample},rankedtags{tagIndex})
 					y{sample, tagIndex} = 1;
-                    c = 1;
+                    c = c + 1;
                     break
-                else
-                    y{sample, tagIndex} = 0;
                 end
             end
-%             if(c == 1) If you want to test 1st most popular category seen
-%                 break
-%             end
+             if(c == 1) % If you want to test 1st most popular category seen
+                 break
+             end
         end
         % Long story short, I had to figure out a way to copy the relevant features
         % from the dataset to the x matrix. This loop is performing that step since I
