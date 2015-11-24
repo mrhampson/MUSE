@@ -42,6 +42,11 @@
 	\end{center}
 }
 
+\newcommand{\smallHorizontalLine}{
+    \begin{center}
+        \hrule width 0.5\textwidth
+    \end{center}}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \title{\vspace{-3ex}\bf Final Project Report\\[2ex] 
@@ -61,17 +66,28 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Abstract}
 \label{sec:abstract}
-One-two sentences on what is the problem that you addressing. Two-three sentences
-that contain a high-level description on how you address the problem (your method). 2-3 sentences
-on the results. 1 sentence on what the advance that has been achieved with this work
-can influence the field (what it will enable, for the specific field and whole area in general)
+\textbf{One-two sentences on what is the problem that you addressing. Two-three sentences that contain a high-level description on how you address the problem (your method). 2-3 sen- tences on the results. 1 sentence on what the advance that has been achieved with this work can influence the field (what it will enable, for the specific field and whole area in general)}
+\smallHorizontalLine
+Music lovers worldwide are in constant search of new sounds to enrich their music library. Many analytic applications have risen to popularity as a result of listeners' need for music discovery. Most of these applications utilize machine learning techniques to make recommendations and predictions for their users. One of the more common problems in music analytics is the process of recommending an enjoyable song or artist to a user based on their previous music choices. Another popular problem is the generation of a personalized playlist for a user, again based on their listening choices. 
+
+We sought to solve similar problems through use of various machine learning techniques. The goals we hoped to accomplish were:
+\begin{itemize}
+    \item Predict the popularity of a song
+    \vspace{-3.5mm}
+    \item Classify a song into its genre(s)
+    \vspace{-3.5mm}
+    \item Discover trends in the songs regarding hotness and genre
+\end{itemize}
+
+First, we hoped to utilize linear regression techniques to quantify and predict the popularity of a song relative to its features. Second, we hoped to classify a song into its genre(s) through use of Artificial Neural Networks. Lastly, we sought to cluster the musical data to observe any potential trends in the hotness of a song.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \horizontalLine
 \section{Introduction}
 \label{sec:introduction}
-1-2 sentences of the general area, 1-2 sentences on the specific sub-area. A paragraph
+\textbf{1-2 sentences of the general area, 1-2 sentences on the specific sub-area. A paragraph
 on the specific problem and how it has been addressed so far. 1-2 sentences to a paragraph
 on what is missing on current approaches and why this is important.
 Then a paragraph on what this paper contributes - how you approach this problem and the
@@ -82,7 +98,15 @@ that you introduced before. If this happens, then either you have not introduced
 in the previous paragraph adequately, or your claim is irrelevant to this
 paper and has to be removed.
 Some people include a last paragraph with the structure of the paper as the closing introduction
-paragraph. This is up to you.
+paragraph. This is up to you.}
+
+\smallHorizontalLine
+
+The motivation to develop "smarter" software for music analytics originates largely from a desire to sell more products to customers. Some of the biggest players in the industry, Amazon and Apple, are notoriously known for their "genius" recommendations on what customers ought to buy next. Brian Whitman, co-founder and CTO of the Echo Nest, said in his article titled \textit{How music recommendation works - and doesn't work} that, "Amazon is not optimizing for the noble work of raising independent artists' profiles to the public, and they're definitely not optimizing for a good musical experience. They're statistically optimizing to make more money, to sell you more things." Brian also discusses how many radio companies, like Pandora, utilize popularity to provide an enjoyable radio-listening experience. Brian goes on to elaborate on the importance of not only focusing on the money-making techniques, but satisfying the need of listeners by focusing on the actual music, its sound waves and lyrical significance. 
+
+Our approach to music analytics is similar to that of Brian Whitman's company, minus the lyrical analysis. We seek to utilize data that represents the actual sound of the music, an approach the Brian calls "acoustic analysis." Some of the features that we include in our analysis, for example, include time signature, loudness, and key. While most music-analysis applications are geared towards popularity and sales, we hope to focus our analysis on the sounds of the music and how the features of a song itself can provide predictive information.
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
