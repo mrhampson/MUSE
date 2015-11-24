@@ -6,7 +6,6 @@
 \usepackage{pdfpages}
 \usepackage{listings}
 \usepackage{color}
-\usepackage{color}
 \usepackage{lmodern}
 \usepackage{hyperref}
 
@@ -90,6 +89,8 @@ paragraph. This is up to you.
 \horizontalLine
 \section{Methods}
 \label{sec:methods}
+
+
  Divide it into sections that are well-defined on the distinct components/algorithms/subproblems.
  Put references whenever you use/step on previously published work. Use sub-section
  indexing (3.1, 3.2, etc.). Describe fully your algorithms and methods, so that if anyone wants to
@@ -102,23 +103,40 @@ paragraph. This is up to you.
 blah blah blah
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Artificial Neural Network: Predicting Song Genre}
+\subsection{Artificial Neural Networks}
 \label{subsec:ann}
-<intro to neural networks (what are NN, what are their usage, and what are their benefits?)>
-<how will we use ANN and what exactly are we classifying?>
-<what particular aspects of ANN are we analyzing? (learning rate, architecture)>
+We utilized Neural Networks to predict song genres based on features of a song. Being that a song could be considered a part of multiple genres, each song contained a list of genres to which it belonged. To represent the genres, also known as tags, for a particular song, we formed a feature column for each possible tag in our dataset. Then, we scanned through each song to determine its set of tags and set the index of each tag to a 1 in the appropriate column if the tag was present for the particular song. 
 
-\subsubsection{The Affect of Learning Rate on Training}
-\label{subsubsec:annLearningRate}
-blah blah blah
+We quickly found that if we included all of the possible tags that the number of tags would reach an unmanageable amount. It became too complex and computationally intensive to continue with such a large number of tags. Instead, we decided to limit the number of tags to a small subset of the most popular tags. Luckily, our dataset came with a list of the 300 most popular genres in the dataset. We were able to import this list and use it as the limiting set of possible tags for our dataset. Ultimately, we resorted to limiting the possible number of tags to only the top 20 genres, which resulted in an output layer of 20 nodes.
 
-\subsubsection{The Affect of Hidden Layers on Training and Accuracy}
-\label{subsubsec:annHiddenLayer}
-blah blah blah
+The features that we decided to use for predicting the song tags were: 
+\begin{itemize}
+    \item danceability
+    \vspace{-3.5mm}
+    \item duration
+    \vspace{-3.5mm}
+    \item end of fade in
+    \vspace{-3.5mm}
+    \item energy
+    \vspace{-3.5mm}
+    \item key
+    \vspace{-3.5mm}
+    \item loudness
+    \vspace{-3.5mm}
+    \item mode
+    \vspace{-3.5mm}
+    \item song hotness
+    \vspace{-3.5mm}
+    \item start of fade out
+    \vspace{-3.5mm} 
+    \item tempo
+    \vspace{-3.5mm}
+    \item time signature
+    \vspace{-3.5mm}
+    \item year
+\end{itemize}
 
-\subsubsection{The Affect of Hidden Layer Nodes on Training and Accuracy}
-\label{subsubsec:annHiddenLayerNodes}
-blah blah blah
+We were interested in observing the effect of 3 different parameters on the neural network: learning rate, number of hidden layers, and number of hidden nodes per hidden layer. We planned on running our dataset through various neural networks, each with a different configuration of the above parameters. We hoped to find an optimal configuration for these parameters while also discovering any correlation between the above song features and the song tags. A particular configuration of these parameters that yielded both minimal training error and misclassification rate would implicitly verify a correlation between song features and song tags.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Clustering}
@@ -181,24 +199,24 @@ Y module, which takes advantage of the Z characteristic of the problem. Indeed, 
 blah blah blah
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Artificial Neural Network: Predicting Song Genre}
+\subsection{Artificial Neural Networks}
 \label{subsec:annResults}
 blah blah blah
 
-\subsubsection{The Affect of Learning Rate on Training}
+\subsubsection{The Effect of Learning Rate on Training}
 \label{subsubsec:annLearningRateResults}
 blah blah blah
 
-\subsubsection{The Affect of Hidden Layers on Training and Accuracy}
+\subsubsection{The Effect of Hidden Layers on Training and Accuracy}
 \label{subsubsec:annHiddenLayerResults}
 blah blah blah
 
-\subsubsection{The Affect of Hidden Layer Nodes on Training and Accuracy}
+\subsubsection{The Effect of Hidden Layer Nodes on Training and Accuracy}
 \label{subsubsec:annHiddenLayerNodesResults}
 blah blah blah
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{K-Means Clustering: ...Doing what?...}
+\subsection{Clustering}
 \label{subsec:kMeansResults}
 blah blah blah
 
