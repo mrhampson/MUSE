@@ -70,17 +70,7 @@
 \smallHorizontalLine
 Music lovers worldwide are in constant search of new sounds to enrich their music library. Many analytic applications have risen to popularity as a result of listeners' need for music discovery. Most of these applications utilize machine learning techniques to make recommendations and predictions for their users. One of the more common problems in music analytics is the process of recommending an enjoyable song or artist to a user based on their previous music choices. Another popular problem is the generation of a personalized playlist for a user, again based on their listening choices. 
 
-We sought to solve similar problems through use of various machine learning techniques. The goals we hoped to accomplish were:
-\begin{itemize}
-    \item Predict the popularity of a song
-    \vspace{-3.5mm}
-    \item Classify a song into its genre(s)
-    \vspace{-3.5mm}
-    \item Discover trends in the songs regarding hotness and genre
-\end{itemize}
-
-First, we hoped to utilize linear regression techniques to quantify and predict the popularity of a song relative to its features. Second, we hoped to classify a song into its genre(s) through use of Artificial Neural Networks. Lastly, we sought to cluster the musical data to observe any potential trends in the hotness of a song.
-
+We sought to perform predictive analytics on songs based on their acoustic qualities. We hoped to discover any relationship between a song's acoustic qualities and its inaudible qualities, such as genre or popularity. Ultimately, we constructed models to perform different types of analysis, depending on the complexity and structure of the problems. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -107,7 +97,31 @@ paragraph. This is up to you.}
 
 The motivation to develop "smarter" software for music analytics originates largely from a desire to sell more products to customers. Some of the biggest players in the industry, Amazon and Apple, are notoriously known for their "genius" recommendations on what customers ought to buy next. Brian Whitman, co-founder and CTO of the Echo Nest, said in his article titled \textit{How music recommendation works - and doesn't work} that, "Amazon is not optimizing for the noble work of raising independent artists' profiles to the public, and they're definitely not optimizing for a good musical experience. They're statistically optimizing to make more money, to sell you more things." Brian also discusses how many radio companies, like Pandora, utilize popularity to provide an enjoyable radio-listening experience. Brian goes on to elaborate on the importance of not only focusing on the money-making techniques, but satisfying the need of listeners by focusing on the actual music, its sound waves and lyrical significance. 
 
-Our approach to music analytics is similar to that of Brian Whitman's company, minus the lyrical analysis. We seek to utilize data that represents the actual sound of the music, an approach the Brian calls "acoustic analysis." Some of the features that we include in our analysis, for example, include time signature, loudness, and key. While most music-analysis applications are geared towards popularity and sales, we hope to focus our analysis on the sounds of the music and how the features of a song itself can provide predictive information.
+Our approach to music analytics was similar to that of Brian Whitman's company, minus the lyrical analysis. We utilized data that represented the actual sound of the music, an approach that Brian calls "acoustic analysis." Some of the features that we included in our analysis, for example, were time signature, loudness, and key, to name a few. While most music analysis applications are geared towards popularity and sales, we hoped to focus our analysis on the sounds of the music and how the features of a song itself could provide predictive information.
+\\
+\\
+The specific goals we hoped to accomplish were:
+\begin{itemize}
+    \item Predict the popularity of a song:
+    \vspace{-3.5mm}
+    \begin{itemize}
+        \item Apply linear regression techniques to quantify and predict the popularity of a song based on its acoustic features
+        \vspace{-3.5mm}
+    \end{itemize}
+    \item Classify a song into its genre(s)
+    \vspace{-3.5mm}
+    \begin{itemize}
+        \item Utilize artificial neural networks to learn about the potential relationship between a song's acoustic qualities and its associated genres 
+        \vspace{-3.5mm}
+    \end{itemize}
+    \item Discover trends in the songs regarding hotness and genre
+    \vspace{-3.5mm}
+    \begin{itemize}
+        \item Utilize clustering techniques to discover trends in a songs features that might indicate a songs "hotness"
+    \end{itemize}
+\end{itemize}
+
+The specific details for achieving each of the above goals are provided in Section~\ref{sec:methods}. 
 
 \subsection{Million Song Dataset}
 \label{subsec:datasetIntro}
@@ -138,7 +152,7 @@ The dataset that we chose to use is known as the Million Song Dataset. Rather th
     \item year
 \end{enumerate}
 
-In addition to the list above, the Neural Networks approach also utilized a feature called "artist terms," which is simply a list of tags, which in our case are analogous to genres, for each song. 
+In addition to the list above, the Neural Networks approach also utilized a feature called "artist terms," which is simply a list of tags (also known as genres in our case) for each song. 
 \\
 \\
 NOTE: LINEAR REGRESSION SHOULD INCLUDE ANY CHANGES THEY HAVE TO THIS LIST OF FEATURES. AS FAR AS I KNOW, THEY ARE USING THE SAME FEATURES
@@ -155,13 +169,15 @@ reproduce your results can do so (sometimes this is difficult if there are many 
 which case a parameter file should be included as suppl. mat.).}
 \smallHorizontalLine
 
+As mentioned before, the methods we chose to implement our analytics were linear regression, artificial neural networks, and clustering. The features that were utilized for each approach are listed in Section~\ref{subsec:datasetIntro}. We began by targeting a feature that we were interested in analyzing. Then, we created a model for each approach to perform the analysis. Finally, we ran our data through our models to observe the effectiveness of our models. 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Linear Regression: Predicting Song Popularity}
+\subsection{Linear Regression: Song Popularity}
 \label{subsec:linearRegression}
 blah blah blah
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Artificial Neural Networks}
+\subsection{Artificial Neural Networks: Song Genres}
 \label{subsec:ann}
 We utilized Neural Networks to predict song genres based on features of a song. Many songs, however, belonged to several genres. To represent the various genres, also known as tags, for a particular song, we formed a feature column for each possible tag in our dataset. Then, we scanned through each song to determine its set of tags and set the index of each tag to a 1 in the appropriate column if the tag was present for the particular song. 
 
@@ -172,7 +188,7 @@ By having 12 song features and 20 possible genres, we knew we would need to cons
 We were mostly interested in observing the effect of 3 different parameters on the neural network: learning rate, number of hidden layers, and number of hidden nodes per hidden layer. We planned on running our dataset through various neural networks, each with a different configuration of the above parameters. We hoped to find an optimal configuration for these parameters while also discovering any correlation between the above song features and the song tags. A particular configuration of these parameters that yielded both minimal training error and misclassification rate would implicitly verify a correlation between song features and song tags.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Clustering}
+\subsection{Clustering: Hotness}
 \label{subsec:clustering}
 We took two different approaches to clustering our data: k-means and hierarchical. We looked at k-means to try and see if there had any obvious patterns and then see if those patterns held any significance for genre or song hotness. Hierarchical gave us insight to the distribution of our data and helped us select the appropriate number of clusters for k-means. For both approaches we chose to use MATLAB and take advantage of the built-in clustering methods.
 
