@@ -182,9 +182,9 @@ We utilized Neural Networks to predict song genres based on features of a song. 
 
 where $n_1$ is the number of features, $n_2$ is the number possible tags, and $m$ is the number of samples.
 
-We quickly found that if we included all of the possible tags from our dataset that the number of tags would reach an unmanageable amount. Training our network with such a large number of tags was computationally intensive and resulted in too complex of a distribution to learn. Instead, we decided to limit the number of tags to a small subset of the most popular tags. We were able to import a list of the 300 most popular genres in the dataset and use it as the limiting set of possible tags for our dataset. We found that even 300 tags was too many. Ultimately, we resorted to limiting the possible number of tags to only the top 20 genres.
+We quickly found that if we included all of the possible tags from our dataset that the number of tags would reach an unmanageable amount. Training our network with such a large number of tags was computationally intensive and resulted in too complex of a distribution to learn. Instead, we decided to limit the number of tags to a small subset of the most popular tags. We were able to import a list of the 300 most popular genres in the dataset and use it as the limiting set of possible tags for our dataset. We found that even 300 tags was too many. Later, we found that limiting the possible number of tags would reduce error and misclassification rate.
 
-By having 12 song features and 20 possible genres, we knew we would need to construct a neural network with 12 input nodes and 20 output nodes. The more complicated issue arose when we tried determining the adequate number of hidden nodes.
+By having 12 song features and $n_2$ possible genres, we knew we would need to construct a neural network with 12 input nodes and $n_2$ output nodes. The more complicated issue arose when we tried determining the adequate number of hidden nodes.
 
 We were mostly interested in observing the effect of 3 different parameters on the neural network: learning rate, number of hidden layers, and number of hidden nodes per hidden layer. We planned on running our dataset through various neural networks, each with a different configuration of the above parameters (refer to Appendix~\ref{subsec:annLoop} for code snippet). We hoped to find an optimal configuration for these parameters while also discovering any correlation between the above song features and the song tags. A particular configuration of these parameters that yielded both minimal training error and misclassification rate would implicitly verify a correlation between song features and song tags.
 
@@ -350,20 +350,20 @@ end
     \begin{itemize}
         \item Linear Regression
         \begin{itemize}
-            \item Peggy Li:
-            \item Steven Mackey:
-            \item James Dryden:
+            \item Peggy Li
+            \item Steven Mackey
+            \item James Dryden
         \end{itemize}
         \item Artificial Neural Networks
         \begin{itemize}
-            \item Nicholas Layton:
-            \item Michael Fiueroa:
+            \item Nicholas Layton
+            \item Michael Fiueroa
         \end{itemize}
         \item K-Means Clustering
         \begin{itemize}
-            \item William Otwell:
-            \item Marshall Hampson:
-            \item Amos Too:
+            \item William Otwell
+            \item Marshall Hampson
+            \item Amos Too
         \end{itemize}
     \end{itemize}
 \end{itemize}
