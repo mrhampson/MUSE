@@ -1,0 +1,23 @@
+\BOOKMARK [1][-]{section.1}{Abstract}{}% 1
+\BOOKMARK [1][-]{section.2}{Introduction}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{Background}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.2}{Million Song Dataset}{section.2}% 4
+\BOOKMARK [1][-]{section.3}{Methods}{}% 5
+\BOOKMARK [2][-]{subsection.3.1}{Linear Regression: Song Popularity}{section.3}% 6
+\BOOKMARK [2][-]{subsection.3.2}{Artificial Neural Networks: Song Genres}{section.3}% 7
+\BOOKMARK [2][-]{subsection.3.3}{Clustering: Hotness}{section.3}% 8
+\BOOKMARK [1][-]{section.4}{Results}{}% 9
+\BOOKMARK [2][-]{subsection.4.1}{Linear Regression: Predicting Song Popularity}{section.4}% 10
+\BOOKMARK [2][-]{subsection.4.2}{Artificial Neural Networks}{section.4}% 11
+\BOOKMARK [3][-]{subsubsection.4.2.1}{The Effect of Learning Rate on Training}{subsection.4.2}% 12
+\BOOKMARK [3][-]{subsubsection.4.2.2}{The Effect of Hidden Layers on Training and Accuracy}{subsection.4.2}% 13
+\BOOKMARK [3][-]{subsubsection.4.2.3}{The Effect of Hidden Layer Nodes on Training and Accuracy}{subsection.4.2}% 14
+\BOOKMARK [2][-]{subsection.4.3}{Clustering}{section.4}% 15
+\BOOKMARK [1][-]{section.5}{Conclusion}{}% 16
+\BOOKMARK [1][-]{section.6}{References}{}% 17
+\BOOKMARK [2][-]{subsection.6.1}{Readings}{section.6}% 18
+\BOOKMARK [2][-]{subsection.6.2}{Datasets and Code}{section.6}% 19
+\BOOKMARK [1][-]{appendix.A}{Figures}{}% 20
+\BOOKMARK [1][-]{appendix.B}{Code}{}% 21
+\BOOKMARK [2][-]{subsection.B.1}{Main Loop for Testing Different Neural Network Architectures}{appendix.B}% 22
+\BOOKMARK [1][-]{appendix.C}{Author Contributions}{}% 23
