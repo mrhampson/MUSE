@@ -31,7 +31,7 @@ function [nn, L, loss] = constructAndTrainNetwork(architecture, learningRate, xt
 	% Initialize the options for training the network
 	opts.output = 'softmax';
 % 	[opts.numepochs, ~] = size(xtrain); % <<< stille trying to determine necessary epoch number
-    opts.numepochs = 120;
+    opts.numepochs = 20;
 	opts.batchsize = size(xtrain, 1); % <<< still trying to determine optimal batch size
 	opts.plot = 0; % Set this to 1 for plotting 
 

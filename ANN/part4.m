@@ -48,6 +48,24 @@ function optimalNetwork = part4( x, y )
 		end
     end
     
+    x = 1:length(results.labels);
+    y1 = cell2mat(results.minL);
+    y2 = cell2mat(results.losses);
+    indexMin1 = find(min(y1) == y1);
+    indexMin2 = find(min(y2) == y2);
+    xmin1 = x(indexMin1);
+    xmin2 = x(indexMin2);
+    ymin1 = y1(indexMin1);
+    ymin2 = y2(indexMin2);
+    txt1 = num2str(min(y1));
+    txt2 = num2str(min(y2));
+    
+    
+    plot(x, y1, x, y2);
+    text(xmin1, ymin1, txt1,'HorizontalAlignment','left');
+    text(xmin2, ymin2, txt2,'HorizontalAlignment','left');
+    grid on;
+    legend('Min. SSE', 'Min. Misclassification Rate');
     for i = 1:(count1-1)
        disp(results.labels{i});
        disp(['min L: ' num2str(results.minL{i})]);
