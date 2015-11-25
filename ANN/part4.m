@@ -13,12 +13,19 @@ function optimalNetwork = part4( x, y )
     
 	% Initialize parameters for Neural Networks with various architectures 
 	% (i.e. various hidden layers and hidden nodes)
+%     hiddenLayerValues = [3 4];
+% 	hiddenNodeValues = [9 12];
+%     [~, inputs] = size(x);
+% 	[~, outputs] = size(y);
+% 	networks = [];
+% 	rates = [0.05 0.1 0.15];
+    
     hiddenLayerValues = [3 4];
-	hiddenNodeValues = [9 12];
+	hiddenNodeValues = [200];
     [~, inputs] = size(x);
 	[~, outputs] = size(y);
 	networks = [];
-	rates = [0.05 0.1 0.15];
+	rates = [0.05];
 
 
 
