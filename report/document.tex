@@ -52,7 +52,7 @@
 \title{\vspace{-3ex}\bf Final Project Report\\[2ex] 
        \normalsize ECS 171: Machine Learning\\Fall 2015}
 \date{\today}
-\author{\bf Team Name: The Muses\\ \bf William Otwell ()\\ \bf Marshall Hampson ()\\ \bf Nicholas Layton (996933702)\\ \bf Steven Mackey ()\\ \bf Amos Too ()\\ \bf Michael Fiueroa ()\\ \bf Peggy Li ()}
+\author{\bf Team Name: The Muses\\ \bf William Otwell (997371020)\\ \bf Marshall Hampson ()\\ \bf Nicholas Layton (996933702)\\ \bf Steven Mackey ()\\ \bf Amos Too ()\\ \bf Michael Fiueroa ()\\ \bf Peggy Li ()}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -191,13 +191,13 @@ We were mostly interested in observing the effect of 3 different parameters on t
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Clustering: Hotness}
 \label{subsec:clustering}
-We took two different approaches to clustering our data: k-means and hierarchical. We looked at k-means to try and see if there had any obvious patterns and then see if those patterns held any significance for genre or song hotness. Hierarchical gave us insight to the distribution of our data and helped us select the appropriate number of clusters for k-means. For both approaches we chose to use MATLAB and take advantage of the built-in clustering methods.
+We took two different approaches to clustering our data: k-means and hierarchical. We looked at k-means to try and see if there had any obvious patterns and then see if those patterns held any significance for genre or song hotness. The hierarchical approach is intended to give us insight to the distribution of our data and help us select the appropriate number of clusters for k-means. For both approaches we chose to use MATLAB and take advantage of the built-in clustering methods.
 
-We ran these through the MATLAB k-means function and viewed the clusters of all these features plotted against song hotness. We heard that the general rule of thumb was to run k-means on the sqrt(n/2) clusters. However we found that this did not produce distinct clusters and was very muddy. We found four clusters were the most distinct visually, but we did not check if it maximized the variance.
+For K means and hierachical, we used the subset of data mentioned previously. We noticed that danceability and energy where all 0 in the provided dataset although the value was supposed to range between 0 and 1. Therefore we decided to not use these features in our clustering. We also removed year and mode because the ended up being nearly categorical: their normalized values were almost 0 or almost 1. Finally, We also only used the samples that had a value for hotness as many were set to 0 indicating no data. 
 
-We found that the clusters seemed to be skewed by issues with our data set. We noticed that danceability and energy where all 0 in the provided dataset (the value was supposed to range between 0 and 1). Therefore we decided to throw out those two columns. We also threw out year and mode because the ended up being nearly categorical in that their normalized values were almost 0 or almost 1. Another issue we noticed is that some of the song hotness values where either 0 or NaN so we removed datapoints where this was the case. After removing these features and datapoints from the dataset we found we got better clusters.
+For k-means clustering we ran our reduced data through the MATLAB k-means function and plotted of all these features plotted against song hotness. We started with a guidline to use sqrt(n/2) clusters. We ran k-means using this guidline, producing 44 clusters. We tried using various other numbers of clusters and decided to display results using only 4 clusters.
 
-To get the hierarchical clusters and plot the dendrogram we used the MATLAB functions dendrogram and linkage. The linkage function returns a tree of when to clusters are linked together. We decided to view the dendrogram with at most 50 distinct clusters. We found that there were really 4 distinct leaves. After the 4 initial splits the splits didn't look any more significant than when we plotted a dendrogram for random data. 
+To get the hierarchical clusters and plot the dendrogram we used the MATLAB functions dendrogram and linkage. The linkage function returns a tree of when to clusters are linked together. We decided to view the dendrogram with at most 50 distinct clusters. We compared this to a dendrogram of random data.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -237,11 +237,20 @@ blah blah blah
 \subsubsection{The Effect of Hidden Layer Nodes on Training and Accuracy}
 \label{subsubsec:annHiddenLayerNodesResults}
 blah blah blah
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Clustering}
 \label{subsec:clusteringResults}
-blah blah blah
+
+We found that the clusters seemed to be skewed by issues with our data set. Plotting our data before removing year and mode skewed our data into clusted bassed only on these two features. Before removing the bad from hotness our cluster were all significantly shifted towards 0 hotness. However, our data did not split into a zero hotness cluster vs non 0 hotness clusters, all the cluster were shifted down equally. After removing these features and datapoints from the dataset we found we got more distict clusters. Below is our k-means clusting with 4 clusters both before and after removing features.
+
+%INSERT DIAGRAM: trimmed & untrimmed 
+
+We compared our heirchical dendrogram to that of a randomly generated sample. They showed a very similar structure. Comparing the distance values from the dentrograms we found that there were really 4 distinct leaves in our data. After the 4 initial splits the splits didn't look any more significant than when we plotted a dendrogram for random data. Below are the dendragrams from our data and the dendrogram of random data.
+
+%INSTER DIAGRAM: random and sample dendrograms
+
+  
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
