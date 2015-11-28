@@ -57,14 +57,12 @@ ytest = y((trainSize + 1):end, :);
 if ~(response < 0) 
 	% Perform part 1 if user selected it as an option
 	if (response == 1 || response == 0)
-% 	    part1(xtrain, ytrain);
         disp('Part 1 has now been merged into Part 4');
 	end
 
 	 
 	% Perform part 2 if user selected it as an option
 	if (response == 2 || response == 0)
-% 		part2(x, y);
         disp('Part 2 has now been merged into Part 4');
 	end
 
