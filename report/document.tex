@@ -66,9 +66,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Abstract}
 \label{sec:abstract}
-Music lovers worldwide are in constant search of new sounds to enrich their music library. Many analytic applications have risen to popularity as a result of listeners' need for music discovery. Most of these applications utilize machine learning techniques to make recommendations and predictions for their users. One of the more common problems in music analytics is the process of recommending an enjoyable song or artist to a user based on their previous music choices. Another popular problem is the generation of a personalized playlist for a user, again based on their listening choices. 
+Music lovers worldwide are in constant search of new sounds to enrich their music library. Many analytic applications have risen to popularity as a result of listeners' need for music discovery. Most of these applications utilize machine learning techniques to make recommendations and predictions for their users. One of the more common problems in music analytics is the process of recommending an enjoyable song or artist to a user based on their previous music choices. Another popular problem is the process of generating a personalized playlist for a user, again based on their listening choices. 
 
-We sought to perform predictive analytics on songs based on their acoustic qualities. We hoped to discover any relationship between a song's acoustic qualities and its inaudible qualities, such as genre or popularity. Ultimately, we constructed models to perform different types of analysis, depending on the complexity and structure of the problems. 
+We sought to solve similar problems by performing predictive analytics on songs based on their acoustic qualities. We hoped to discover any relationship between a song's acoustic qualities and its inaudible qualities, such as genre or popularity. Ultimately, we constructed models to perform different types of analysis, depending on the complexity and structure of the problems. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -78,12 +78,10 @@ We sought to perform predictive analytics on songs based on their acoustic quali
 
 \subsection{Background}
 \label{subsec:background}
-The motivation to develop "smarter" software for music analytics originates largely from a desire to sell more products to customers. Some of the biggest players in the industry, Amazon and Apple, are notoriously known for their "genius" recommendations on what customers ought to buy next. Brian Whitman, co-founder and CTO of the Echo Nest, said in his article titled \textit{How music recommendation works - and doesn't work} that, "Amazon is not optimizing for the noble work of raising independent artists' profiles to the public, and they're definitely not optimizing for a good musical experience. They're statistically optimizing to make more money, to sell you more things." Brian also discusses how many radio companies, like Pandora, utilize popularity to provide an enjoyable radio-listening experience. Brian goes on to elaborate on the importance of not only focusing on the money-making techniques, but satisfying the need of listeners by focusing on the actual music, its sound waves and lyrical significance. 
+The motivation to develop "smarter" software for music analytics originates largely from a desire to sell more products to customers. Some of the biggest players in the industry, Amazon and Apple, are notoriously known for their "genius" recommendations on what customers ought to buy next. Brian Whitman, co-founder and CTO of the Echo Nest, said in his article titled \textit{How music recommendation works - and doesn't work} that, "Amazon is not optimizing for the noble work of raising independent artists' profiles to the public, and they're definitely not optimizing for a good musical experience. They're statistically optimizing to make more money, to sell you more things." Brian also discusses how many radio companies, like Pandora, utilize popularity to provide an enjoyable radio-listening experience. Although many of these companies have found success using their own techniques, Brian ultimately expresses the importance of not only focusing on these money-making techniques but satisfying listeners by focusing on the actual music, its sound waves and lyrical significance. He believes that the sound of a song can contribute much more to predictive analytics than users' purchase history or song popularity.
 
-Our approach to music analytics was similar to that of Brian Whitman's company, minus the lyrical analysis. We utilized data that represented the actual sound of the music, an approach that Brian calls "acoustic analysis." Some of the features that we included in our analysis, for example, were time signature, loudness, and key, to name a few. While most music analysis applications are geared towards popularity and sales, we hoped to focus our analysis on the sounds of the music and how the features of a song itself could provide predictive information.
-\\
-\\
-The specific goals we hoped to accomplish were:
+Our approach to music analytics was similar to that of Brian Whitman's company, minus the lyrical analysis. We utilized data that represented the actual sound of the music, an approach that Brian calls "acoustic analysis." Some of the features that we included in our analysis, for example, were time signature, loudness, and key, to name a few. We hoped to focus our analysis on the sounds of the music and how the features of a song itself could provide predictive information. More specifically, the goals we hoped to accomplish were:
+\vspace{-3.5mm}
 \begin{itemize}
     \item Predict the popularity of a song:
     \vspace{-3.5mm}
@@ -104,11 +102,9 @@ The specific goals we hoped to accomplish were:
     \end{itemize}
 \end{itemize}
 
-The specific details for achieving each of the above goals are provided in Section~\ref{sec:methods}. 
-
 \subsection{Million Song Dataset}
 \label{subsec:datasetIntro}
-The dataset that we chose to use is known as the Million Song Dataset. Rather than actually using a million songs, we used a small, manageable subset of the Million Song Dataset. For both the Neural Networks approach (Section~\ref{subsec:ann}) and the Clustering approach (Section~\ref{subsec:clustering}), we used the following features:
+The dataset that we chose to use is known as the Million Song Dataset (see Appendix~\ref{subsec:datasetsAndCode} for more info). Rather than actually using 1 million songs, we used a small, manageable subset of the Million Song Dataset. The features that we used were:
 \begin{enumerate}
     \item danceability
     \vspace{-3.5mm}
@@ -135,10 +131,7 @@ The dataset that we chose to use is known as the Million Song Dataset. Rather th
     \item year
 \end{enumerate}
 
-In addition to the list above, the Neural Networks approach also utilized a feature called "artist terms," which is simply a list of tags (also known as genres in our case) for each song. 
-\\
-\\
-NOTE: LINEAR REGRESSION SHOULD INCLUDE ANY CHANGES THEY HAVE TO THIS LIST OF FEATURES. AS FAR AS I KNOW, THEY ARE USING THE SAME FEATURES
+In addition to the list above, the Neural Networks approach also utilized a feature called "artist terms," which is simply a list of tags (which in our case can be thought of as genres) for each song. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -254,6 +247,14 @@ We compared our heirchical dendrogram to that of a randomly generated sample. Th
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Artificial Neural Networks}
 \label{subsec:annDisc}
+The primary obstacle in successfully constructing a predictor for song genres was the number of genres that our network was trying to simultaneously predict. As stated in Section~\ref{subsec:annResults}, we had to reduce the number of genres from 300 to 5, and from 5 to 1 in order to get acceptable training errors and misclassification rates. The biggest problem was simultaneously reducing both the training error and the misclassification rate. 
+
+In many of the cases, we were able to reduce the training error but weren't able to reduce the misclassification rate. We think this because of the manner in which the DeepLearningToolbox (see Appendix~\ref{subsec:datasetsAndCode} for more info about the toolbox) interprets a misclassification. Consider the case where we are trying to predict all 300 of the top genres. We would have our dataset in the configuration shown in Section~\ref{subsec:ann}, where $n_1 = 12$ and $n_2 = 300$. This results in an ANN of 12 inputs, and 300 outputs. 
+
+Now, consider the situation in which our network correctly classifies 299 of the 300 genres, but misclassifies 1 of the genres. This situation would result in an overall misclassification by the network, even though it only missed 1 of the outputs. This makes it very easy for the network to misclassify a sample. By reducing the number of outputs to 5 and to 1, the network has a much lower possibility of misclassifying any of the particular outputs. 
+
+It could either be that the input features don't correlate to the genres well enough to simultaneously predict them all at once, or the complexity of a neural network with 300 output nodes is just too great to handle. One of the options that we did not test that we think could help with classifying 300 outputs would be to construct a NN to handle each of the outputs, rather than having 1 NN to handle all outputs. 
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Clustering}
@@ -279,6 +280,7 @@ field in the grant scheme of things.}
 \label{sec:references}
 
 \subsection{Readings}
+\label{subsec:readings}
 \href{http://notes.variogr.am/post/37675885491/how-music-recommendation-works-and-doesnt-work}{\textbf{How music recommendation works - and doesn't work}} - Brian Whitman
 
 Brian Whitman's article describes the flaws with many popular music analytic programs and provides solutions to the problem of providing smart suggestions to music enthusiasts. It also includes the differences in various datasets used by today's popular music applications; for example, some datasets depend on a user's buying history, while others depend song acoustics.
@@ -299,6 +301,7 @@ The patent describes  ``A method of determining at least one match item correspo
 The paper illustrates why normalizing data and using that in conjunction with K-means is essentially good method of aiding clustering. After several ``Comprehensive experiments on six benchmark numerical datasets'' the authors also concluded that selecting a specific method of normalization that fits the dataset is essential for this approach to work.
 
 \subsection{Datasets and Code}
+\label{subsec:datasetsAndCode}
 \href{http://labrosa.ee.columbia.edu/millionsong/}{\textbf{Million Song Dataset}}
 
 Thierry Bertin-Mahieux, Daniel P.W. Ellis, Brian Whitman, and Paul Lamere. 
