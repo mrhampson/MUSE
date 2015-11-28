@@ -21,8 +21,8 @@
 \BOOKMARK [1][-]{appendix.A}{Figures}{}% 21
 \BOOKMARK [2][-]{subsection.A.1}{Poor Performance of Neural Network: 300 Output Nodes}{appendix.A}% 22
 \BOOKMARK [2][-]{subsection.A.2}{Better Performance of Neural Network: Only 5 Output Nodes}{appendix.A}% 23
-\BOOKMARK [2][-]{subsection.A.3}{Performance of Various Neural Networks: Only 1 Output Node}{appendix.A}% 24
-\BOOKMARK [2][-]{subsection.A.4}{Best Performance of Neural Network: Only 1 Output Node}{appendix.A}% 25
+\BOOKMARK [2][-]{subsection.A.3}{Performance of Various Neural Networks: 1 Output Node}{appendix.A}% 24
+\BOOKMARK [2][-]{subsection.A.4}{Best Performance of Neural Network: 1 Output Node}{appendix.A}% 25
 \BOOKMARK [1][-]{appendix.B}{Code}{}% 26
 \BOOKMARK [2][-]{subsection.B.1}{Main Loop for Testing Different Neural Network Architectures}{appendix.B}% 27
 \BOOKMARK [1][-]{appendix.C}{Author Contributions}{}% 28

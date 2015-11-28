@@ -36,7 +36,7 @@ if i > 1 %dont plot first point, its only a point
     figure(fhandle);   
     if strcmp(nn.output,'softmax')  %also plot classification error
 
-        plotRows = 1;
+        plotRows = 2;
         plotCols = 2;         
 
         inputNodes = num2str(nn.size(1));
@@ -66,67 +66,67 @@ if i > 1 %dont plot first point, its only a point
         set(p2, 'Xlim',[0,opts.numepochs + 1])
         
         % hidden layer weight updates at node 1
-        % p3 = subplot(plotRows,plotCols,3);
-        % [rows, columns] = size(hiddenWeights);
-        % xPlotHidden = ones(rows, columns);
-        % if rows > 1,
-        %     for index = 2:rows,
-        %         xPlotHidden(index,:) = xPlotHidden(index,:) * index;
-        %     end
-        % end
-        % plot(xPlotHidden,hiddenWeights)
-        % xlabel('Number of epochs'); ylabel('Weights');
-        % title('Hidden Layer Weight Updates (Node 1)')
-        % M2 = {'w0', 'w1', 'w2', 'w3', 'w4', 'w5', 'w6', 'w7', 'w8'};
-        % legend(p3, M2,'Location','eastoutside');
-        % set(p3, 'Xlim',[0,opts.numepochs + 1])
+        p3 = subplot(plotRows,plotCols,3);
+        [rows, columns] = size(hiddenWeights);
+        xPlotHidden = ones(rows, columns);
+        if rows > 1,
+            for index = 2:rows,
+                xPlotHidden(index,:) = xPlotHidden(index,:) * index;
+            end
+        end
+        plot(xPlotHidden,hiddenWeights)
+        xlabel('Number of epochs'); ylabel('Weights');
+        title('Hidden Layer Weight Updates (Node 1)')
+        M2 = {'w0', 'w1', 'w2', 'w3', 'w4', 'w5', 'w6', 'w7', 'w8'};
+        legend(p3, M2,'Location','eastoutside');
+        set(p3, 'Xlim',[0,opts.numepochs + 1])
         
         % output layer weight updates at node 1
-        % p4 = subplot(plotRows,plotCols,4);
-        % [rows2, columns2] = size(outputWeights);
-        % xPlotOutput = ones(rows2, columns2);
-        % if rows2 > 1,
-        %     for index2 = 2:rows2,
-        %         xPlotOutput(index2,:) = xPlotOutput(index2,:) * index2;
-        %     end
-        % end
-        % plot(xPlotOutput,outputWeights)
-        % xlabel('Number of epochs'); ylabel('Weights');
-        % title('Output Layer Weight Updates (Node 1)')
-        % M3 = {'w0', 'w1', 'w2', 'w3'};
-        % legend(p4, M3,'Location','eastoutside');
-        % set(p4, 'Xlim',[0,opts.numepochs + 1])
+        p4 = subplot(plotRows,plotCols,4);
+        [rows2, columns2] = size(outputWeights);
+        xPlotOutput = ones(rows2, columns2);
+        if rows2 > 1,
+            for index2 = 2:rows2,
+                xPlotOutput(index2,:) = xPlotOutput(index2,:) * index2;
+            end
+        end
+        plot(xPlotOutput,outputWeights)
+        xlabel('Number of epochs'); ylabel('Weights');
+        title('Output Layer Weight Updates (Node 1)')
+        M3 = {'w0', 'w1', 'w2', 'w3'};
+        legend(p4, M3,'Location','eastoutside');
+        set(p4, 'Xlim',[0,opts.numepochs + 1])
 
         
         % acivation outputs at hidden layer
-%         p5 = subplot(plotRows,plotCols,5);
-%         [rows3, columns3] = size(hiddenActivations);
-%         hiddenActivationX = ones(rows3, columns3);
-%         if rows3 > 1,
-%             for index3 = 2:rows3,
-%                 hiddenActivationX(index3,:) = hiddenActivationX(index3,:) * index3;
-%             end
-%         end
-%         plot(hiddenActivationX,hiddenActivations)
-%         xlabel('Number of epochs'); ylabel('Activations');
-%         title('Hidden Layer Activations (Node 1)')
-%         legend(p5, M(1),'Location','NorthEast');
-%         set(p5, 'Xlim',[0,opts.numepochs + 1])
+        % p5 = subplot(plotRows,plotCols,5);
+        % [rows3, columns3] = size(hiddenActivations);
+        % hiddenActivationX = ones(rows3, columns3);
+        % if rows3 > 1,
+        %     for index3 = 2:rows3,
+        %         hiddenActivationX(index3,:) = hiddenActivationX(index3,:) * index3;
+        %     end
+        % end
+        % plot(hiddenActivationX,hiddenActivations)
+        % xlabel('Number of epochs'); ylabel('Activations');
+        % title('Hidden Layer Activations (Node 1)')
+        % legend(p5, M(1),'Location','NorthEast');
+        % set(p5, 'Xlim',[0,opts.numepochs + 1])
         
         % activation outputs at output layer
-%         p6 = subplot(plotRows,plotCols,6);
-%         [rows4, columns4] = size(outputActivations);
-%         outputActivationX = ones(rows4, columns4);
-%         if rows4 > 1,
-%             for index4 = 2:rows4,
-%                 outputActivationX(index4,:) = outputActivationX(index4,:) * index4;
-%             end
-%         end
-%         plot(outputActivationX,outputActivations)
-%         xlabel('Number of epochs'); ylabel('Activations');
-%         title('Output Layer Activations (Node 1)')
-%         legend(p6, M(1),'Location','NorthEast');
-%         set(p6, 'Xlim',[0,opts.numepochs + 1])
+        % p6 = subplot(plotRows,plotCols,6);
+        % [rows4, columns4] = size(outputActivations);
+        % outputActivationX = ones(rows4, columns4);
+        % if rows4 > 1,
+        %     for index4 = 2:rows4,
+        %         outputActivationX(index4,:) = outputActivationX(index4,:) * index4;
+        %     end
+        % end
+        % plot(outputActivationX,outputActivations)
+        % xlabel('Number of epochs'); ylabel('Activations');
+        % title('Output Layer Activations (Node 1)')
+        % legend(p6, M(1),'Location','NorthEast');
+        % set(p6, 'Xlim',[0,opts.numepochs + 1])
     else
         
         p = plot(plot_x,plot_ye);
