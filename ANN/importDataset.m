@@ -16,6 +16,7 @@ function [ x, y ] = importDataset( path )
     % Get number of unique tags from text file, which contains the rankings
     % of the top 301 most popular tags
     rankedtags = importdata('MostPopularMinimized.txt');
+    % rankedtags = importdata('MostPopularMinim.txt');
     [numUniqueTags, ~] = size(rankedtags);
     
 

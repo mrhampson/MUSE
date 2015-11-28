@@ -183,7 +183,7 @@ We utilized Neural Networks to predict song genres based on features of a song. 
 
 where $n_1$ is the number of features, $n_2$ is the number possible tags, and $m$ is the number of samples.
 
-We quickly found that if we included all of the possible tags from our dataset that the number of tags would reach an unmanageable amount. Training our network with such a large number of tags was computationally intensive and resulted in too complex of a distribution to learn. Instead, we decided to limit the number of tags to a small subset of the most popular tags. We were able to import a list of the 300 most popular genres in the dataset and use it as the limiting set of possible tags for our dataset. We found that even 300 tags was too many. Later, we found that limiting the possible number of tags would reduce error and misclassification rate.
+We quickly found that if we included all of the possible tags from our dataset that the number of tags would reach an unmanageable amount. Training our network with such a large number of tags was computationally intensive and was difficult for our network to learn such a complex distribution. Instead, we decided to limit the number of tags to a small subset of the most popular tags. We were able to import a list of the 300 most popular genres in the dataset and use it as the limiting set of possible tags for our dataset. We found that even 300 tags was too many. Later, we found that limiting the possible number of tags would reduce error and misclassification rate.
 
 By having 12 song features and $n_2$ possible genres, we knew we would need to construct a neural network with 12 input nodes and $n_2$ output nodes. The more complicated issue arose when we tried determining the adequate number of hidden nodes.
 
@@ -218,11 +218,13 @@ only present the facts about the method performance, robustness, complexity, etc
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Artificial Neural Networks}
 \label{subsec:annResults}
+We found that the number of output nodes negatively impacted our experimental results. As mentioned before in Section~\ref{subsec:ann}, we found that limiting the number of possible genres improved both the training error and misclassification rate. Initially, we constructed our network with 12 input nodes and 301 output nodes. We then attempted to iterate through various configurations of hidden layers, hidden nodes, and learning rates, but found that none of them yielded any remotely desirable results. A graph of the performance of one of these networks is found in Appendix~\ref{subsec:annPoorPerformance}.
+
+After considering our options for improving the performance of our network, we ultimately resorted to limiting the maximum number of output nodes to 5. For each sample we only took genres that belonged to the top 5 genres from our list of most popular genres.   
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Clustering}
 \label{subsec:clusteringResults}
-
 We found that the clusters seemed to be skewed by issues with our data set. Plotting our data before removing year and mode skewed our data into clusted bassed only on these two features. Before removing the bad from hotness our cluster were all significantly shifted towards 0 hotness. However, our data did not split into a zero hotness cluster vs non 0 hotness clusters, all the cluster were shifted down equally. After removing these features and datapoints from the dataset we found we got more distict clusters. Below is our k-means clusting with 4 clusters both before and after removing features.
 
 %INSERT DIAGRAM: trimmed & untrimmed 
@@ -267,8 +269,6 @@ be done (the road ahead), why (the impact to the field) and how you think it can
 (future work). You end the report with 1-2 sentences on how the work presented advances the
 field in the grant scheme of things.}
 \smallHorizontalLine
-
-blah blah blah
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -316,6 +316,25 @@ Used for the construction, configuration, training, and testing of our Artificia
 \section{Figures}
 \label{sec:figures}
 
+\subsection{Poor Performance of Neural Network: 300 Output Nodes}
+\label{subsec:annPoorPerformance}
+\includegraphics[scale=0.45]{images/ann/horribleResultsWIth300Outputs}
+
+\subsection{Better Performance of Neural Network: Only 5 Output Nodes}
+\label{subsec:annBetterPerformance}
+\includegraphics[scale=0.45]{images/ann/slightlyBetterWithTop5Genres1}
+\includegraphics[scale=0.45]{images/ann/slightlyBetterWithTop5Genres2}
+
+\subsection{Performance of Various Neural Networks: Only 1 Output Node}
+\label{subsec:variousANN}
+\includegraphics[scale=0.45]{images/ann/graphOfVariousNetworksWith1Genre}
+
+\subsection{Best Performance of Neural Network: Only 1 Output Node}
+\label{subsec:annBestPerformance}
+\includegraphics[scale=0.45]{images/ann/bestRun}
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \horizontalLine
@@ -356,7 +375,6 @@ end
 \horizontalLine
 \section{Author Contributions}
 \label{sec:authorContributions}
-
 \begin{itemize}
     \item Methods:
     \begin{itemize}
@@ -379,6 +397,5 @@ end
         \end{itemize}
     \end{itemize}
 \end{itemize}
-
 \end{document}
 
