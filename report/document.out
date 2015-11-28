@@ -1,28 +1,28 @@
 \BOOKMARK [1][-]{section.1}{Abstract}{}% 1
 \BOOKMARK [1][-]{section.2}{Introduction}{}% 2
 \BOOKMARK [2][-]{subsection.2.1}{Background}{section.2}% 3
-\BOOKMARK [2][-]{subsection.2.2}{Million Song Dataset}{section.2}% 4
+\BOOKMARK [2][-]{subsection.2.2}{Million\040Song\040Dataset}{section.2}% 4
 \BOOKMARK [1][-]{section.3}{Methods}{}% 5
-\BOOKMARK [2][-]{subsection.3.1}{Linear Regression: Song Popularity}{section.3}% 6
-\BOOKMARK [2][-]{subsection.3.2}{Artificial Neural Networks: Song Genres}{section.3}% 7
-\BOOKMARK [2][-]{subsection.3.3}{Clustering: Hotness}{section.3}% 8
+\BOOKMARK [2][-]{subsection.3.1}{Linear\040Regression:\040Song\040Popularity}{section.3}% 6
+\BOOKMARK [2][-]{subsection.3.2}{Artificial\040Neural\040Networks:\040Song\040Genres}{section.3}% 7
+\BOOKMARK [2][-]{subsection.3.3}{Clustering:\040Hotness}{section.3}% 8
 \BOOKMARK [1][-]{section.4}{Results}{}% 9
-\BOOKMARK [2][-]{subsection.4.1}{Linear Regression}{section.4}% 10
-\BOOKMARK [2][-]{subsection.4.2}{Artificial Neural Networks}{section.4}% 11
+\BOOKMARK [2][-]{subsection.4.1}{Linear\040Regression}{section.4}% 10
+\BOOKMARK [2][-]{subsection.4.2}{Artificial\040Neural\040Networks}{section.4}% 11
 \BOOKMARK [2][-]{subsection.4.3}{Clustering}{section.4}% 12
 \BOOKMARK [1][-]{section.5}{Discussion}{}% 13
-\BOOKMARK [2][-]{subsection.5.1}{Linear Regression}{section.5}% 14
-\BOOKMARK [2][-]{subsection.5.2}{Artificial Neural Networks}{section.5}% 15
+\BOOKMARK [2][-]{subsection.5.1}{Linear\040Regression}{section.5}% 14
+\BOOKMARK [2][-]{subsection.5.2}{Artificial\040Neural\040Networks}{section.5}% 15
 \BOOKMARK [2][-]{subsection.5.3}{Clustering}{section.5}% 16
 \BOOKMARK [1][-]{section.6}{Conclusion}{}% 17
 \BOOKMARK [1][-]{section.7}{References}{}% 18
 \BOOKMARK [2][-]{subsection.7.1}{Readings}{section.7}% 19
-\BOOKMARK [2][-]{subsection.7.2}{Datasets and Code}{section.7}% 20
+\BOOKMARK [2][-]{subsection.7.2}{Datasets\040and\040Code}{section.7}% 20
 \BOOKMARK [1][-]{appendix.A}{Figures}{}% 21
-\BOOKMARK [2][-]{subsection.A.1}{Poor Performance of Neural Network: 300 Output Nodes}{appendix.A}% 22
-\BOOKMARK [2][-]{subsection.A.2}{Better Performance of Neural Network: Only 5 Output Nodes}{appendix.A}% 23
-\BOOKMARK [2][-]{subsection.A.3}{Performance of Various Neural Networks: Only 1 Output Node}{appendix.A}% 24
-\BOOKMARK [2][-]{subsection.A.4}{Best Performance of Neural Network: Only 1 Output Node}{appendix.A}% 25
+\BOOKMARK [2][-]{subsection.A.1}{Poor\040Performance\040of\040Neural\040Network:\040300\040Output\040Nodes}{appendix.A}% 22
+\BOOKMARK [2][-]{subsection.A.2}{Better\040Performance\040of\040Neural\040Network:\040Only\0405\040Output\040Nodes}{appendix.A}% 23
+\BOOKMARK [2][-]{subsection.A.3}{Performance\040of\040Various\040Neural\040Networks:\040Only\0401\040Output\040Node}{appendix.A}% 24
+\BOOKMARK [2][-]{subsection.A.4}{Best\040Performance\040of\040Neural\040Network:\040Only\0401\040Output\040Node}{appendix.A}% 25
 \BOOKMARK [1][-]{appendix.B}{Code}{}% 26
-\BOOKMARK [2][-]{subsection.B.1}{Main Loop for Testing Different Neural Network Architectures}{appendix.B}% 27
-\BOOKMARK [1][-]{appendix.C}{Author Contributions}{}% 28
+\BOOKMARK [2][-]{subsection.B.1}{Main\040Loop\040for\040Testing\040Different\040Neural\040Network\040Architectures}{appendix.B}% 27
+\BOOKMARK [1][-]{appendix.C}{Author\040Contributions}{}% 28
