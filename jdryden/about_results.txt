@@ -1,0 +1,17 @@
+
+
+
+
+overfitting.jpeg is included in case we want to show an example of overfitted regression. Without including song tags,there is a clear shape that the regression tries to fit, and it is exaggerated greatly using PCA.
+
+MSE results:
+
+with song tags										0.0433
+with song tags/zero values removed					0.0223
+with only the top 5 tags/zero values removed		0.0234
+
+without tags										0.0471
+without tags/using PCA								0.0488
+no tags/zero values removed							0.0241
+
+whateverthehellmackeydid							0.25
