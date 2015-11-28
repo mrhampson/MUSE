@@ -22,11 +22,8 @@ function results = perGenreRegression(categories, X, Y)
         %subMse = CrossValidator(subX, subY);
         %subWeights = generateWeights(subX, subY);
         
-        % Using glmnet which may or may not be better? Uses 10 fold cross val as default
-        opts = struct('alpha',1); % 1 for lasso, 0 for ridge, in between for elastic net
-        cvfit = cvglmnet(subX, subY)
-        [subMse bestind] = min(cvfit.cvm);
-        subWeights = cvfit.glmnet_fit.beta(:,bestind);
+        subMse = CrossValidator(subX, subY);
+        subWeights = generateWeights(subX, subY);
         
         result = struct('genreID',i, 'mse',subMse, 'weights',subWeights);
         results = [results; result];
