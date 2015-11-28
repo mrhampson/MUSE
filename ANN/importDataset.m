@@ -15,7 +15,7 @@ function [ x, y ] = importDataset( path )
     
     % Get number of unique tags from text file, which contains the rankings
     % of the top 301 most popular tags
-    rankedtags = importdata('MostPopular.txt');
+    rankedtags = importdata('MostPopularMinimized.txt');
     [numUniqueTags, ~] = size(rankedtags);
     
 
@@ -56,9 +56,9 @@ function [ x, y ] = importDataset( path )
                     break
                 end
             end
-%              if(c == 1) % If you want to test 1st most popular category seen
-%                  break
-%              end
+             if(c == 1) % If you want to test 1st most popular category seen
+                 break
+             end
         end
         % Long story short, I had to figure out a way to copy the relevant features
         % from the dataset to the x matrix. This loop is performing that step since I
