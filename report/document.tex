@@ -218,9 +218,11 @@ only present the facts about the method performance, robustness, complexity, etc
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Artificial Neural Networks}
 \label{subsec:annResults}
-We found that the number of output nodes negatively impacted our experimental results. As mentioned before in Section~\ref{subsec:ann}, we found that limiting the number of possible genres improved both the training error and misclassification rate. Initially, we constructed our network with 12 input nodes and 301 output nodes. We then attempted to iterate through various configurations of hidden layers, hidden nodes, and learning rates, but found that none of them yielded any remotely desirable results. A graph of the performance of one of these networks is found in Appendix~\ref{subsec:annPoorPerformance}.
+We found that the number of output nodes negatively impacted our experimental results. As mentioned before in Section~\ref{subsec:ann}, we found that limiting the number of possible genres improved both the training error and misclassification rate. Initially, we constructed our network with 12 input nodes and $n_2 = 301$ output nodes. We then attempted to iterate through various configurations of hidden layers, hidden nodes, and learning rates, but found that none of them yielded any remotely desirable results. A graph of the performance of one of these networks is found in Appendix~\ref{subsec:annPoorPerformance}.
 
-After considering our options for improving the performance of our network, we ultimately resorted to limiting the maximum number of output nodes to 5. For each sample we only took genres that belonged to the top 5 genres from our list of most popular genres.   
+After considering our options for improving the performance of our network, we ultimately resorted to limiting the maximum number of output nodes to $n_2 = 5$. For each sample we only took genres that belonged to the top 5 genres from our list of most popular genres. The top 5 genres were: rock, electronic, pop, alternative rock, and hip hop. Songs that didn't belong to any of these genres would ideally not be classified into any category. Graphs from our revised network configurations can be found in Appendix~\ref{subsec:annBetterPerformance}.
+
+Ultimately, we found that the lowest number of output nodes would yield the most optimal results. We chose to limit the output nodes to only the most popular genre: rock. It was no surprise that this configuration would yield the most optimal results since the network needed only to focus on a single output node. Once we discovered that this output-node configuration was the best, we ran the loop that is shown in Appendix~\ref{subsec:annLoop} to discover the optimal hidden-layer and learning rate configuration. The results of this loop are shown in Appendix~\ref{subsec:variousANN}, which is a plot of both the training error and misclassification rate for each network. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Clustering}
@@ -304,7 +306,7 @@ The Million Song Dataset. In Proceedings of the 12th International Society
 for Music Information Retrieval Conference (ISMIR 2011), 2011.
 \\
 \\
-\href{https://github.com/rasmusbergpalm/DeepLearnToolbox}{DeepLearningToolbox} - Rasmus Berg Palm
+\href{https://github.com/rasmusbergpalm/DeepLearnToolbox}{\textbf{DeepLearningToolbox}} - Rasmus Berg Palm
 
 Used for the construction, configuration, training, and testing of our Artificial Neural Networks. The training algorithm uses a form of Batch Gradient Descent by constructing "mini-batches" at each iteration of training.
 
@@ -328,6 +330,24 @@ Used for the construction, configuration, training, and testing of our Artificia
 \subsection{Performance of Various Neural Networks: Only 1 Output Node}
 \label{subsec:variousANN}
 \includegraphics[scale=0.45]{images/ann/graphOfVariousNetworksWith1Genre}
+Each of the networks that were tested to yield the graph above contained 12 input nodes and a single output node for the classification of rock songs. The various hidden layer and learning rate configurations are provided below. The numbers correspond to the x-axis values in the graph above. 
+\begin{enumerate}
+    \item 3 hidden layers, each with 9 hidden nodes, and a learning rate of 0.05
+    
+    \item 3 hidden layers, each with 9 hidden nodes, and a learning rate of 0.1
+    
+    \item 3 hidden layers, each with 12 hidden nodes, and a learning rate of 0.05
+    
+    \item 3 hidden layers, each with 12 hidden nodes, and a learning rate of 0.1
+    
+    \item 4 hidden layers, each with 9 hidden nodes, and a learning rate of 0.05
+    
+    \item 4 hidden layers, each with 9 hidden nodes, and a learning rate of 0.1
+    
+    \item 4 hidden layers, each with 12 hidden nodes, and a learning rate of 0.05
+    
+    \item 4 hidden layers, each with 12 hidden nodes, and a learning rate of 0.1
+\end{enumerate}
 
 \subsection{Best Performance of Neural Network: Only 1 Output Node}
 \label{subsec:annBestPerformance}
@@ -337,6 +357,7 @@ Used for the construction, configuration, training, and testing of our Artificia
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagebreak
 \horizontalLine
 \section{Code}
 \label{sec:code}
@@ -372,6 +393,7 @@ end
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagebreak
 \horizontalLine
 \section{Author Contributions}
 \label{sec:authorContributions}

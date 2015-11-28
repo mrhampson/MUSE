@@ -33,7 +33,7 @@ function [nn, L, loss] = constructAndTrainNetwork(architecture, learningRate, xt
 % 	[opts.numepochs, ~] = size(xtrain); % <<< stille trying to determine necessary epoch number
     opts.numepochs = 25;
 	opts.batchsize = size(xtrain, 1); % <<< still trying to determine optimal batch size
-	opts.plot = 1; % Set this to 1 for plotting 
+	opts.plot = 0; % Set this to 1 for plotting 
 
 
 	% Train the new Neural Network with the above configurations/options

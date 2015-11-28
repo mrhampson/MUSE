@@ -79,9 +79,10 @@ function optimalNetwork = part4( x, y )
     
     legend('Min. SSE', 'Min. Misclassification Rate');
     for i = 1:(count1-1)
-       disp(results.labels{i});
-       disp(['min L: ' num2str(results.minL{i})]);
-       disp(['losses: ' num2str(results.losses{i})]);
+        disp(i);
+        disp(results.labels{i});
+        disp(['min L: ' num2str(results.minL{i})]);
+        disp(['losses: ' num2str(results.losses{i})]);
     end
 
 	disp('****************************************');
