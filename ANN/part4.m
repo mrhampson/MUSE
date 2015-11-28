@@ -14,8 +14,12 @@ function optimalNetwork = part4( x, y )
 	% Initialize parameters for Neural Networks with various architectures 
 	% (i.e. various hidden layers and hidden nodes)
     % These contain the optimal parameters
+
+
     hiddenLayerValues = [3 4];
 	hiddenNodeValues = [9 12];
+    % hiddenLayerValues = [4];
+    % hiddenNodeValues = [12];
     [~, inputs] = size(x);
 	[~, outputs] = size(y);
 	networks = [];
@@ -34,6 +38,7 @@ function optimalNetwork = part4( x, y )
 	% Iterate throughout the various hidden layer values and hidden node values
     myStruct.labels = [];
     count1 = 1;
+    optimalNetwork = [];
 	for layerValue = hiddenLayerValues
 		for nodeValue = hiddenNodeValues
             for rate = rates
@@ -49,8 +54,7 @@ function optimalNetwork = part4( x, y )
                 results.minL{count1} = min(L);
                 results.losses{count1} = min(loss.train.e_frac);
                 count1 = count1 + 1;
-                
-                optimalNetwork = [];
+
                 if layerValue == 4 && nodeValue == 12 && rate == 0.1
                     optimalNetwork = network;
                 end
@@ -75,13 +79,15 @@ function optimalNetwork = part4( x, y )
     % xlabel('Network Configurations')
     % ylabel('Error / Misclassification Rate')
     % title('Training Errors and Misclassification Rates for Various Networks')
+    % legend('Min. SSE', 'Min. Misclassification Rate');
     % grid on;
     
-    legend('Min. SSE', 'Min. Misclassification Rate');
+    
     for i = 1:(count1-1)
-       disp(results.labels{i});
-       disp(['min L: ' num2str(results.minL{i})]);
-       disp(['losses: ' num2str(results.losses{i})]);
+        disp(i);
+        disp(results.labels{i});
+        disp(['min L: ' num2str(results.minL{i})]);
+        disp(['losses: ' num2str(results.losses{i})]);
     end
 
 	disp('****************************************');

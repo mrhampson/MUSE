@@ -76,8 +76,9 @@ for i = 1 : numepochs
         str_perf = sprintf('; Full-batch train err = %f', loss.train.e(end));
     end
     if ishandle(fhandle)
-        hiddenWeights = [hiddenWeights ; nn.W{1,1}(1,:)];
-        outputWeights = [outputWeights ; nn.W{1,2}(1,:)];
+        node = 1;
+        hiddenWeights = [hiddenWeights ; nn.W{1,1}(node,:)];
+        outputWeights = [outputWeights ; nn.W{1,2}(node,:)];
         hiddenActivations = [hiddenActivations; nn.a{1,2}(1,2)];
         outputActivations = [outputActivations; nn.a{1,3}(1,2)];
         nnupdatefigures(nn, fhandle, loss, opts, i, hiddenWeights, outputWeights, hiddenActivations, outputActivations);
