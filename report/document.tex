@@ -144,7 +144,6 @@ In addition to the list above, the Neural Networks and Linear Regression strateg
 \horizontalLine
 \section{Methods}
 \label{sec:methods}
-As mentioned before, the methods we chose for performing our analytics were linear regression, artificial neural networks, and clustering. The features that were utilized for each approach are listed in Section~\ref{subsec:datasetIntro}. For each method, we began by targeting a feature that we were interested in analyzing. Then, we created a model for each approach to perform the analysis. Finally, we ran our data through our models to observe the effectiveness of our models. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Linear Regression: Song Popularity}
@@ -183,9 +182,9 @@ We utilized Neural Networks to predict song genres based on features of a song. 
 
 where $n_1$ is the number of features, $n_2$ is the number possible tags, and $m$ is the number of samples.
 
-We quickly found that if we included all of the possible tags from our dataset that the number of tags would reach an unmanageable amount. Training our network with such a large number of tags was computationally intensive and resulted in too complex of a distribution to learn. Instead, we decided to limit the number of tags to a small subset of the most popular tags. We were able to import a list of the 300 most popular genres in the dataset and use it as the limiting set of possible tags for our dataset. We found that even 300 tags was too many. Ultimately, we resorted to limiting the possible number of tags to only the top 20 genres.
+We quickly found that if we included all of the possible tags from our dataset that the number of tags would reach an unmanageable amount. Training our network with such a large number of tags was computationally intensive and was difficult for our network to learn such a complex distribution. Instead, we decided to limit the number of tags to a small subset of the most popular tags. We were able to import a list of the 300 most popular genres in the dataset and use it as the limiting set of possible tags for our dataset. We found that even 300 tags was too many. Later, we found that limiting the possible number of tags would reduce error and misclassification rate.
 
-By having 12 song features and 20 possible genres, we knew we would need to construct a neural network with 12 input nodes and 20 output nodes. The more complicated issue arose when we tried determining the adequate number of hidden nodes.
+By having 12 song features and $n_2$ possible genres, we knew we would need to construct a neural network with 12 input nodes and $n_2$ output nodes. The more complicated issue arose when we tried determining the adequate number of hidden nodes.
 
 We were mostly interested in observing the effect of 3 different parameters on the neural network: learning rate, number of hidden layers, and number of hidden nodes per hidden layer. We planned on running our dataset through various neural networks, each with a different configuration of the above parameters (refer to Appendix~\ref{subsec:annLoop} for code snippet). We hoped to find an optimal configuration for these parameters while also discovering any correlation between the above song features and the song tags. A particular configuration of these parameters that yielded both minimal training error and misclassification rate would implicitly verify a correlation between song features and song tags.
 
@@ -205,43 +204,21 @@ To get the hierarchical clusters and plot the dendrogram we used the MATLAB func
 \horizontalLine
 \section{Results}
 \label{sec:results}
-
 \textbf{This should only describe the results that you have obtained. Sometimes it make sense
 to discuss your guess/opinion why this is happening, but this should be rare. This section is to
 only present the facts about the method performance, robustness, complexity, etc.}
-
-\textbf{This is where you discuss everything that was presented in the Results section.
-Why did the algorithm perform better in X and not in Y. It is ok to succinctly re-state strong
-result claims (that were included in the previous section), as long as you continue to explain,
-even speculate why this may be the case. For example: \textquotedblleft Our algorithm was faster in X\% of the
-scenarios than what is currently available. The main drive behind this performance boost is the Y module, which takes advantage of the Z characteristic of the problem. Indeed, ....\textquotedblright}
 \smallHorizontalLine
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Linear Regression: Predicting Song Popularity}
+\subsection{Linear Regression}
 \label{subsec:linearRegressionResults}
-blah blah blah
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Artificial Neural Networks}
 \label{subsec:annResults}
-blah blah blah
-
-\subsubsection{The Effect of Learning Rate on Training}
-\label{subsubsec:annLearningRateResults}
-blah blah blah
-
-\subsubsection{The Effect of Hidden Layers on Training and Accuracy}
-\label{subsubsec:annHiddenLayerResults}
-blah blah blah
-
-\subsubsection{The Effect of Hidden Layer Nodes on Training and Accuracy}
-\label{subsubsec:annHiddenLayerNodesResults}
-blah blah blah
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Clustering}
 \label{subsec:clusteringResults}
-
 We found that the clusters seemed to be skewed by issues with our data set. Plotting our data before removing year and mode skewed our data into clusted bassed only on these two features. Before removing the bad from hotness our cluster were all significantly shifted towards 0 hotness. However, our data did not split into a zero hotness cluster vs non 0 hotness clusters, all the cluster were shifted down equally. After removing these features and datapoints from the dataset we found we got more distict clusters. Below is our k-means clusting with 4 clusters both before and after removing features.
 
 %INSERT DIAGRAM: trimmed & untrimmed 
@@ -250,8 +227,29 @@ We compared our heirchical dendrogram to that of a randomly generated sample. Th
 
 %INSTER DIAGRAM: random and sample dendrograms
 
-  
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+\section{Discussion}
+\label{sec:discussion}
+\textbf{This is where you discuss everything that was presented in the Results section.
+    Why did the algorithm perform better in X and not in Y. It is ok to succinctly re-state strong
+    result claims (that were included in the previous section), as long as you continue to explain,
+    even speculate why this may be the case. For example: \textquotedblleft Our algorithm was faster in X\% of the
+    scenarios than what is currently available. The main drive behind this performance boost is the Y module, which takes advantage of the Z characteristic of the problem. Indeed, ....\textquotedblright}
+\smallHorizontalLine
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Linear Regression}
+\label{subsec:linearRegressionDisc}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Artificial Neural Networks}
+\label{subsec:annDisc}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Clustering}
+\label{subsec:clusteringDisc}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -265,8 +263,6 @@ be done (the road ahead), why (the impact to the field) and how you think it can
 (future work). You end the report with 1-2 sentences on how the work presented advances the
 field in the grant scheme of things.}
 \smallHorizontalLine
-
-blah blah blah
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -302,7 +298,7 @@ The Million Song Dataset. In Proceedings of the 12th International Society
 for Music Information Retrieval Conference (ISMIR 2011), 2011.
 \\
 \\
-\href{https://github.com/rasmusbergpalm/DeepLearnToolbox}{DeepLearningToolbox} - Rasmus Berg Palm
+\href{https://github.com/rasmusbergpalm/DeepLearnToolbox}{\textbf{DeepLearningToolbox}} - Rasmus Berg Palm
 
 Used for the construction, configuration, training, and testing of our Artificial Neural Networks. The training algorithm uses a form of Batch Gradient Descent by constructing "mini-batches" at each iteration of training.
 
@@ -313,6 +309,23 @@ Used for the construction, configuration, training, and testing of our Artificia
 \horizontalLine
 \section{Figures}
 \label{sec:figures}
+
+\subsection{Poor Performance of Neural Network: 300 Output Nodes}
+\label{subsec:annPoorPerformance}
+\includegraphics[scale=0.45]{images/ann/horribleResultsWIth300Outputs}
+
+\subsection{Better Performance of Neural Network: Only 5 Output Nodes}
+\label{subsec:annBetterPerformance}
+\includegraphics[scale=0.45]{images/ann/slightlyBetterWithTop5Genres1}
+\includegraphics[scale=0.45]{images/ann/slightlyBetterWithTop5Genres2}
+
+\subsection{Performance of Various Neural Networks: Only 1 Output Node}
+\label{subsec:variousANN}
+\includegraphics[scale=0.45]{images/ann/graphOfVariousNetworksWith1Genre}
+
+\subsection{Best Performance of Neural Network: Only 1 Output Node}
+\label{subsec:annBestPerformance}
+\includegraphics[scale=0.45]{images/ann/bestRun}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -354,29 +367,27 @@ end
 \horizontalLine
 \section{Author Contributions}
 \label{sec:authorContributions}
-
 \begin{itemize}
     \item Methods:
     \begin{itemize}
         \item Linear Regression
         \begin{itemize}
-            \item Peggy Li:
-            \item Steven Mackey:
-            \item James Dryden:
+            \item Peggy Li
+            \item Steven Mackey
+            \item James Dryden
         \end{itemize}
         \item Artificial Neural Networks
         \begin{itemize}
-            \item Nicholas Layton:
-            \item Michael Fiueroa:
+            \item Nicholas Layton
+            \item Michael Fiueroa
         \end{itemize}
         \item K-Means Clustering
         \begin{itemize}
-            \item William Otwell:
-            \item Marshall Hampson:
-            \item Amos Too:
+            \item William Otwell
+            \item Marshall Hampson
+            \item Amos Too
         \end{itemize}
     \end{itemize}
 \end{itemize}
-
 \end{document}
 
