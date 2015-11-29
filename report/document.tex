@@ -159,7 +159,10 @@ To get the hierarchical clusters and plot the dendrogram we used the MATLAB func
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Linear Regression}
 \label{subsec:linearRegressionResults}
-
+We found that the overwhelming important factors in creating an accurate model were the presence and number of song tags, and using dummy variables. 
+The highest mean squared error we found was when we used Lasso regression, followed by our PCA driven attempt.
+% Insert actual numbers here
+In the end our best result came from retaining a modest number of song tags (20), using normal linear regression, changing categorical values to dummy variables, and removing elements with a listed hotness of 0.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Artificial Neural Networks}
 \label{subsec:annResults}
@@ -190,7 +193,9 @@ We compared our hierarchical dendrogram to that of a randomly generated sample. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Linear Regression}
 \label{subsec:linearRegressionDisc}
-
+The reason for PCA and Lasso regression making our results worse is simply from reducing the number of feature to work with. But even this result leads to suprisingly accurate predictions, with a MSE of 0.05, when hotness only ranges bewteen 0 and 1. Using straight linear regression with all the terms first-order yields an MSE of 0.02. Despite this, we are not worried about overfitting, because we use around 20 features for over 4000 samples. Also, the MSE may be a bit misleading: The mean absolute error would be around 0.15. 
+Doing the same regression on groups that are split up by genre proved useful: The wieghts show that a popular indie rock song is much louder than a popular ambient song, for example. They also show that different genres perfer different keys.
+One problem is that the weight of the duration feature is much greater than all the others, even after normalization. Perhaps our results could have been made better by introducing second order terms.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Artificial Neural Networks}
 \label{subsec:annDisc}
