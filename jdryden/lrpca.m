@@ -7,7 +7,7 @@
 
 %set up matrices
 plotnum = 1;
-tplots = 3;
+tplots = 2;
 hot = cell2mat(songInfo(:,8));
 xmat = [songInfo(:,1:7), songInfo(:,9:end)];
 xmat = cell2mat(xmat);
@@ -32,6 +32,7 @@ end
 %[newhot,hot(test)]
 subplot(1,tplots,plotnum)
 scatter(x,y(:,1),15,'r','filled','d')
+xlabel('Hotness')
 title('Without Song Tags')
 hold on
 scatter(x,y(:,2),15,'b','filled','o')
@@ -62,6 +63,7 @@ end
 %[newhot,hot(test)]
 subplot(1,tplots,plotnum)
 scatter(x,y(:,1),15,'r','filled','d')
+xlabel('Hotness')
 title('Without Song Tags, Using PCA')
 hold on
 scatter(x,y(:,2),15,'b','filled','o')
@@ -95,13 +97,14 @@ for ct = 1:10
 end
 lnmdl
 %[newhot,hot(test)]
-subplot(1,tplots,plotnum)
-scatter(x,y(:,1),15,'r','filled','d')
-title('With Song Tags')
-hold on
-scatter(x,y(:,2),15,'b','filled','o')
-xlim([0 450])
-plotnum = plotnum + 1;
+%subplot(1,tplots,plotnum)
+%scatter(x,y(:,1),15,'r','filled','d')
+%xlabel('Hotness')
+%title('Incomplete Data Removed')
+%hold on
+%scatter(x,y(:,2),15,'b','filled','o')
+%xlim([0 450])
+%plotnum = plotnum + 1;
 mean(mse);
 
 
