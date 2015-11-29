@@ -3,6 +3,8 @@
 %   Though takes for fucking ever
 
 function W = generateWeights(X,Y)
-    [B, FitInfo] = lasso(X, Y, 'NumLambda', 50);
-    W = B(:,1);
+    linearModel = fitlm(X,Y);
+    W = linearModel.Coefficients;
+    W = W(:,1);
+    W = W.Estimate;
 end

@@ -6,4 +6,8 @@ function yHatTest = trainAndTest(XTRAIN,ytrain,XTEST)
     W = generateWeights(XTRAIN, ytrain);
     display(W);
     yHatTest = generatePredicted(W, XTEST);
+    
+    %debug
+%     assert(size(yHatTest, 1) == 1);
+%     assert(size(yHatTest, 2) == 1);
 end
