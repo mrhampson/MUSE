@@ -83,54 +83,17 @@ The motivation to develop "smarter" software for music analytics originates larg
 Our approach to music analytics was similar to that of Brian Whitman's company, minus the lyrical analysis. We utilized data that represented the actual sound of the music, an approach that Brian calls "acoustic analysis." Some of the features that we included in our analysis, for example, were time signature, loudness, and key, to name a few. We hoped to focus our analysis on the sounds of the music and how the features of a song itself could provide predictive information. More specifically, the goals we hoped to accomplish were:
 \vspace{-3.5mm}
 \begin{itemize}
-    \item Predict the popularity of a song:
+    \item Predict the popularity of a song by applying linear regression techniques to quantify and predict the popularity of a song based on its acoustic features
     \vspace{-3.5mm}
-    \begin{itemize}
-        \item Apply linear regression techniques to quantify and predict the popularity of a song based on its acoustic features
-        \vspace{-3.5mm}
-    \end{itemize}
-    \item Classify a song into its genre(s)
+    \item Classify a song into its genre(s) by utilizing artificial neural networks to learn about the potential relationship between a song's acoustic qualities and its associated genres 
     \vspace{-3.5mm}
-    \begin{itemize}
-        \item Utilize artificial neural networks to learn about the potential relationship between a song's acoustic qualities and its associated genres 
-        \vspace{-3.5mm}
-    \end{itemize}
-    \item Discover trends in the songs regarding hotness and genre
+    \item Discover trends in the songs regarding hotness and genre by utilizing clustering techniques to discover trends in a songs features that might indicate a songs "hotness"
     \vspace{-3.5mm}
-    \begin{itemize}
-        \item Utilize clustering techniques to discover trends in a songs features that might indicate a songs "hotness"
-    \end{itemize}
 \end{itemize}
 
 \subsection{Million Song Dataset}
 \label{subsec:datasetIntro}
-The dataset that we chose to use is known as the Million Song Dataset (see Appendix~\ref{subsec:datasetsAndCode} for more info). Rather than actually using 1 million songs, we used a small, manageable subset of the Million Song Dataset. The features that we used were:
-\begin{enumerate}
-    \item danceability
-    \vspace{-3.5mm}
-    \item duration
-    \vspace{-3.5mm}
-    \item end of fade in
-    \vspace{-3.5mm}
-    \item energy
-    \vspace{-3.5mm}
-    \item key
-    \vspace{-3.5mm}
-    \item loudness
-    \vspace{-3.5mm}
-    \item mode
-    \vspace{-3.5mm}
-    \item song hotness
-    \vspace{-3.5mm}
-    \item start of fade out
-    \vspace{-3.5mm} 
-    \item tempo
-    \vspace{-3.5mm}
-    \item time signature
-    \vspace{-3.5mm}
-    \item year
-\end{enumerate}
-In addition to the list above, the Neural Networks approach also utilized a feature called "artist terms," which is simply a list of tags (which in our case can be thought of as genres) for each song. 
+The dataset that we chose to use is known as the Million Song Dataset (see Appendix~\ref{subsec:datasetsAndCode} for more info). Rather than actually using 1 million songs, we used a small, manageable subset of the Million Song Dataset. The features that we used were: danceability, duration, end-of-fade-in, energy, key, loudness, mode, song-hotness, start-of-fade-out, tempo, time-signature, year, and artist-terms, which is simply a list of tags (which in our case can be thought of as genres) for each song.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -141,8 +104,9 @@ In addition to the list above, the Neural Networks approach also utilized a feat
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Linear Regression: Song Popularity}
 \label{subsec:linearRegression}
-In an effort to study the predictability of song "hotness" (a measure of popularity included in our data), we used linear regression and various feature sets to create a model. We began with feature reduction, using Lasso regression and Pricipal Component Analyses followed by normal linear regression. As in other sections, we started with the same features, but with danceability and energy removed. We also selectively used elements with a listed hotness of 0. A value of zero indicates a lack of information, so we removed it in some regressions. We also tested the use of different number of song tags. Categorical variables like the key are recoded to dummy variables. Using a list sorted by number of appearances in the data, we examined the effects of using the full list of song tags, only the top 20, and only the top 5. We represented these song tags as a matrix in which the rows are associated with sample and the columns with the different song tags. Every $m \times n$ element in the matrix contains a binary value representing the presence or absence of the corresponding song tag in the data pertaining to that row element.
-We also test if reducing our number of features with PCA and Lasso regression make or error better. 
+In an effort to study the predictability of song "hotness" (a measure of popularity included in our data), we used linear regression and various feature sets to create a working model. We began with feature reduction, using Lasso regression and Pricipal Component Analyses followed by normal linear regression. We began modeling with the above listed features, but with danceability and energy ignored. We also selectively used elements with a listed hotness of zero. Such an absolute value suggests missing data more than complete dearth of popularity, so we removed it in some models. This greatly reduced the resulting error. We also tested the use of different numbers of song tags. Using a list sorted by number of appearances in the data, we examined the effects of using the top 20 elements vs just the top 5. We represented these song tags as a matrix in which the rows are associated with sample and the columns with the different song tags. Every $m \times n$ element in the matrix contains a binary value representing the presence or absence of the corresponding song tag in the data pertaining to that row element.
+
+We found that the overwhelmingly important factors in creating an accurate model were the presence and number of song tags, and avoiding overfitting with more complicated feature reduction techniques. The highest mean squared error we found was when we used Lasso regression, followed by our PCA driven attempt. In the end our best result came from retaining a modest number of song tags (20), using normal linear regression, and removing elements with missing or zero valued hotness.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Artificial Neural Networks: Song Genres}
@@ -151,14 +115,12 @@ We utilized Neural Networks to predict song genres based on features of a song. 
 \begin{equation}
     X = \begin{Bmatrix}
     	x^{(1)}_1 & x^{(1)}_2 & ... & x^{(1)}_{n_1} \\
-    	x^{(2)}_1 & x^{(2)}_2 & ... & x^{(2)}_{n_1} \\
     	...       & ...       & ... & ... \\
         x^{(m)}_1 & x^{(m)}_2 & ... & x^{(m)}_{n_1} \\
     \end{Bmatrix},
     \\
     Y = \begin{Bmatrix}
     y^{(1)}_1 & y^{(1)}_2 & ... & y^{(1)}_{n_2} \\
-    y^{(2)}_1 & y^{(2)}_2 & ... & y^{(2)}_{n_2} \\
     ...       & ...       & ... & ... \\
     y^{(m)}_1 & y^{(m)}_2 & ... & y^{(m)}_{n_2} \\
     \end{Bmatrix},
@@ -166,10 +128,7 @@ We utilized Neural Networks to predict song genres based on features of a song. 
     D = \{X,Y\}
 \end{equation} 
 \begin{equation}
-    x^{(i)}_j \in \Re
-\end{equation}
-\begin{equation}
-    y^{(i)}_j \in \{0, 1\}
+    x^{(i)}_j \in \Re\ \text{and}\ y^{(i)}_j \in \{0, 1\}
 \end{equation}
 
 where $n_1$ is the number of features, $n_2$ is the number possible tags, and $m$ is the number of samples.
@@ -178,7 +137,7 @@ We quickly found that if we included all of the possible tags from our dataset t
 
 By having 12 song features and $n_2$ possible genres, we knew we would need to construct a neural network with 12 input nodes and $n_2$ output nodes. The more complicated issue arose when we tried determining the adequate number of hidden nodes.
 
-We were mostly interested in observing the effect of 3 different parameters on the neural network: learning rate, number of hidden layers, and number of hidden nodes per hidden layer. We planned on running our dataset through various neural networks, each with a different configuration of the above parameters (refer to Appendix~\ref{subsec:annLoop} for code snippet). We hoped to find an optimal configuration for these parameters while also discovering any correlation between the above song features and the song tags. A particular configuration of these parameters that yielded both minimal training error and misclassification rate would implicitly verify a correlation between song features and song tags.
+We were mostly interested in observing the effect of 3 different parameters on the neural network: learning rate, number of hidden layers, and number of hidden nodes per hidden layer. We planned on running our dataset through various neural networks, each with a different configuration of the above parameters. We hoped to find an optimal configuration for these parameters while also discovering any correlation between the above song features and the song tags. A particular configuration of these parameters that yielded both minimal training error and misclassification rate would implicitly verify a correlation between song features and song tags.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Clustering: Hotness}
@@ -196,10 +155,6 @@ To get the hierarchical clusters and plot the dendrogram we used the MATLAB func
 \horizontalLine
 \section{Results}
 \label{sec:results}
-\textbf{This should only describe the results that you have obtained. Sometimes it make sense
-to discuss your guess/opinion why this is happening, but this should be rare. This section is to
-only present the facts about the method performance, robustness, complexity, etc.}
-\smallHorizontalLine
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Linear Regression}
@@ -221,11 +176,11 @@ Ultimately, we found that the lowest number of output nodes would yield the most
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Clustering}
 \label{subsec:clusteringResults}
-We found that the clusters seemed to be skewed by issues with our data set. Plotting our data before removing year and mode skewed our data into clusted bassed only on these two features. Before removing the bad from hotness our cluster were all significantly shifted towards 0 hotness. However, our data did not split into a zero hotness cluster vs non 0 hotness clusters, all the cluster were shifted down equally. After removing these features and datapoints from the dataset we found we got more distict clusters. Below is our k-means clusting with 4 clusters both before and after removing features.
+We found that the clusters seemed to be skewed by issues with our data set. Plotting our data before removing year and mode skewed our data into clusters based only on these two features. Before removing the bad from hotness, our clusters were all significantly shifted towards zero hotness. However, our data did not split into zero hotness clusters vs non zero hotness clusters. All the clusters were shifted down equally. After removing these features and a set of incomplete elements from the dataset, we found we got more distinct clusters. Below is our k-means clustering with four clusters, both before and after removing features.
 
 %INSERT DIAGRAM: trimmed & untrimmed 
 
-We compared our heirchical dendrogram to that of a randomly generated sample. They showed a very similar structure. Comparing the distance values from the dentrograms we found that there were really 4 distinct leaves in our data. After the 4 initial splits the splits didn't look any more significant than when we plotted a dendrogram for random data. Below are the dendragrams from our data and the dendrogram of random data.
+We compared our hierarchical dendrogram to that of a randomly generated sample. They showed a very similar structure. Comparing the distance values from the dendrograms, we found that there were really 4 distinct leaves in our data. After the 4 initial splits, future splits didn't look any more significant than they would in a dendrogram for random data. Below are the dendragrams from our data and one of random data.
 
 %INSTER DIAGRAM: random and sample dendrograms
 
@@ -234,12 +189,6 @@ We compared our heirchical dendrogram to that of a randomly generated sample. Th
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 \section{Discussion}
 \label{sec:discussion}
-\textbf{This is where you discuss everything that was presented in the Results section.
-    Why did the algorithm perform better in X and not in Y. It is ok to succinctly re-state strong
-    result claims (that were included in the previous section), as long as you continue to explain,
-    even speculate why this may be the case. For example: \textquotedblleft Our algorithm was faster in X\% of the
-    scenarios than what is currently available. The main drive behind this performance boost is the Y module, which takes advantage of the Z characteristic of the problem. Indeed, ....\textquotedblright}
-\smallHorizontalLine
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Linear Regression}
@@ -267,13 +216,10 @@ It could either be that the input features don't correlate to the genres well en
 \horizontalLine
 \section{Conclusion}
 \label{sec:conclusion}
-\textbf{Finally, in what some papers refer to as "Conclusion", you provide 1-2 sentences of the purpose
-of this report and 1-2 sentences of what was achieved (these 2-4 sentences are usually similar
-or re-stating what was said in the abstract). Then you go on to discuss about what remains to
-be done (the road ahead), why (the impact to the field) and how you think it can be achieved
-(future work). You end the report with 1-2 sentences on how the work presented advances the
-field in the grant scheme of things.}
-\smallHorizontalLine
+
+We set out to discuss modeling strategies and prediction techniques in commercial music. To create a reliable and accurate model would create opportunities not only for retailers and web radio, but for artists and consumers as well. Artists could better tailor their music to their audience, and consumers would have an accurate and helpful way of finding music similar to their interests. What we found, however, is that this task is not only characterized by a large and complicated feature set, but also very prone to randomness and noise. As the models become more complicated, the computation becomes limiting and the results often do not improve (or in some cases worsen).
+
+Furthering this study would require the addition of big data capability and an ever changing model of current trends in music. Using a combination of proper feature selection based on current popularity and a database of purchase information, we could construct a more complicated and accurate model. Among the trends that we discovered were the importance of popular genres (as our ANN group found with the rock genre) and the danger of overfitting based on poor feature selection (as or linear regression group found with PCA). In future related work we will know how to properly avoid these pitfalls.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -329,8 +275,9 @@ Used for the construction, configuration, training, and testing of our Artificia
 
 \subsection{Performance of Neural Network: Only 5 Output Nodes}
 \label{subsec:annBetterPerformance}
-\includegraphics[scale=0.45]{images/ann/slightlyBetterWithTop5Genres1}
-\includegraphics[scale=0.45]{images/ann/slightlyBetterWithTop5Genres2}
+\includegraphics[scale=0.37]{images/ann/slightlyBetterWithTop5Genres1}
+\newline
+\includegraphics[scale=0.37]{images/ann/slightlyBetterWithTop5Genres2}
 
 \subsection{Performance of Various Neural Networks: 1 Output Node}
 \label{subsec:variousANN}
@@ -353,66 +300,15 @@ Each of the networks that were tested to yield the graph above contained 12 inpu
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\pagebreak
-\horizontalLine
-\section{Code}
-\label{sec:code}
-
-\subsection{Main Loop for Iterating Through Various Neural Network Architectures}
-\label{subsec:annLoop}
-\begin{lstlisting}
-% Declare different values for hidden layers/nodes
-% and learning rates
-hiddenLayerValues = [1 2 3];
-hiddenNodeValues = [30 60 90 120];
-[~, inputs] = size(x);
-[~, outputs] = size(y);
-networks = [];
-rates = [0.05 0.075 0.01 0.03 0.05 0.07 0.1];
-
-
-% Iterate throughout the various hidden layer/node values
-% and various learning rate values
-for layerValue = hiddenLayerValues
-    for nodeValue = hiddenNodeValues
-        for rate = rates
-        
-        % Initialize the architecture of the network
-        architecture = [inputs repmat(nodeValue, 1, layerValue) outputs];
-        
-        % Construct and train the network
-        [network, L] = constructAndTrainNetwork(architecture, rate, x, y);
-        end
-    end
-end
-\end{lstlisting}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\pagebreak
 \horizontalLine
 \section{Author Contributions}
 \label{sec:authorContributions}
 \begin{itemize}
     \item Methods:
     \begin{itemize}
-        \item Linear Regression
-        \begin{itemize}
-            \item Peggy Li
-            \item Steven Mackey
-            \item James Dryden
-        \end{itemize}
-        \item Artificial Neural Networks
-        \begin{itemize}
-            \item Nicholas Layton
-            \item Michael Fiueroa
-        \end{itemize}
-        \item K-Means Clustering
-        \begin{itemize}
-            \item William Otwell
-            \item Marshall Hampson
-            \item Amos Too
-        \end{itemize}
+        \item Linear Regression: Peggy Li, Steven Mackey, James Dryden
+        \item Artificial Neural Networks: Nicholas Layton, Michael Fiueroa
+        \item K-Means Clustering: William Otwell, Marshall Hampson, Amos Too
     \end{itemize}
 \end{itemize}
 \end{document}
