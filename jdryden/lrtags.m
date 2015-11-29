@@ -26,6 +26,7 @@ for ct = 1:10
 	mse(ct) = manualMSE(newhot,1,hot(test));
 
 end
+
 %[newhot,hot(test)]
 y = [hot(test),newhot];
 x = 1:sum(test);
@@ -61,6 +62,7 @@ for ct = 1:10
 
 	mse(ct) = manualMSE(newhot,1,hot(test));
 end
+
 %[newhot,hot(test)]
 subplot(1,tplots,plotnum)
 scatter(x,y(:,1),15,'r','filled','d')
@@ -93,6 +95,7 @@ for ct = 1:10
 
 	mse(ct) = manualMSE(newhot,1,hot(test));
 end
+lnmdl
 %[newhot,hot(test)]
 subplot(1,tplots,plotnum)
 scatter(x,y(:,1),15,'r','filled','d')
