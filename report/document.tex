@@ -83,54 +83,17 @@ The motivation to develop "smarter" software for music analytics originates larg
 Our approach to music analytics was similar to that of Brian Whitman's company, minus the lyrical analysis. We utilized data that represented the actual sound of the music, an approach that Brian calls "acoustic analysis." Some of the features that we included in our analysis, for example, were time signature, loudness, and key, to name a few. We hoped to focus our analysis on the sounds of the music and how the features of a song itself could provide predictive information. More specifically, the goals we hoped to accomplish were:
 \vspace{-3.5mm}
 \begin{itemize}
-    \item Predict the popularity of a song:
+    \item Predict the popularity of a song by applying linear regression techniques to quantify and predict the popularity of a song based on its acoustic features
     \vspace{-3.5mm}
-    \begin{itemize}
-        \item Apply linear regression techniques to quantify and predict the popularity of a song based on its acoustic features
-        \vspace{-3.5mm}
-    \end{itemize}
-    \item Classify a song into its genre(s)
+    \item Classify a song into its genre(s) by utilizing artificial neural networks to learn about the potential relationship between a song's acoustic qualities and its associated genres 
     \vspace{-3.5mm}
-    \begin{itemize}
-        \item Utilize artificial neural networks to learn about the potential relationship between a song's acoustic qualities and its associated genres 
-        \vspace{-3.5mm}
-    \end{itemize}
-    \item Discover trends in the songs regarding hotness and genre
+    \item Discover trends in the songs regarding hotness and genre by utilizing clustering techniques to discover trends in a songs features that might indicate a songs "hotness"
     \vspace{-3.5mm}
-    \begin{itemize}
-        \item Utilize clustering techniques to discover trends in a songs features that might indicate a songs "hotness"
-    \end{itemize}
 \end{itemize}
 
 \subsection{Million Song Dataset}
 \label{subsec:datasetIntro}
-The dataset that we chose to use is known as the Million Song Dataset (see Appendix~\ref{subsec:datasetsAndCode} for more info). Rather than actually using 1 million songs, we used a small, manageable subset of the Million Song Dataset. The features that we used were:
-\begin{enumerate}
-    \item danceability
-    \vspace{-3.5mm}
-    \item duration
-    \vspace{-3.5mm}
-    \item end of fade in
-    \vspace{-3.5mm}
-    \item energy
-    \vspace{-3.5mm}
-    \item key
-    \vspace{-3.5mm}
-    \item loudness
-    \vspace{-3.5mm}
-    \item mode
-    \vspace{-3.5mm}
-    \item song hotness
-    \vspace{-3.5mm}
-    \item start of fade out
-    \vspace{-3.5mm} 
-    \item tempo
-    \vspace{-3.5mm}
-    \item time signature
-    \vspace{-3.5mm}
-    \item year
-\end{enumerate}
-In addition to the list above, the Neural Networks approach also utilized a feature called "artist terms," which is simply a list of tags (which in our case can be thought of as genres) for each song. 
+The dataset that we chose to use is known as the Million Song Dataset (see Appendix~\ref{subsec:datasetsAndCode} for more info). Rather than actually using 1 million songs, we used a small, manageable subset of the Million Song Dataset. The features that we used were: danceability, duration, end-of-fade-in, energy, key, loudness, mode, song-hotness, start-of-fade-out, tempo, time-signature, year, and artist-terms, which is simply a list of tags (which in our case can be thought of as genres) for each song.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -152,14 +115,12 @@ We utilized Neural Networks to predict song genres based on features of a song. 
 \begin{equation}
     X = \begin{Bmatrix}
     	x^{(1)}_1 & x^{(1)}_2 & ... & x^{(1)}_{n_1} \\
-    	x^{(2)}_1 & x^{(2)}_2 & ... & x^{(2)}_{n_1} \\
     	...       & ...       & ... & ... \\
         x^{(m)}_1 & x^{(m)}_2 & ... & x^{(m)}_{n_1} \\
     \end{Bmatrix},
     \\
     Y = \begin{Bmatrix}
     y^{(1)}_1 & y^{(1)}_2 & ... & y^{(1)}_{n_2} \\
-    y^{(2)}_1 & y^{(2)}_2 & ... & y^{(2)}_{n_2} \\
     ...       & ...       & ... & ... \\
     y^{(m)}_1 & y^{(m)}_2 & ... & y^{(m)}_{n_2} \\
     \end{Bmatrix},
@@ -167,10 +128,7 @@ We utilized Neural Networks to predict song genres based on features of a song. 
     D = \{X,Y\}
 \end{equation} 
 \begin{equation}
-    x^{(i)}_j \in \Re
-\end{equation}
-\begin{equation}
-    y^{(i)}_j \in \{0, 1\}
+    x^{(i)}_j \in \Re\ \text{and}\ y^{(i)}_j \in \{0, 1\}
 \end{equation}
 
 where $n_1$ is the number of features, $n_2$ is the number possible tags, and $m$ is the number of samples.
