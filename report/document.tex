@@ -179,7 +179,7 @@ We quickly found that if we included all of the possible tags from our dataset t
 
 By having 12 song features and $n_2$ possible genres, we knew we would need to construct a neural network with 12 input nodes and $n_2$ output nodes. The more complicated issue arose when we tried determining the adequate number of hidden nodes.
 
-We were mostly interested in observing the effect of 3 different parameters on the neural network: learning rate, number of hidden layers, and number of hidden nodes per hidden layer. We planned on running our dataset through various neural networks, each with a different configuration of the above parameters (refer to Appendix~\ref{subsec:annLoop} for code snippet). We hoped to find an optimal configuration for these parameters while also discovering any correlation between the above song features and the song tags. A particular configuration of these parameters that yielded both minimal training error and misclassification rate would implicitly verify a correlation between song features and song tags.
+We were mostly interested in observing the effect of 3 different parameters on the neural network: learning rate, number of hidden layers, and number of hidden nodes per hidden layer. We planned on running our dataset through various neural networks, each with a different configuration of the above parameters. We hoped to find an optimal configuration for these parameters while also discovering any correlation between the above song features and the song tags. A particular configuration of these parameters that yielded both minimal training error and misclassification rate would implicitly verify a correlation between song features and song tags.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Clustering: Hotness}
@@ -228,12 +228,6 @@ We compared our hierarchical dendrogram to that of a randomly generated sample. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 \section{Discussion}
 \label{sec:discussion}
-\textbf{This is where you discuss everything that was presented in the Results section.
-    Why did the algorithm perform better in X and not in Y. It is ok to succinctly re-state strong
-    result claims (that were included in the previous section), as long as you continue to explain,
-    even speculate why this may be the case. For example: \textquotedblleft Our algorithm was faster in X\% of the
-    scenarios than what is currently available. The main drive behind this performance boost is the Y module, which takes advantage of the Z characteristic of the problem. Indeed, ....\textquotedblright}
-\smallHorizontalLine
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Linear Regression}
@@ -321,8 +315,9 @@ Used for the construction, configuration, training, and testing of our Artificia
 
 \subsection{Performance of Neural Network: Only 5 Output Nodes}
 \label{subsec:annBetterPerformance}
-\includegraphics[scale=0.45]{images/ann/slightlyBetterWithTop5Genres1}
-\includegraphics[scale=0.45]{images/ann/slightlyBetterWithTop5Genres2}
+\includegraphics[scale=0.37]{images/ann/slightlyBetterWithTop5Genres1}
+\newline
+\includegraphics[scale=0.37]{images/ann/slightlyBetterWithTop5Genres2}
 
 \subsection{Performance of Various Neural Networks: 1 Output Node}
 \label{subsec:variousANN}
@@ -345,66 +340,15 @@ Each of the networks that were tested to yield the graph above contained 12 inpu
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\pagebreak
-\horizontalLine
-\section{Code}
-\label{sec:code}
-
-\subsection{Main Loop for Iterating Through Various Neural Network Architectures}
-\label{subsec:annLoop}
-\begin{lstlisting}
-% Declare different values for hidden layers/nodes
-% and learning rates
-hiddenLayerValues = [1 2 3];
-hiddenNodeValues = [30 60 90 120];
-[~, inputs] = size(x);
-[~, outputs] = size(y);
-networks = [];
-rates = [0.05 0.075 0.01 0.03 0.05 0.07 0.1];
-
-
-% Iterate throughout the various hidden layer/node values
-% and various learning rate values
-for layerValue = hiddenLayerValues
-    for nodeValue = hiddenNodeValues
-        for rate = rates
-        
-        % Initialize the architecture of the network
-        architecture = [inputs repmat(nodeValue, 1, layerValue) outputs];
-        
-        % Construct and train the network
-        [network, L] = constructAndTrainNetwork(architecture, rate, x, y);
-        end
-    end
-end
-\end{lstlisting}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\pagebreak
 \horizontalLine
 \section{Author Contributions}
 \label{sec:authorContributions}
 \begin{itemize}
     \item Methods:
     \begin{itemize}
-        \item Linear Regression
-        \begin{itemize}
-            \item Peggy Li
-            \item Steven Mackey
-            \item James Dryden
-        \end{itemize}
-        \item Artificial Neural Networks
-        \begin{itemize}
-            \item Nicholas Layton
-            \item Michael Fiueroa
-        \end{itemize}
-        \item K-Means Clustering
-        \begin{itemize}
-            \item William Otwell
-            \item Marshall Hampson
-            \item Amos Too
-        \end{itemize}
+        \item Linear Regression: Peggy Li, Steven Mackey, James Dryden
+        \item Artificial Neural Networks: Nicholas Layton, Michael Fiueroa
+        \item K-Means Clustering: William Otwell, Marshall Hampson, Amos Too
     \end{itemize}
 \end{itemize}
 \end{document}
