@@ -32,7 +32,7 @@ end
 %[newhot,hot(test)]
 subplot(1,tplots,plotnum)
 scatter(x,y(:,1),15,'r','filled','d')
-xlabel('Hotness')
+ylabel('Hotness')
 title('Without Song Tags')
 hold on
 scatter(x,y(:,2),15,'b','filled','o')
@@ -63,7 +63,7 @@ end
 %[newhot,hot(test)]
 subplot(1,tplots,plotnum)
 scatter(x,y(:,1),15,'r','filled','d')
-xlabel('Hotness')
+ylabel('Hotness')
 title('Without Song Tags, Using PCA')
 hold on
 scatter(x,y(:,2),15,'b','filled','o')
@@ -99,7 +99,7 @@ lnmdl
 %[newhot,hot(test)]
 %subplot(1,tplots,plotnum)
 %scatter(x,y(:,1),15,'r','filled','d')
-%xlabel('Hotness')
+%ylabel('Hotness')
 %title('Incomplete Data Removed')
 %hold on
 %scatter(x,y(:,2),15,'b','filled','o')
