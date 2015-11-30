@@ -242,47 +242,24 @@ Furthering this study would require the addition of big data capability and an e
 
 \subsection{Readings}
 \label{subsec:readings}
-\href{http://notes.variogr.am/post/37675885491/how-music-recommendation-works-and-doesnt-work}{\textbf{How music recommendation works - and doesn't work}} - Brian Whitman
+\begin{enumerate}
+    \item Howe, Michael. "Pandora's Music Recommender." Computer Science and Engineering. University of Washington. Web. $<$\href{http://courses.cs.washington.edu/courses/csep521/07wi/prj/michael.pdf}{http://courses.cs.washington.edu/courses/csep521/07wi/prj/michael.pdf}$>$.\vspace{-1ex}
+    
+    \item Whitman, Brian. "How Music Recommendation Works - and Doesn't Work." Brian Whitman. Web. $<$\href{http://notes.variogr.am/post/37675885491/how-music-recommendation-works-and-doesnt-work}{http://notes.variogr.am/post/37675885491/how-music-recommendation-works-and-doesnt-work}$>$.\vspace{-1ex}
 
-Brian Whitman's article describes the flaws with many popular music analytic programs and provides solutions to the problem of providing smart suggestions to music enthusiasts. It also includes the differences in various datasets used by today's popular music applications; for example, some datasets depend on a user's buying history, while others depend song acoustics.
-\\
-\\
-\href{http://courses.cs.washington.edu/courses/csep521/07wi/prj/michael.pdf}{\textbf{Pandora's Music Recommende}r} - Michael Howe 
+    \item Glaser, W.T, T.B. Westergren, J.P. Stearns, and J.M. Kraft. "Consumer Item Matching Method and System." Google Books. Google Patents, 21 Feb. 2006. Web. $<$\href{http://www.google.com/patents/US7003515?dq=7,003,515}{http://www.google.com/patents/US7003515?dq=7,003,515}$>$.\vspace{-1ex}
+    
+    \item Visalakshi, N. Karthikeyani, and K. Thangavel. "Impact of Normalization in Distributed K-Means Clustering." International Journal of Soft Computing. Medwell Journals, 2009. Web. $<$\href{http://www.medwelljournals.com/fulltext/?doi=ijscomp.2009.168.172}{http://www.medwelljournals.com/fulltext/?doi=ijscomp.2009.168.172}$>$.\vspace{-1ex}
+    
+    \item Bergstra, James, Michael Mandel, and Douglas Eck. "SCALABLE GENRE AND TAG PREDICTION WITH SPECTRAL COVARIANCE." ISMIR 2010 Utrecht: International Society for Music Information Retrieval Conference. International Society for Music Information Retrieval Conference. Web. $<$\href{http://ismir2010.ismir.net/proceedings/ismir2010-86.pdf}{http://ismir2010.ismir.net/proceedings/ismir2010-86.pdf}$>$.\vspace{-1ex}
+    
+    \item Miotto, Riccardo, Luke Barrington, and Gert Lanckriet. "IMPROVING AUTO-TAGGING BY MODELING SEMANTIC CO-OCCURRENCES." ISMIR 2010 Utrecht: International Society for Music Information Retrieval Conference. International Society for Music Information Retrieval Conference. Web. $<$\href{http://ismir2010.ismir.net/proceedings/ismir2010-51.pdf}{http://ismir2010.ismir.net/proceedings/ismir2010-51.pdf}$>$.\vspace{-1ex}
+    
+    \item Serra, Joan, Alvaro Corral, Marian Boguna, and Martin Haro. "Measuring the Evolution of Contemporary Western Popular Music." Nature.com: Scientific Reports. Nature Publishing Group. Web. $<$\href{http://www.nature.com/articles/srep00521}{http://www.nature.com/articles/srep00521}$>$.\vspace{-1ex}
+    
+    \item Ni, Yizhao, Raul Santos-Rodriguez, Matt Mcvicar, and Tijl De Bie. "Hit Song Science Once Again a Science?" Research Homepage - Tijl De Bie. Tijl De Bie. Web. $<$\href{http://www.tijldebie.net/system/files/MML2011-final.pdf}{http://www.tijldebie.net/system/files/MML2011-final.pdf}$>$.
 
-Michael Howe's paper describes likely methods and means involved with Pandora's classification and recommendation system. It covers elements of the Music Genome Project and the ways Pandora applies machine learning to both suggesting new music to users and building music taxonomy. By using over 400 features that break down music into its basic elements, Pandora is able to create useful taxonomy that is applied when suggesting music to users. During the act of recommending music, Howe suggests that it is likely that Pandora clusters users and uses that as a factor in determining songs to offer the user. By building neighborhoods of users through clustering, Pandora is successfully attracting loyal users.
-\\
-\\
-\href{http://www.google.com/patents/US7003515?dq=7,003,515}{\textbf{Music Genome Project Patent}} - William T. Glaser 
-
-The patent describes  ``A method of determining at least one match item corresponding to a source item'' and a database that is created to facilitate such functionality. It involves calculating two distances between a source song vector and  first and second database song vectors. The result is then used to select a song match that is based on the magnitudes of these distances.
-\\
-\\
-\href{http://www.medwelljournals.com/fulltext/?doi=ijscomp.2009.168.172}{\textbf{Impact of Normalization in Distributed K-Means Clustering}} - N. Karthikeyani Visalakshi 
-
-The paper illustrates why normalizing data and using that in conjunction with K-means is essentially good method of aiding clustering. After several ``Comprehensive experiments on six benchmark numerical datasets'' the authors also concluded that selecting a specific method of normalization that fits the dataset is essential for this approach to work.
-\\
-\\
-\href{http://ismir2010.ismir.net/proceedings/ismir2010-86.pdf}{\textbf{Scaleable Genre and Tag Prediction with Spectral Covariance}} - James Bergstra
- 
-This paper looks at using covarience, rather than mean or variance, to predict genres and tags. They collenct data for a song in frames of 
-- milliseconds and segments of 2-3 seconds and then analyze data derived from these sections. After analyzing this data, genre was able to be predicted using an SVM at 81\% accuracy.
-\\
-\\
-\href{http://ismir2010.ismir.net/proceedings/ismir2010-86.pdf}{\textbf{Imporving Auto-Tagging by Modeling Semantic Co-Occurrences}} - Riccardo Miotto
-
-This paper looks at improving tag prediction by looking at context. This is accomplished by adding a second layer of training that uses a contextual model after the data has already been run through a semantic model. This was found to improve the accuracy of the predictions.
-\\
-\\
-\href{http://www.nature.com/articles/srep00521}{\textbf{Measuring the Evolution of Contemporary Western Popular Music}} - Joan Serra
-
-This paper looks at changes in popular music over time and trys to determine patterns of these changes. They show that pitch appears to have not changed in the past 50 years, while timbre and loundness have shown  a progression, getting lounder and with a smaller variety in timbre over the years.
-\\
-\\
-\href{http://www.tijldebie.net/system/files/MML2011-final.pdf}{\textbf{Hit Song Science Once Again a Science?}} - Tijl De Bie
-
-Here, attempts were made to predict song popularity. Working with songs from the UK top 40, the authors tried to split the data into those that made the top 20 songs, and those that only reached 30-40. Creating a populartity function over time using a variety of features, they were able to predict popularity better than a random selection. In creating their function they noticed trends in tempo over time, a universal preference for simple songs, and an increase in length and volume over time.
- 
- 
+\end{enumerate}
 \subsection{Datasets and Code}
 \label{subsec:datasetsAndCode}
 \href{http://labrosa.ee.columbia.edu/millionsong/}{\textbf{Million Song Dataset}}
