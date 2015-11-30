@@ -168,7 +168,7 @@ We can see the relative errors of the different models in the bar graph. On the 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Artificial Neural Networks}
 \label{subsec:annResults}
-We found that the number of output nodes negatively impacted our experimental results. As mentioned before in Section~\ref{subsec:ann}, we found that limiting the number of possible genres improved both the training error and misclassification rate. Initially, we constructed our network with 12 input nodes and $n_2 = 301$ output nodes. We then attempted to iterate through various configurations of hidden layers, hidden nodes, and learning rates, but found that none of them yielded any remotely desirable results. A graph of the performance of one of these networks is found in Appendix~\ref{subsec:annPoorPerformance}.
+We found that the number of output nodes negatively impacted our experimental results. As mentioned before in Section~\ref{subsec:ann}, we found that limiting the number of possible genres improved both the training error and misclassification rate. Initially, we constructed our network with 12 input nodes and $n_2 = 301$ output nodes. We then attempted to iterate through various configurations of hidden layers, hidden nodes, and learning rates, but found that none of them yielded results anywhere remotely near desirable.
 
 After considering our options for improving the performance of our network, we limited the maximum number of output nodes to $n_2 = 5$. For each sample we only took genres that belonged to the top 5 genres from our list of most popular genres. The top 5 genres were: rock, electronic, pop, alternative rock, and hip hop. Songs that didn't belong to any of these genres would ideally not be classified into any category. Graphs from our revised network configurations can be found in Appendix~\ref{subsec:annBetterPerformance}.
 
@@ -310,36 +310,21 @@ Used for the construction, configuration, training, and testing of our Artificia
 
 \subsection{Evidence of Overfitting in Linear Regression}
 \label{subsec:overfitting}
-\includegraphics[scale=.45]{images/lr/overfit}
-
-\subsection{Performance of Neural Network: 300 Output Nodes}
-\label{subsec:annPoorPerformance}
-\includegraphics[scale=0.45]{images/ann/horribleResultsWIth300Outputs}
+\includegraphics[scale=.4]{images/lr/overfit}
 
 \subsection{Performance of Neural Network: 5 Output Nodes}
 \label{subsec:annBetterPerformance}
-\includegraphics[scale=0.37]{images/ann/slightlyBetterWithTop5Genres1}
-\newline
-\includegraphics[scale=0.37]{images/ann/slightlyBetterWithTop5Genres2}
+\includegraphics[scale=0.3]{images/ann/slightlyBetterWithTop5Genres2}
 
-\subsection{Performance of Various Neural Networks: 1 Output Node}
+\subsection{Comparison of Various Neural Network Configurations}
 \label{subsec:variousANN}
-\includegraphics[scale=0.45]{images/ann/graphOfVariousNetworksWith1Genre}
-Each of the networks that were tested to yield the graph above contained 12 input nodes and a single output node for the classification of rock songs. The various hidden layer and learning rate configurations are provided below. The numbers correspond to the x-axis values in the graph above. The configuration with the lowest training error is labeled. 
-\begin{enumerate}
-    \item 3 hidden layers, each with 9 hidden nodes, and a learning rate of 0.05
-    \item 3 hidden layers, each with 9 hidden nodes, and a learning rate of 0.1
-    \item 3 hidden layers, each with 12 hidden nodes, and a learning rate of 0.05
-    \item 3 hidden layers, each with 12 hidden nodes, and a learning rate of 0.1
-    \item 4 hidden layers, each with 9 hidden nodes, and a learning rate of 0.05
-    \item 4 hidden layers, each with 9 hidden nodes, and a learning rate of 0.1
-    \item 4 hidden layers, each with 12 hidden nodes, and a learning rate of 0.05
-    \item 4 hidden layers, each with 12 hidden nodes, and a learning rate of 0.1
-\end{enumerate}
+\includegraphics[scale=0.3]{images/ann/graphOfVariousNetworksWith1Genre}
+\\
+Each of the networks that were tested to yield the graph above contained 12 input nodes and a single output node for the classification of rock songs. The first four networks above contained 3 hidden layers, while the others contained 4. Also, the first, second, fifth, and sixth networks contained 9 hidden nodes, while the others contained 12. Finally, all of the even-numbered networks used a learning rate of 0.05, while the others used a rate of 0.1.
 
 \subsection{Performance of Neural Network: 1 Output Node}
 \label{subsec:annBestPerformance}
-\includegraphics[scale=0.45]{images/ann/bestRun}
+\includegraphics[scale=0.3]{images/ann/bestRun}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
