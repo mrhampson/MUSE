@@ -64,18 +64,16 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Abstract}
 \label{sec:abstract}
-Music lovers worldwide are in constant search of new sounds to enrich their music library. Many analytic applications have risen to popularity as a result of listeners' need for music discovery. Most of these applications utilize machine learning techniques to make recommendations and predictions for their users. One of the more common problems in music analytics is the process of recommending an enjoyable song or artist to a user based on their previous music choices. Another popular problem is the process of generating a personalized playlist for a user, again based on their listening choices. 
-
-We sought to solve similar problems by performing predictive analytics on songs based on their acoustic qualities. We hoped to discover any relationship between a song's acoustic qualities and its inaudible qualities, such as genre or popularity. Ultimately, we constructed models to perform different types of analysis, depending on the complexity and structure of the problems. 
+Music lovers worldwide are in constant search of new sounds to enrich their music library. Many analytic applications have risen to popularity as a result of listeners' need for music discovery. Most of these applications utilize machine learning techniques to make recommendations and predictions for their users. One of the more common problems in music analytics is the process of recommending an enjoyable song or artist to a user based on their previous music choices. Another popular problem is the process of generating a personalized playlist for a user, again based on their listening choices. We sought to solve similar problems by performing predictive analytics on songs based on their acoustic qualities. We hoped to discover any relationship between a song's acoustic qualities and its inaudible qualities, such as genre or popularity. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \horizontalLine
 \section{Introduction}
 \label{sec:introduction}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Background}
 \label{subsec:background}
-The motivation to develop "smarter" software for music analytics originates largely from a desire to sell more products to customers. Some of the biggest players in the industry, Amazon and Apple, are notoriously known for their "genius" recommendations on what customers ought to buy next. Brian Whitman, co-founder and CTO of the Echo Nest, said in his article titled \textit{How music recommendation works - and doesn't work} that, "Amazon is not optimizing for the noble work of raising independent artists' profiles to the public, and they're definitely not optimizing for a good musical experience. They're statistically optimizing to make more money, to sell you more things." Brian also discusses how many radio companies, like Pandora, utilize popularity to provide an enjoyable radio-listening experience. Although many of these companies have found success using their own techniques, Brian ultimately expresses the importance of not only focusing on these money-making techniques but satisfying listeners by focusing on the actual music, its sound waves and lyrical significance. He believes that the sound of a song can contribute much more to predictive analytics than users' purchase history or song popularity.
+The motivation to develop "smarter" software for music analytics originates largely from a desire to sell more products to customers. Some of the biggest players in the industry, Amazon and Apple, are notoriously known for their "genius" recommendations on what customers ought to buy next. Brian Whitman, co-founder and CTO of the Echo Nest, said in his article titled \textit{How music recommendation works - and doesn't work} that, "Amazon is not optimizing for the noble work of raising independent artists' profiles to the public, and they're definitely not optimizing for a good musical experience. They're statistically optimizing to make more money, to sell you more things." Although many companies have found success using this technique, Brian expresses the importance of not only focusing on these money-making optimizations but also satisfying listeners by focusing on the actual music, its sound waves and lyrical significance. He believes that the sound of a song can contribute much more to predictive analytics than users' purchase history or song popularity.
 
 Our approach to music analytics was similar to that of Brian Whitman's company, minus the lyrical analysis. We utilized data that represented the actual sound of the music, an approach that Brian calls "acoustic analysis." Some of the features that we included in our analysis, for example, were time signature, loudness, and key, to name a few. We hoped to focus our analysis on the sounds of the music and how the features of a song itself could provide predictive information. More specifically, the goals we hoped to accomplish were:
 \vspace{-3.5mm}
@@ -198,11 +196,11 @@ Furthering this study would require the addition of big data capability and an e
 \subsection{Readings}
 \label{subsec:readings}
 \begin{enumerate}
-    \item Howe, Michael. "Pandora's Music Recommender." Computer Science and Engineering. University of Washington. Web. $<$\href{http://courses.cs.washington.edu/courses/csep521/07wi/prj/michael.pdf}{http://courses.cs.washington.edu/courses/csep521/07wi/prj/michael.pdf}$>$.\vspace{-1ex}
+    \item Howe, Michael. "Pandora's Music Recommender." Computer Science and Engineering. University of Washington. Web.\\ $<$\href{http://courses.cs.washington.edu/courses/csep521/07wi/prj/michael.pdf}{http://courses.cs.washington.edu/courses/csep521/07wi/prj/michael.pdf}$>$.\vspace{-1ex}
     
     \item Whitman, Brian. "How Music Recommendation Works - and Doesn't Work." Brian Whitman. Web. $<$\href{http://notes.variogr.am/post/37675885491/how-music-recommendation-works-and-doesnt-work}{http://notes.variogr.am/post/37675885491/how-music-recommendation-works-and-doesnt-work}$>$.\vspace{-1ex}
 
-    \item Glaser, W.T, T.B. Westergren, J.P. Stearns, and J.M. Kraft. "Consumer Item Matching Method and System." Google Books. Google Patents, 21 Feb. 2006. Web. $<$\href{http://www.google.com/patents/US7003515?dq=7,003,515}{http://www.google.com/patents/US7003515?dq=7,003,515}$>$.\vspace{-1ex}
+    \item Glaser, W.T, T.B. Westergren, J.P. Stearns, and J.M. Kraft. "Consumer Item Matching Method and System." Google Books. Google Patents, 21 Feb. 2006. Web.\\ $<$\href{http://www.google.com/patents/US7003515?dq=7,003,515}{http://www.google.com/patents/US7003515?dq=7,003,515}$>$.\vspace{-1ex}
     
     \item Visalakshi, N. Karthikeyani, and K. Thangavel. "Impact of Normalization in Distributed K-Means Clustering." International Journal of Soft Computing. Medwell Journals, 2009. Web. $<$\href{http://www.medwelljournals.com/fulltext/?doi=ijscomp.2009.168.172}{http://www.medwelljournals.com/fulltext/?doi=ijscomp.2009.168.172}$>$.\vspace{-1ex}
     
@@ -218,23 +216,24 @@ Furthering this study would require the addition of big data capability and an e
     \item Downie, J. Stephen. ``The music information retrieval evaluation exchange (2005-2007): A window into music information retrieval research." Acoustical Science and Technology 29.4 (2008): 247-255. $<$ \href{https://www.jstage.jst.go.jp/article/ast/29/4/29\_4\_247/\_article}{https://www.jstage.jst.go.jp/article/ast/29/4/29\_4\_247/\_article} $>$. 
     \vspace{-1ex}
     
-    \item Kar, Amlan, Chaitanya Ahuja, and Amitabha Mukherjee. "Music Classification using DNN'." (2015). $<$ \href{http://home.iitk.ac.in/~chahuja/cs365/project/report.pdf}{http://home.iitk.ac.in/~chahuja/cs365/project/report.pdf}$>$.
+    \item Kar, Amlan, Chaitanya Ahuja, and Amitabha Mukherjee. "Music Classification using DNN'." (2015). $<$\href{http://home.iitk.ac.in/~chahuja/cs365/project/report.pdf}{http://home.iitk.ac.in/~chahuja/cs365/project/report.pdf}$>$.
 
    
 \end{enumerate}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Datasets and Code}
 \label{subsec:datasetsAndCode}
-\href{http://labrosa.ee.columbia.edu/millionsong/}{\textbf{Million Song Dataset}}
+\begin{itemize}
+    \item \textbf{Million Song Dataset}: 
+    \subitem Thierry Bertin-Mahieux, Daniel P.W. Ellis, Brian Whitman, and Paul Lamere. 
+    The Million Song Dataset. In Proceedings of the 12th International Society
+    for Music Information Retrieval Conference (ISMIR 2011), 2011. Official website by Thierry Bertin-Mahieux,
+    available at: \href{http://labrosa.ee.columbia.edu/millionsong/}{http://labrosa.ee.columbia.edu/millionsong/}\vspace{-1ex}
+    
+    \item \href{https://github.com/rasmusbergpalm/DeepLearnToolbox}{\textbf{DeepLearningToolbox}} - Rasmus Berg Palm
+    \subitem Used for the construction, configuration, training, and testing of our Artificial Neural Networks. The training algorithm uses a form of Batch Gradient Descent by constructing "mini-batches" at each iteration of training. Code available at:\\ \href{https://github.com/rasmusbergpalm/DeepLearnToolbox}{https://github.com/rasmusbergpalm/DeepLearnToolbox}\vspace{-1ex}
+\end{itemize}
 
-Thierry Bertin-Mahieux, Daniel P.W. Ellis, Brian Whitman, and Paul Lamere. 
-The Million Song Dataset. In Proceedings of the 12th International Society
-for Music Information Retrieval Conference (ISMIR 2011), 2011.
-\\
-\\
-\href{https://github.com/rasmusbergpalm/DeepLearnToolbox}{\textbf{DeepLearningToolbox}} - Rasmus Berg Palm
-
-Used for the construction, configuration, training, and testing of our Artificial Neural Networks. The training algorithm uses a form of Batch Gradient Descent by constructing "mini-batches" at each iteration of training.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \appendix
