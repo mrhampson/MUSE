@@ -159,11 +159,11 @@ To get the hierarchical clusters and plot the dendrogram we used the MATLAB func
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Linear Regression}
 \label{subsec:linearRegressionResults}
-The feature sets we elected to work with were a combination of the original data set, subsets of the song tags data field, and some attempts at cleaning up the elements used in training. The first thing we tried was feature selection using Lasso regression and all features and all song tags. The resulting MSE was the highest of all trials: 0.25. The next feature reduction strategy we used was Principal Component Analyses with a second highest error of JUSTASEC. Looking at the scatter plot of predicted vs actual values, we see two clear aggregated bands of points. These two bands show up in normal linear regression using all features as well, but not so neatly packed together.
+The feature sets we elected to work with were a combination of the original data set, subsets of the song tags data field, and some attempts at cleaning up the elements used in training. The first thing we tried was feature selection using Lasso regression and all features and all song tags. The resulting MSE was the highest of all trials: 0.25. The next feature reduction strategy we used was Principal Component Analyses with a second highest error of 0.0488. Looking at the scatter plot of predicted vs actual values, we see two clear aggregated bands of points. These two bands show up in normal linear regression using all features as well, but not so neatly packed together.
 
-Our following trials involved testing the number of song tags to include as features. We found a sorted list of the most prevalent tags in the data and modeled using 20 or 5 of them. The results here were very close, though using 20 did come out slightly more accurate in ten fold cross validation. All our tests that did not include song tags had a MSE close to 0.04, while those that did include song tags hovered closer to 0.02. The final thing we tried was to eliminate row elements with a hotness rating of 0.0. This showed measurable, yet inconsequential improvement. In the final model we used the original feature set (excluding danceability and energy as these values were all zero), the top 20 song tags, and no zero valued elements. The resulting MSE was 0.0221.
+Our following trials involved testing the number of song tags to include as features. We found a sorted list of the most prevalent tags in the data and modeled using 20 or 5 of them. The results here were very close, though using 20 did come out slightly more accurate in ten fold cross validation. All our tests that did not include song tags had a MSE close to 0.04, while those that did include song tags hovered closer to 0.02. The final thing we tried was to eliminate row elements with a hotness rating of 0.0. This showed measurable improvement. In the final model we used the original feature set (excluding danceability and energy as these values were all zero), the top 20 song tags, and no zero valued elements. The resulting MSE was 0.0223.
 
-We can see the relative errors of the different models in the bar graph.
+We can see the relative errors of the different models in the bar graph. On the left we see the MSE with Lasso regression. The next three are the errors associated with normal linear regression with song tags included. The lower two are corrected for zero values. The three on the right are associated with no song tags (see Appendix~\ref{subsec:MSE}).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Artificial Neural Networks}
@@ -195,7 +195,7 @@ We compared our hierarchical dendrogram to that of a randomly generated sample. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Linear Regression}
 \label{subsec:linearRegressionDisc}
-The likely reason for the higher error with feature reduction is overfitting. We can clearly see in the figure that PCA attempts to fit very noisy and varied data to a specific distribution. We can see this in the scatter plot of actual vs predicted hotness. But even this result leads to suprisingly accurate predictions, with a MSE of 0.05, when hotness only ranges bewteen 0 and 1. Using normal linear regression with all the terms first-order yields an MSE of 0.02.  Also, the MSE may be a bit misleading: The mean absolute error would be around 0.15. 
+The likely reason for the higher error with feature reduction is overfitting. We can clearly see in the figure that PCA attempts to fit very noisy and varied data to a specific distribution (see Appendix~\ref{subsec:overfitting}, where blue are predicted and red are actual). We can see this in the scatter plot of actual vs predicted hotness. But even this result leads to suprisingly accurate predictions, with a MSE of 0.05, when hotness only ranges bewteen 0 and 1. Using normal linear regression with all the terms first-order yields an MSE of 0.02.  Also, the MSE may be a bit misleading: The mean absolute error would be around 0.15. 
 
 Doing the same regression on groups that are split up by genre proved useful: The weights show that a popular indie rock song is much louder than a popular ambient song, for example. They also show that different genres correlate with different keys, or in higher popularity. One of the highest weighted terms in the data (over ten times the weight of other features in some cases), for example, was the first song tag: rock. Our model highly favors rock music in its prediction of the popularity of a song.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -322,6 +322,12 @@ Each of the networks that were tested to yield the graph above contained 12 inpu
 \label{subsec:annBestPerformance}
 \includegraphics[scale=0.45]{images/ann/bestRun}
 
+\subsection{Performance of Linear Regression Models}
+\label{subsec:MSE}
+\includegraphics[scale=.5]{images/lr/mse}
+\subsection{Evidence of Overfitting in Linear Regression}
+\includegraphics[scale=.45]{images/lr/overfit}
+\label{subsec:overfitting}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \horizontalLine
