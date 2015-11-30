@@ -97,9 +97,8 @@ The dataset that we chose to use is known as the Million Song Dataset (see Appen
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Linear Regression}
 \label{subsec:linearRegression}
-In an effort to study the predictability of song "hotness" (a measure of popularity included in our data), we used linear regression and various feature sets to create a working model. We began with feature reduction, using Lasso regression and Pricipal Component Analyses followed by normal linear regression. We began modeling with the above listed features, but with danceability and energy ignored. We also selectively used elements with a listed hotness of zero. Such an absolute value suggests missing data more than complete dearth of popularity, so we removed it in some models. This greatly reduced the resulting error. We also tested the use of different numbers of song tags. Using a list sorted by number of appearances in the data, we examined the effects of using the top 20 elements vs just the top 5. We represented these song tags as a matrix in which the rows are associated with sample and the columns with the different song tags. Every $m \times n$ element in the matrix contains a binary value representing the presence or absence of the corresponding song tag in the data pertaining to that row element.
+In an effort to study the predictability of song "hotness" (a measure of popularity included in our data), we used linear regression and various feature sets to create a working model. We began with feature reduction, using Lasso regression and Principal Component Analyses followed by normal linear regression. We began modeling with the above listed features, but with danceability and energy ignored. We also selectively used elements with a listed hotness of zero. Such an absolute value suggests missing data more than complete dearth of popularity, so we removed it in some models. This greatly reduced the resulting error. We also tested the use of different numbers of song tags, testing with the more popular genres. We represented these song tags as a matrix of binary indicators, in which the rows are associated with sample and the columns with the different song tags.
 
-We found that the overwhelmingly important factors in creating an accurate model were the presence and number of song tags, and avoiding overfitting with more complicated feature reduction techniques. The highest mean squared error we found was when we used Lasso regression, followed by our PCA driven attempt. In the end our best result came from retaining a modest number of song tags (20), using normal linear regression, and removing elements with missing or zero valued hotness.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Artificial Neural Networks}
 \label{subsec:ann}
@@ -115,8 +114,7 @@ For K means and hierachical, we used the subset of data mentioned previously. We
 
 For k-means clustering we ran our reduced data through the MATLAB k-means function and plotted of all these features plotted against song hotness. We started with a guidline to use sqrt(n/2) clusters. We ran k-means using this guidline, producing 44 clusters. We tried using various other numbers of clusters and decided to display results using only 4 clusters.
 
-To get the hierarchical clusters and plot the dendrogram we used the MATLAB functions dendrogram and linkage. The linkage function returns a tree of when to clusters are linked together. We decided to view the dendrogram with at most 50 distinct clusters. We compared this to a dendrogram of random data.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \horizontalLine
 \section{Results}
@@ -153,9 +151,9 @@ Refer to Appendix~\ref{subsec:dendrograms} for the dendrograms from our data and
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Linear Regression}
 \label{subsec:linearRegressionDisc}
-The likely reason for the higher error with feature reduction is overfitting. We can clearly see in the figure that PCA attempts to fit very noisy and varied data to a specific distribution (see Appendix~\ref{subsec:overfitting}, where blue are predicted and red are actual). We can see this in the scatter plot of actual vs predicted hotness. But even this result leads to suprisingly accurate predictions, with a MSE of 0.05, when hotness only ranges bewteen 0 and 1. Using normal linear regression with all the terms first-order yields an MSE of 0.02.  Also, the MSE may be a bit misleading: The mean absolute error would be around 0.15. 
+The likely reason for the higher error with feature reduction is overfitting. We can see this in a scatter plot of actual vs predicted results. Regression with PCA attempts to fit the data into a very specific two band shape. It is further apparent that genre is a very important part of our regression model. This could be based on the dataset itself and the accuracy of genre attribution to a song or artist, or it could simply be that certain genres dominate the industry at different times. But even this result leads to surprisingly accurate predictions, with a MSE of 0.0223, when hotness only ranges between zero and one.
 
-Doing the same regression on groups that are split up by genre proved useful: The weights show that a popular indie rock song is much louder than a popular ambient song, for example. They also show that different genres correlate with different keys, or in higher popularity. One of the highest weighted terms in the data (over ten times the weight of other features in some cases), for example, was the first song tag: rock. Our model highly favors rock music in its prediction of the popularity of a song.
+We also found correlation between features; for example certain genres are associated with different keys. These are correlations that may be obvious to a musician or professional, but not to casual consumers.We could quickly shift our methods to study these relationships as well.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Artificial Neural Networks}
 \label{subsec:annDisc}
@@ -242,9 +240,6 @@ Furthering this study would require the addition of big data capability and an e
 \subsection{Performance of Linear Regression Models}
 \label{subsec:MSE}
 \includegraphics[scale=.5]{images/lr/mse}
-\subsection{Evidence of Overfitting in Linear Regression}
-\label{subsec:overfitting}
-\includegraphics[scale=.4]{images/lr/overfit}
 \subsection{Comparison of Various Neural Network Configurations}
 \label{subsec:variousANN}
 \includegraphics[scale=0.3]{images/ann/graphOfVariousNetworksWith1Genre}
