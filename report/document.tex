@@ -212,7 +212,18 @@ It could either be that the input features don't correlate to the genres well en
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Clustering}
 \label{subsec:clusteringDisc}
+By examining how our data clustered we hoped to find some hint as to what features were the most significant in predicting the genre or hotness of a song.
+However, after examining the visualizations of the clusters there was not much to be gained by clustering. There were no obvious relationships between
+the features and genre or song hotness when we used k-means to cluster the data. Hierarchical clustering seemed to reveal slightly more; at least, it was slightly more significant than hierarchical clustering on random data. This led us to conclude that using these features were not a good choice for 
+determining a songs genre. 
 
+After we realized that this didn't yield any useful information about a songs genre, we wondered what would. In the paper, "Pandoras Music
+Recommender", it seems even Pandora was not able to classify music entirely by looking at features that could be calculated from audio data like in 
+our approach. Rather Pandora employees a team of musicians to "[listen to a] collection of songs and tagging each according to
+approximately 400 musical attributes" (Howe 2). However, they do employ clustering algorithms in order to create groups of users with certain preferences and
+to cluster songs based on similarity of the human-provided tags.
+So essentially, Pandora still relies on humans analyzing what genre and musical attributes have in common, but takes advantage of machine learning techniques
+to predict the next song to play, by calculating the musical "distance" between songs as well as grouping users together to generate better song predictions.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \horizontalLine
