@@ -141,7 +141,7 @@ Ultimately, we found that the lowest possible number of output nodes would yield
 \subsection{Clustering}
 \label{subsec:clusteringResults}
 We found that the clusters seemed to be skewed by issues with our data set. Plotting our data before removing year and mode skewed our data into clusters based only on these two features. Before removing the bad from hotness, our clusters were all significantly shifted towards zero hotness. However, our data did not split into zero hotness clusters vs non zero hotness clusters. All the clusters were shifted down equally. After removing these features and a set of incomplete elements from the dataset, we found we got more distinct clusters. Below is our k-means clustering with four clusters, both before and after removing features.
-See the Appendix~\ref{subsec:trimmedKmeans}
+See Appendix~\ref{subsec:trimmedKmeans} and Appendix~\ref{subsec:untrimmedKmeans}
 
 
 We compared our hierarchical dendrogram to that of a randomly generated sample. They showed a very similar structure. Comparing the distance values from the dendrograms, we found that there were really 4 distinct leaves in our data. After the 4 initial splits, future splits didn't look any more significant than they would in a dendrogram for random data. Below are the dendragrams from our data and one of random data.
@@ -253,6 +253,9 @@ Each of the networks that were tested to yield the graph above contained 12 inpu
 \subsection{K-means with features removed}
 \label{subsec:trimmedKmeans}
 \includegraphics[scale=0.6]{images/clustering/trimmedkMeans}
+\subsection{K-means without removing features}
+\label{subsec:untrimmedKmeans}
+\includegraphics[scale=0.6]{images/clustering/untrimmedkmeans}
 \subsection{Dendrograms}
 \label{subsec:dendrograms}
 \includegraphics[scale=0.6]{images/clustering/h_random}
