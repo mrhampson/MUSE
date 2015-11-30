@@ -53,7 +53,6 @@
        \normalsize ECS 171: Machine Learning\\Fall 2015}
 \date{\today}
 \author{\bf Team Name: The Muses\\ \bf William Otwell (997371020)\\ \bf Marshall Hampson (998795016)\\ \bf Nicholas Layton (996933702)\\ \bf Steven Mackey ()\\ \bf James Dryden (993083613)\\ \bf Amos Too (998124687)\\ \bf Michael Fiueroa (998378271)\\ \bf Peggy Li (998440170)}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
@@ -61,7 +60,6 @@
 \pagebreak
 \tableofcontents
 \pagebreak
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Abstract}
@@ -69,7 +67,6 @@
 Music lovers worldwide are in constant search of new sounds to enrich their music library. Many analytic applications have risen to popularity as a result of listeners' need for music discovery. Most of these applications utilize machine learning techniques to make recommendations and predictions for their users. One of the more common problems in music analytics is the process of recommending an enjoyable song or artist to a user based on their previous music choices. Another popular problem is the process of generating a personalized playlist for a user, again based on their listening choices. 
 
 We sought to solve similar problems by performing predictive analytics on songs based on their acoustic qualities. We hoped to discover any relationship between a song's acoustic qualities and its inaudible qualities, such as genre or popularity. Ultimately, we constructed models to perform different types of analysis, depending on the complexity and structure of the problems. 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \horizontalLine
@@ -90,33 +87,27 @@ Our approach to music analytics was similar to that of Brian Whitman's company, 
     \item Discover trends in the songs regarding hotness and genre by utilizing clustering techniques to discover trends in a songs features that might indicate a songs "hotness"
     \vspace{-3.5mm}
 \end{itemize}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Million Song Dataset}
 \label{subsec:datasetIntro}
 The dataset that we chose to use is known as the Million Song Dataset (see Appendix~\ref{subsec:datasetsAndCode} for more info). Rather than actually using 1 million songs, we used a small, manageable subset of the Million Song Dataset. The features that we used were: danceability, duration, end-of-fade-in, energy, key, loudness, mode, song-hotness, start-of-fade-out, tempo, time-signature, year, and artist-terms, which is simply a list of tags (which in our case can be thought of as genres) for each song.
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \horizontalLine
 \section{Methods}
 \label{sec:methods}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Linear Regression}
 \label{subsec:linearRegression}
 In an effort to study the predictability of song "hotness" (a measure of popularity included in our data), we used linear regression and various feature sets to create a working model. We began with feature reduction, using Lasso regression and Pricipal Component Analyses followed by normal linear regression. We began modeling with the above listed features, but with danceability and energy ignored. We also selectively used elements with a listed hotness of zero. Such an absolute value suggests missing data more than complete dearth of popularity, so we removed it in some models. This greatly reduced the resulting error. We also tested the use of different numbers of song tags. Using a list sorted by number of appearances in the data, we examined the effects of using the top 20 elements vs just the top 5. We represented these song tags as a matrix in which the rows are associated with sample and the columns with the different song tags. Every $m \times n$ element in the matrix contains a binary value representing the presence or absence of the corresponding song tag in the data pertaining to that row element.
 
 We found that the overwhelmingly important factors in creating an accurate model were the presence and number of song tags, and avoiding overfitting with more complicated feature reduction techniques. The highest mean squared error we found was when we used Lasso regression, followed by our PCA driven attempt. In the end our best result came from retaining a modest number of song tags (20), using normal linear regression, and removing elements with missing or zero valued hotness.
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Artificial Neural Networks}
 \label{subsec:ann}
-We utilized Neural Networks to predict song genres based on features of a song. Many songs, however, belonged to several genres. To represent the various genres, also known as tags, for a particular song, we formed a feature column for each possible tag in our dataset. Then, we scanned through each song to determine its set of tags and set the index of each tag to a 1 in the appropriate column if the tag was present for the particular song. If there were $k$ possible tags in the entire dataset, and $m$ samples, then the matrix needed to represent all tags for all samples would be an $m \times k$ matrix. 
+We utilized Neural Networks to predict song genres based on features of a song. Many songs, however, belonged to several genres. To represent the various genres, also known as tags, for a particular song, we formed an $m \times k$ matrix of 0s to represent the tags for all songs, where $m$ was the number of samples and $k$ was the number of possible tags. Then, we iterated through all $m$ samples to check the tags of each song, and set the indices to 1s in the tag matrix for the tags to which the current sample/song belonged.By having 12 song features and $k$ possible genres, we knew we would need to construct a neural network with 12 input nodes and $k$ output nodes. 
 
-We quickly found that if we included all of the possible tags from our dataset that the number of tags would reach an unmanageable amount. Training our network with such a large number of tags was computationally intensive and was difficult for our network to learn such a complex distribution. Instead, we decided to limit the number of tags to a small subset of the most popular tags. We were able to import a list of the 300 most popular genres in the dataset and use it as the limiting set of possible tags for our dataset. We found that even 300 tags was too many. Later, we found that limiting the possible number of tags would reduce error and misclassification rate.
-
-By having 12 song features and $k$ possible genres, we knew we would need to construct a neural network with 12 input nodes and $k$ output nodes. The more complicated issue arose when we tried determining the adequate number of hidden nodes. We were mostly interested in observing the effect of 3 different parameters on the neural network: learning rate, number of hidden layers, and number of hidden nodes per hidden layer. We planned on running our dataset through various neural networks, each with a different configuration of the above parameters. We hoped to find an optimal configuration for these parameters while also discovering any correlation between the above song features and the song tags. A particular configuration of these parameters that yielded both minimal training error and misclassification rate would implicitly verify a correlation between song features and song tags.
-
+After determining the input and output configurations of the neural network, we became mostly with testing the effect of 3 different parameters on the neural network: learning rate, number of hidden layers, and number of hidden nodes per hidden layer. We planned to run our dataset through various neural networks, each with a different configuration of the above parameters. By doing so, we hoped to find both an optimal network configuration and a correlation between a song's features and its tags. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Clustering}
 \label{subsec:clustering}
@@ -127,13 +118,11 @@ For K means and hierachical, we used the subset of data mentioned previously. We
 For k-means clustering we ran our reduced data through the MATLAB k-means function and plotted of all these features plotted against song hotness. We started with a guidline to use sqrt(n/2) clusters. We ran k-means using this guidline, producing 44 clusters. We tried using various other numbers of clusters and decided to display results using only 4 clusters.
 
 To get the hierarchical clusters and plot the dendrogram we used the MATLAB functions dendrogram and linkage. The linkage function returns a tree of when to clusters are linked together. We decided to view the dendrogram with at most 50 distinct clusters. We compared this to a dendrogram of random data.
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \horizontalLine
 \section{Results}
 \label{sec:results}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Linear Regression}
 \label{subsec:linearRegressionResults}
@@ -142,16 +131,14 @@ The feature sets we elected to work with were a combination of the original data
 Our following trials involved testing the number of song tags to include as features. We found a sorted list of the most prevalent tags in the data and modeled using 20 or 5 of them. The results here were very close, though using 20 did come out slightly more accurate in ten fold cross validation. All our tests that did not include song tags had a MSE close to 0.04, while those that did include song tags hovered closer to 0.02. The final thing we tried was to eliminate row elements with a hotness rating of 0.0. This showed measurable improvement. In the final model we used the original feature set (excluding danceability and energy as these values were all zero), the top 20 song tags, and no zero valued elements. The resulting MSE was 0.0223.
 
 We can see the relative errors of the different models in the bar graph. On the left we see the MSE with Lasso regression. The next three are the errors associated with normal linear regression with song tags included. The lower two are corrected for zero values. The three on the right are associated with no song tags (see Appendix~\ref{subsec:MSE}).
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Artificial Neural Networks}
 \label{subsec:annResults}
-We found that the number of output nodes negatively impacted our experimental results. As mentioned before in Section~\ref{subsec:ann}, we found that limiting the number of possible genres improved both the training error and misclassification rate. Initially, we constructed our network with 12 input nodes and $k = 301$ output nodes. We then attempted to iterate through various configurations of hidden layers, hidden nodes, and learning rates, but found that none of them yielded results anywhere remotely near desirable. Both the training error and misclassification rate would consistently skyrocket, regardless of the learning rate or hidden layer/node configuration.
+We found that the number of output nodes negatively impacted our experimental results. Including all of the possible tags from our dataset yielded extremely undesirable results. Furthermore, computational overhead of training with all 300 outputs resulted in very long wait times between training runs. Instead, we found that limiting the number of possible genres improved both the training error and misclassification rate. Initially, we constructed our network with 12 input nodes and $k = 301$ output nodes. We then attempted to iterate through various configurations of hidden layers, hidden nodes, and learning rates, but found that none of them yielded results anywhere remotely near desirable. Both the training error and misclassification rate would consistently skyrocket, regardless of the learning rate or hidden layer/node configuration.
 
-After considering our options for improving the performance of our network, we resorted to limiting the maximum number of output nodes to $k = 5$. We only considered genres that belonged to the top 5 genres from our list of most popular genres, which were: rock, electronic, pop, alternative rock, and hip hop. Songs that didn't belong to any of these genres would not be classified into any category. Although, this approach dramatically improved the performance of our network, it still did not yield a desireable training error.
+After considering our options for improving the performance of our network, we resorted to limiting the maximum number of output nodes to $k = 5$. We only considered genres that belonged to the top 5 genres from our list of most popular genres, which were: rock, electronic, pop, alternative rock, and hip hop. Songs that didn't belong to any of these genres would not be classified into any category. Although, this approach dramatically improved the performance of our network, it still did not yield a desirable training error.
 
 Ultimately, we found that the lowest possible number of output nodes would yield the most optimal results. We chose to limit the output nodes to only the most popular genre: rock. It was no surprise that this configuration would yield the most optimal results since the network needed only to focus on a single output node. We iterated over various network configurations to discover the optimal hidden-layer and learning rate configuration. The results of this experiment are illustrated in Appendix~\ref{subsec:variousANN}, which is a plot of both training error and misclassification rate for each network configuration. From this plot, we see that the optimal configuration is the 7th network: 4 hidden layers, each with 12 hidden nodes, with a learning rate of 0.05. A plot of the training run for this network is shown in Appendix~\ref{subsec:annBestPerformance}.
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Clustering}
 \label{subsec:clusteringResults}
@@ -165,7 +152,6 @@ Refer to Appendix~\ref{subsec:dendrograms} for the dendrograms from our data and
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 \section{Discussion}
 \label{sec:discussion}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Linear Regression}
 \label{subsec:linearRegressionDisc}
@@ -180,7 +166,6 @@ The primary obstacle in successfully constructing a predictor for song genres wa
 Consider the case where we are trying to predict all 300 of the top genres. Our dataset would be organized as discussed in Section~\ref{subsec:ann}, where $n = 12$ and $k = 300$. This results in an ANN of 12 inputs, and 300 outputs. If the neural network correctly classifies 299 of the 300 genres, then the overall network performed a misclassification, even though it only missed a correct classification by 1 output out of 300. This makes it very easy for the network to misclassify a sample. By reducing the number of outputs to 5 and to 1, the network has a much lower possibility of misclassifying any of the particular outputs. 
 
 The inability to train a network with 300 output nodes could either be that a one-to-many correlation does not exist between a song's feature and the set of genres, or the complexity of a neural network with 300 output nodes is just too great to handle. One of the untested options that we think could help with classifying 300 outputs would be to construct a neural network for each output, rather than having a single network for all outputs. 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Clustering}
 \label{subsec:clusteringDisc}
@@ -201,7 +186,6 @@ to predict the next song to play, by calculating the musical "distance" between 
 \horizontalLine
 \section{Conclusion}
 \label{sec:conclusion}
-
 We set out to discuss modeling strategies and prediction techniques in commercial music. To create a reliable and accurate model would create opportunities not only for retailers and web radio, but for artists and consumers as well. Artists could better tailor their music to their audience, and consumers would have an accurate and helpful way of finding music similar to their interests. What we found, however, is that this task is not only characterized by a large and complicated feature set, but also very prone to randomness and noise. As the models become more complicated, the computation becomes limiting and the results often do not improve (or in some cases worsen).
 
 Furthering this study would require the addition of big data capability and an ever changing model of current trends in music. Using a combination of proper feature selection based on current popularity and a database of purchase information, we could construct a more complicated and accurate model. Among the trends that we discovered were the importance of popular genres (as our ANN group found with the rock genre) and the danger of overfitting based on poor feature selection (as or linear regression group found with PCA). In future related work we will know how to properly avoid these pitfalls.
@@ -210,7 +194,7 @@ Furthering this study would require the addition of big data capability and an e
 \horizontalLine
 \section{References}
 \label{sec:references}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Readings}
 \label{subsec:readings}
 \begin{enumerate}
@@ -231,6 +215,7 @@ Furthering this study would require the addition of big data capability and an e
     \item Ni, Yizhao, Raul Santos-Rodriguez, Matt Mcvicar, and Tijl De Bie. "Hit Song Science Once Again a Science?" Research Homepage - Tijl De Bie. Tijl De Bie. Web. $<$\href{http://www.tijldebie.net/system/files/MML2011-final.pdf}{http://www.tijldebie.net/system/files/MML2011-final.pdf}$>$.
 
 \end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Datasets and Code}
 \label{subsec:datasetsAndCode}
 \href{http://labrosa.ee.columbia.edu/millionsong/}{\textbf{Million Song Dataset}}
@@ -243,37 +228,28 @@ for Music Information Retrieval Conference (ISMIR 2011), 2011.
 \href{https://github.com/rasmusbergpalm/DeepLearnToolbox}{\textbf{DeepLearningToolbox}} - Rasmus Berg Palm
 
 Used for the construction, configuration, training, and testing of our Artificial Neural Networks. The training algorithm uses a form of Batch Gradient Descent by constructing "mini-batches" at each iteration of training.
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \appendix
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\horizontalLine
 \section{Figures}
 \label{sec:figures}
-
 \subsection{Performance of Linear Regression Models}
 \label{subsec:MSE}
 \includegraphics[scale=.5]{images/lr/mse}
-
 \subsection{Evidence of Overfitting in Linear Regression}
 \label{subsec:overfitting}
 \includegraphics[scale=.4]{images/lr/overfit}
-
 \subsection{Comparison of Various Neural Network Configurations}
 \label{subsec:variousANN}
 \includegraphics[scale=0.3]{images/ann/graphOfVariousNetworksWith1Genre}
 \\
 Each of the networks that were tested to yield the graph above contained 12 input nodes and a single output node for the classification of rock songs. The first four networks above contained 3 hidden layers, while the others contained 4. Also, the first, second, fifth, and sixth networks contained 9 hidden nodes, while the others contained 12. Finally, all of the even-numbered networks used a learning rate of 0.05, while the others used a rate of 0.1.
-
 \subsection{Performance of Neural Network: 1 Output Node}
 \label{subsec:annBestPerformance}
 \includegraphics[scale=0.3]{images/ann/bestRun}
-
-
 \subsection{K-means with features removed}
 \label{subsec:trimmedKmeans}
 \includegraphics[scale=0.6]{images/clustering/trimmedkMeans}
-
 \subsection{Dendrograms}
 \label{subsec:dendrograms}
 \includegraphics[scale=0.6]{images/clustering/h_random}
