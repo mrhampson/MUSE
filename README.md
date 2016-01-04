@@ -1,4 +1,5 @@
 # MUSE
+## For an explanation of the project please view the [report](ProjectMUSEReport.pdf)
 
 ##Data
 These will be the features we use:
@@ -33,12 +34,10 @@ These will be the features we use:
 
 http://labrosa.ee.columbia.edu/millionsong/pages/field-list
 
-###Python
-To build the csv file first download the MillionSongSubset files. Then ```cd``` into the directory with ```getCsvFromData.py```
+To build the csv file for use with MATLAB first download the MillionSongSubset files. Then ```cd``` into the directory with ```getCsvFromData.py```
 and run the command ```python getCsvFromData.py <path to MillionSongSubset/data/>```
 
-###SQL
-This folder contains a file ```merged_song_database.db``` which is a combination of ```subset_artist_similarity.db```,
+This data folder contains a file ```merged_song_database.db``` which is a combination of ```subset_artist_similarity.db```,
 ```subset_artist_term.db```, and ```subset_track_metadata.db``` from the original subset data.
 To get the ```song_data.csv``` I ran this query against the database
 ```sql
